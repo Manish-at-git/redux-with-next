@@ -16,22 +16,17 @@ function Home() {
 
   return (
     <div className={styles.container}>
-      {/* <p> {data.users}</p> */}
+      <p> {data.main.users}</p>
 
-      {console.log(data.main.users)}
+      {console.log(data.main.users, "index 21 data.main.users")}
     </div>
   );
 }
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  // regular stuff
   store.dispatch(loadUsers());
-  // end the saga
   store.dispatch(END);
   await store.sagaTask.toPromise();
-
-  const state = store.getState();
-  console.log("state", state.main.users);
 });
 
 export default Home;
