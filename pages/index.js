@@ -8,9 +8,9 @@ function Home() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.main);
 
-  useEffect(() => {
-    dispatch(loadUsers());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(loadUsers());
+  // }, []);
   // console.log(data);
 
   return (
