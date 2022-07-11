@@ -6,7 +6,7 @@ import { wrapper } from "../redux/store";
 import { END } from "redux-saga";
 
 function Home() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const data = useSelector((state) => state.main);
 
   // useEffect(() => {
@@ -18,7 +18,7 @@ function Home() {
     <div className={styles.container}>
       <p> {data.main.users}</p>
 
-      {console.log(data.main.users, "index 21 data.main.users")}
+      {console.log(data, "index 21 data.main.users")}
     </div>
   );
 }
