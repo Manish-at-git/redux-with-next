@@ -8,9 +8,12 @@ import { GET_USERS, GET_USERS_SUCCESS, GET_USERS_ERROR } from "../types";
 //   };
 // };
 
-const loadUsers = () => ({
-  type: GET_USERS,
-});
+const loadUsers = () => {
+  console.log("object");
+  return {
+    type: GET_USERS,
+  };
+};
 
 const setUsers = (users) => {
   console.log(users);

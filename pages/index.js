@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { connect } from "react-redux";
 import { loadUsers } from "../redux/actions/main";
 import styles from "../styles/Home.module.css";
 import { useDispatch, useSelector } from "react-redux";
+import { wrapper } from "../redux/store";
 
 function Home() {
   const dispatch = useDispatch();
@@ -11,16 +11,22 @@ function Home() {
   useEffect(() => {
     dispatch(loadUsers());
   }, []);
-  console.log(data);
-  // const [newName, setName] = useState("");
+  // console.log(data);
 
   return (
     <div className={styles.container}>
-      <p> {data.users}</p>
+      {/* <p> {data.users}</p> */}
 
       {console.log(data)}
     </div>
   );
 }
+
+export const getStaticProps = wrapper.getStaticProps(
+  (store) =>
+    async ({ req, res }) => {
+      await store.dispatch(loadUsers());
+    }
+);
 
 export default Home;
