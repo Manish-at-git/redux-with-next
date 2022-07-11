@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import { loadUsers } from "../redux/actions/main";
 import styles from "../styles/Home.module.css";
@@ -7,27 +8,14 @@ import { END } from "redux-saga";
 
 import Link from "next/link";
 
-function Home() {
-  const dispatch = useDispatch();
+function home() {
   const data = useSelector((state) => state.main);
-
-  // useEffect(() => {
-  //   dispatch(loadUsers());
-  // }, []);
-  // console.log(data);
-
   return (
-    <div className={styles.container}>
+    <div>
       <p> {data.users}</p>
-
-      <div>
-        <Link href="/home">
-          <a>home</a>
-        </Link>
-        <Link href="/Folder/contact">
-          <a>contact</a>
-        </Link>
-      </div>
+      <Link href="/">
+        <a>index</a>
+      </Link>
     </div>
   );
 }
@@ -40,4 +28,4 @@ export const getServerSideProps = wrapper.getServerSideProps(
   }
 );
 
-export default Home;
+export default home;
