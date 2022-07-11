@@ -8,7 +8,7 @@ import { END } from "redux-saga";
 
 import Link from "next/link";
 
-function home() {
+function Home() {
   const data = useSelector((state) => state.main);
   return (
     <div>
@@ -28,4 +28,4 @@ export const getServerSideProps = wrapper.getServerSideProps(
   }
 );
 
-export default home;
+export default Home;

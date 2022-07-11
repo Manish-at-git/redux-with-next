@@ -24,9 +24,6 @@ function Home() {
         <Link href="/home">
           <a>home</a>
         </Link>
-        <Link href="/Folder/contact">
-          <a>contact</a>
-        </Link>
       </div>
     </div>
   );
