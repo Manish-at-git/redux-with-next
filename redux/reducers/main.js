@@ -6,7 +6,8 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
-  console.log(action);
+  console.log(action.users);
+  console.log(state);
 
   if (action.type === HYDRATE) {
     const nextState = {
