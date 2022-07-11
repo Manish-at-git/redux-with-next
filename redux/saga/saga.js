@@ -1,14 +1,7 @@
 import { put, call, takeEvery } from "redux-saga/effects";
 
-import {
-  setUsers,
-  setError,
-} from "../../../next-reduxSaga/redux/actions/userAction";
-import {
-  GET_USERS,
-  GET_USERS_SUCCESS,
-  GET_USERS_ERROR,
-} from "../../../next-reduxSaga/redux/types";
+import { setUsers, setError } from "../actions/main";
+import { GET_USERS, GET_USERS_SUCCESS, GET_USERS_ERROR } from "../types";
 import axios from "axios";
 
 export function* handleImagesLoad() {
