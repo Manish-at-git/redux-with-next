@@ -13,7 +13,7 @@ export default function (state = initialState, action) {
     console.log(action.payload, "action.users");
     const nextState = {
       ...state, // use previous state
-      ...action.payload.main, // apply delta from hydration
+      ...action.payload, // apply delta from hydration
     };
     if (state.count) nextState.count = state.count; // preserve count value on client side navigation
     return nextState;

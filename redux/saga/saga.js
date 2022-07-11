@@ -7,8 +7,9 @@ import axios from "axios";
 export function* handleImagesLoad() {
   try {
     const users = yield call(axios.get, "https://worldtimeapi.org/api/ip");
-    console.log(users.data.datetime);
+
     yield put(setUsers(users.data.datetime));
+    console.log(users.data.datetime);
   } catch (error) {
     yield put(setError(error.toString()));
   }

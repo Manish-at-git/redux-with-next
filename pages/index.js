@@ -9,7 +9,7 @@ import Link from "next/link";
 
 function Home() {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.main);
+  const data = useSelector((paylaod) => paylaod);
 
   // useEffect(() => {
   //   dispatch(loadUsers());
@@ -18,7 +18,8 @@ function Home() {
 
   return (
     <div className={styles.container}>
-      <p> {data.users}</p>
+      <p> {data.main.main.users}</p>
+      {console.log(data.main.main.users)}
 
       <div>
         <Link href="/home">
