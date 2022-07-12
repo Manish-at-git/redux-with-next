@@ -29,7 +29,7 @@ function Home() {
           <Link
             href={{
               pathname: `${item.id}`,
-              query: "https://jsonplaceholder.typicode.com/todos",
+              basePath: { data: "https://jsonplaceholder.typicode.com/todos" },
             }}
           >
             <a>
