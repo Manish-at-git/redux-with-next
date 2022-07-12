@@ -14,6 +14,7 @@ import Navbar from "react-bootstrap/Navbar";
 function Home() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.main.users);
+  const navbarData = useSelector((state) => state.main.navbarOpened);
 
   // useEffect(() => {
   //   dispatch(loadUsers());
@@ -28,12 +29,12 @@ function Home() {
     <>
       <div className={styles.container}>
         {/* <p> {data.main.main.users}</p> */}
-        {console.log(data, "hello")}
+        {console.log(navbarData, "hello")}
       </div>
       <div>
         <button onClick={changeState}>Click me</button>
-        <div>{data.navbarOpened}</div>
-        {data.navbarOpened ? <div>TRUE</div> : null}
+        <div>{navbarData}</div>
+        {navbarData ? <div>TRUE</div> : null}
       </div>
       <Navbar bg="dark" variant="dark">
         <Container>
