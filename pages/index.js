@@ -9,7 +9,7 @@ import Link from "next/link";
 
 function Home() {
   const dispatch = useDispatch();
-  const data = useSelector((paylaod) => paylaod);
+  const data = useSelector((state) => state.main.main.users);
 
   // useEffect(() => {
   //   dispatch(loadUsers());
@@ -18,8 +18,11 @@ function Home() {
 
   return (
     <div className={styles.container}>
-      <p> {data.main.main.users}</p>
-      {console.log(data.main.main.users)}
+      {/* <p> {data.main.main.users}</p> */}
+      {console.log(data, "hello")}
+      {data.map((item) => (
+        <h1>{item.name}</h1>
+      ))}
 
       <div>
         <Link href="/home">

@@ -6,10 +6,13 @@ import axios from "axios";
 
 export function* handleImagesLoad() {
   try {
-    const users = yield call(axios.get, "https://worldtimeapi.org/api/ip");
+    const users = yield call(
+      axios.get,
+      "https://jsonplaceholder.typicode.com/users"
+    );
 
-    yield put(setUsers(users.data.datetime));
-    console.log(users.data.datetime);
+    yield put(setUsers(users.data));
+    console.log(users.data, "sagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
   } catch (error) {
     yield put(setError(error.toString()));
   }
