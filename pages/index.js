@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { loadUsers } from "../redux/actions/main";
+import { loadUsers, navbarToggle } from "../redux/actions/main";
 import styles from "../styles/Home.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { wrapper } from "../redux/store";
@@ -20,17 +20,20 @@ function Home() {
   // }, []);
   console.log(data);
 
+  const changeState = () => {
+    dispatch(navbarToggle());
+  };
+
   return (
     <>
       <div className={styles.container}>
         {/* <p> {data.main.main.users}</p> */}
         {console.log(data, "hello")}
-
-        <div>
-          {/* <Link href="/Home">
-            <a>home</a>
-          </Link> */}
-        </div>
+      </div>
+      <div>
+        <button onClick={changeState}>Click me</button>
+        <div>{data.navbarOpened}</div>
+        {data.navbarOpened ? <div>TRUE</div> : null}
       </div>
       <Navbar bg="dark" variant="dark">
         <Container>

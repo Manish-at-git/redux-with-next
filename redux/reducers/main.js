@@ -1,9 +1,9 @@
-import { GET_USERS_SUCCESS, GET_USERS_ERROR } from "../types";
+import { GET_USERS_SUCCESS, GET_USERS_ERROR, NAVBARTOGGLED } from "../types";
 import { HYDRATE } from "next-redux-wrapper";
 
 const initialState = {
   users: [],
-  hello: [],
+  navbarOpened: false,
 };
 
 export default function (state = initialState, action) {
@@ -18,7 +18,12 @@ export default function (state = initialState, action) {
     };
     if (state.count) nextState.count = state.count; // preserve count value on client side navigation
     return nextState;
-  } else if (action.type === GET_USERS_SUCCESS)
+  } else if (action.type === NAVBARTOGGLED)
+    return {
+      ...state,
+      navbarOpened: !state.navbarOpened,
+    };
+  else if (action.type === GET_USERS_SUCCESS)
     return {
       ...state,
       users: [...action.users],

@@ -1,4 +1,9 @@
-import { GET_USERS, GET_USERS_SUCCESS, GET_USERS_ERROR } from "../types";
+import {
+  GET_USERS,
+  GET_USERS_SUCCESS,
+  GET_USERS_ERROR,
+  NAVBARTOGGLED,
+} from "../types";
 
 // export const setInfo = (name) => {
 //   console.log("hello");
@@ -7,6 +12,12 @@ import { GET_USERS, GET_USERS_SUCCESS, GET_USERS_ERROR } from "../types";
 //     payload: name,
 //   };
 // };
+
+const navbarToggle = () => {
+  return {
+    type: NAVBARTOGGLED,
+  };
+};
 
 const loadUsers = () => {
   console.log("object");
@@ -28,4 +39,4 @@ const setError = (error) => ({
   error,
 });
 
-export { loadUsers, setUsers, setError };
+export { loadUsers, setUsers, setError, navbarToggle };
