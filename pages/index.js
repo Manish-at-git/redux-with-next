@@ -13,7 +13,7 @@ import Link from "next/link";
 
 function Home() {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state);
+  const data = useSelector((state) => state.main.users);
 
   // useEffect(() => {
   //   dispatch(loadUsers());
@@ -25,7 +25,7 @@ function Home() {
       <div className={styles.container}>
         {/* <p> {data.main.main.users}</p> */}
         {console.log(data, "hello")}
-        {/* {data.map((item) => (
+        {data.map((item) => (
           <Link
             href={{
               pathname: `${item.id}`,
@@ -35,7 +35,7 @@ function Home() {
               <h1>{item.name}</h1>
             </a>
           </Link>
-        ))} */}
+        ))}
 
         <div>
           <Link href="/Home">

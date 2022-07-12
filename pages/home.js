@@ -10,16 +10,16 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 function Home() {
-  const data = useSelector((state) => state.main.main.users);
+  const data = useSelector((state) => state.main.user);
   const router = useRouter();
   return (
     <div>
       {/* <p> {data}</p> */}
-      {console.log(data)}
+      {/* {console.log(data)}
       <Link href="/">
         <a>index</a>
       </Link>
-      {console.log(router)}
+      {console.log(router)} */}
     </div>
   );
 }
