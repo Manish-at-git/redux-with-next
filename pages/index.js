@@ -27,21 +27,19 @@ function Home() {
         {console.log(data, "hello")}
         {data.map((item) => (
           <Link
+            key={item.id}
             href={{
               pathname: `${item.id}`,
             }}
           >
             <a>
-              <h1>{item.name}</h1>
+              <p>{item.name}</p>
             </a>
           </Link>
         ))}
 
         <div>
           <Link href="/Home">
-            <a>home</a>
-          </Link>
-          <Link href="/[slug]">
             <a>home</a>
           </Link>
         </div>
