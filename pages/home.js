@@ -12,7 +12,6 @@ import Link from "next/link";
 function Home() {
   const data = useSelector((state) => state.main.main.users);
   const router = useRouter();
-  const { slug } = router.query;
   return (
     <div>
       {/* <p> {data}</p> */}
