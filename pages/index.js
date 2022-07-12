@@ -7,9 +7,9 @@ import { END } from "redux-saga";
 
 import Link from "next/link";
 
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
+// import Container from "react-bootstrap/Container";
+// import Nav from "react-bootstrap/Nav";
+// import Navbar from "react-bootstrap/Navbar";
 
 function Home() {
   const dispatch = useDispatch();
@@ -29,7 +29,6 @@ function Home() {
           <Link
             href={{
               pathname: `${item.id}`,
-              basePath: { data: "https://jsonplaceholder.typicode.com/todos" },
             }}
           >
             <a>
@@ -61,12 +60,10 @@ function Home() {
   );
 }
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async () => {
-    store.dispatch(loadUsers());
-    store.dispatch(END);
-    await store.sagaTask.toPromise();
-  }
-);
+export const getStaticProps = wrapper.getStaticProps((store) => async () => {
+  store.dispatch(loadUsers());
+  store.dispatch(END);
+  await store.sagaTask.toPromise();
+});
 
 export default Home;
