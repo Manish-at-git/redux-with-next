@@ -39,7 +39,7 @@ function MoviePick(props) {
   // const error = useSelector((state) => state.error);
 
   const dispatch = useDispatch();
-  console.log(Movies);
+  // console.log(Movies);
 
   // let data = Array.from(datalist);
 
@@ -89,9 +89,7 @@ function MoviePick(props) {
             props={props}
             // url="https://imdb-api.com/en/API/BoxOffice/k_67o8cg68"
           />
-          {/* {error ? (
-            <ErrorHandler />
-          ) : ( */}
+
           <div className={styles.MoviePickCards}>
             <Swiper
               slidesPerView={5}
@@ -106,8 +104,6 @@ function MoviePick(props) {
               {list}
             </Swiper>
           </div>
-          {/* )}
-           */}
         </div>
       </Container>
     </Container>

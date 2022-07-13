@@ -35,7 +35,7 @@ export function* handleMoviePickLoad() {
   try {
     const users = yield call(
       axios.get,
-      "https://imdb-api.com/en/API/Top250Movies/k_fulo16js"
+      "https://imdb-api.com/en/API/Top250Movies/k_pw119nae"
     );
 
     console.log(users.data, "sagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
@@ -50,7 +50,7 @@ export function* handleMoviePickLoadtwo() {
   try {
     const users = yield call(
       axios.get,
-      "https://imdb-api.com/en/API/Top250TVs/k_fulo16js"
+      "https://imdb-api.com/en/API/Top250TVs/k_pw119nae"
     );
 
     console.log(users.data, "sagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");

@@ -24,9 +24,9 @@ function Home() {
   // }, []);
   //   console.log(data);
 
-  const changeState = () => {
-    dispatch(navbarToggle());
-  };
+  //   const changeState = () => {
+  //     dispatch(navbarToggle());
+  //   };
 
   return (
     <>

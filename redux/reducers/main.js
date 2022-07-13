@@ -19,7 +19,7 @@ export default function (state = initialState, action) {
   console.log(state);
 
   if (action.type === HYDRATE) {
-    console.log(action.payload, "action.users");
+    // console.log(action.payload, "action.users");
     const nextState = {
       ...state, // use previous state
       ...action.payload.main, // apply delta from hydration

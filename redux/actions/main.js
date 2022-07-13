@@ -20,6 +20,7 @@ import {
 // };
 
 const navbarToggle = () => {
+  console.log("Action.jssssssssssssssssssssssssssssssssssssssss");
   return {
     type: NAVBARTOGGLED,
   };
@@ -48,7 +49,7 @@ const setError = (error) => ({
 /// MOVIEPICK ONE
 
 const getMoviePick = () => {
-  console.log("action.jssssssssssssssssssssss");
+  console.log("Action.jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
   return {
     type: GET_MOVIEPICK,
   };
