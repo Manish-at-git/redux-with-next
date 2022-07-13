@@ -10,6 +10,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // import { loadMovieList } from "../../redux/actions";
 // import { NavLink } from "react-router-dom";
 
+import { wrapper } from "../../redux/store";
+import { END } from "redux-saga";
+
 import Container from "react-bootstrap/Container";
 
 // Import Swiper styles
@@ -36,7 +39,7 @@ function MoviePick(props) {
   // const error = useSelector((state) => state.error);
 
   const dispatch = useDispatch();
-  console.log(props.data);
+  console.log(Movies);
 
   // let data = Array.from(datalist);
 
@@ -49,6 +52,7 @@ function MoviePick(props) {
   if (props.data === "Two") {
     useEffect(() => {
       dispatch(getMoviePickTwo());
+      console.log("useEffect");
       // fetch("https://imdb-api.com/en/API/Top250Movies/k_ms6ozdd4")
       //   .then((response) => response.json())
       //   .then((data) => setImage(data));
@@ -79,14 +83,10 @@ function MoviePick(props) {
   return (
     <Container fluid style={{ background: "black" }}>
       <Container className={styles.MoviePick}>
-        MOVIEPICKL
         {/* {console.log(Image.items)} */}
         <div className={styles.MoviePickHeading}>
           <WhatToWatch
-            heading="What To Watch"
-            recommend="Get More Recommendations"
-            title="Box Office of All Time"
-            text="TV Shows and Movies just for you"
+            props={props}
             // url="https://imdb-api.com/en/API/BoxOffice/k_67o8cg68"
           />
           {/* {error ? (

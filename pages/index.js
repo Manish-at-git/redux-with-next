@@ -22,7 +22,7 @@ function Home() {
   // useEffect(() => {
   //   dispatch(loadUsers());
   // }, []);
-  console.log(data);
+  //   console.log(data);
 
   const changeState = () => {
     dispatch(navbarToggle());
@@ -30,9 +30,24 @@ function Home() {
 
   return (
     <>
-      <MoviePick data={"Two"} />
-      <MoviePick data={"One"} />
-
+      <div>
+        <MoviePick
+          heading="What To Watch"
+          recommend="Get More Recommendations"
+          title="Box Office of All Time"
+          text="TV Shows and Movies just for you"
+          url="https://imdb-api.com/en/API/BoxOffice/k_67o8cg68"
+          data="Two"
+        />
+        <MoviePick
+          heading="What To Watch"
+          recommend="Get More Recommendations"
+          title="Box Office of All Time"
+          text="TV Shows and Movies just for you"
+          url="https://imdb-api.com/en/API/BoxOffice/k_67o8cg68"
+          data="One"
+        />
+      </div>
       {/* <div className={styles.container}> */}
       {/* <p> {data.main.main.users}</p> */}
       {/* {console.log(navbarData, "hello")}

@@ -48,7 +48,7 @@ const setError = (error) => ({
 /// MOVIEPICK ONE
 
 const getMoviePick = () => {
-  console.log("action.js");
+  console.log("action.jssssssssssssssssssssss");
   return {
     type: GET_MOVIEPICK,
   };
@@ -74,7 +74,6 @@ const setErrorMoviePick = (error) => {
 /// MOVIEPICK TWO
 
 const getMoviePickTwo = () => {
-  console.log("action.js");
   return {
     type: GET_MOVIEPICK_TWO,
   };
