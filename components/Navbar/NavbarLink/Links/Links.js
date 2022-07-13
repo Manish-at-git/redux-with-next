@@ -1,31 +1,30 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { API_KEY } from "../../../../API_KEY";
 
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./Links.css";
+import Container from "react-bootstrap/Container";
+import styles from "./Links.module.css";
+
+import Link from "next/link";
 
 function Links(props) {
   const { title, List } = props;
 
   return (
-    <div className="Link">
-      <h4 className="Heading">{title}</h4>
+    <Container className={styles.Link}>
+      <h4 className={styles.Heading}>{title}</h4>
 
       {List.map((item, id) => (
-        <NavLink
-          className="links"
-          to={item.url}
-          state={{
-            title: `${item.category}`,
-            url: `https://imdb-api.com/en/API/${item.url}/${API_KEY}`,
-          }}
-          key={id}
+        <Link
+          href="/"
+          // state={{
+          //   title: `${item.category}`,
+          //   url: `https://imdb-api.com/en/API/${item.url}/${API_KEY}`,
+          // }}
+          // key={id}
         >
-          {item.category}
-        </NavLink>
+          <a className={styles.Links}>{item.category}</a>
+        </Link>
       ))}
-    </div>
+    </Container>
   );
 }
 

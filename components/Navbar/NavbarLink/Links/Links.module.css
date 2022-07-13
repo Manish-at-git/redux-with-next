@@ -10,7 +10,7 @@
   color: #fff;
 }
 
-.links {
+.Links {
   display: block;
   font-size: 1.1rem;
   padding: 5px 0;
@@ -20,7 +20,7 @@
   color: rgb(241, 241, 241);
 }
 
-.links:hover {
+.Links:hover {
   text-decoration: underline;
   color: rgb(241, 241, 241);
 }

@@ -1,5 +1,5 @@
 import React from "react";
-// import "../styles/H"
+import "../styles/globals.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { wrapper } from "../redux/store";
 import Navbar from "../components/Navbar/Navbar";

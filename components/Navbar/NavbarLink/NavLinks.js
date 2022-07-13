@@ -1,11 +1,11 @@
 import React from "react";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import "./NavLink.css";
+import Container from "react-bootstrap/Container";
+import styles from "./NavLink.module.css";
 
 // import logo from "../../../assets/images/logo-NavbarLink.png";
 // import closeButtonNavlink from "../../../assets/images/close-button-NavLink.png";
 
-// import Links from "./Links/Links";
+import Links from "./Links/Links";
 
 // import { useDispatch } from "react-redux";
 // import { navbarClicked } from "../../../redux/actions/index";
@@ -13,9 +13,9 @@ import React from "react";
 function NavLinks() {
   // const dispatch = useDispatch();
 
-  // const toggled = () => {
-  //   dispatch(navbarClicked());
-  // };
+  const toggled = () => {
+    dispatch(navbarClicked());
+  };
 
   const Movies = [
     {
@@ -56,20 +56,19 @@ function NavLinks() {
     },
   ];
   return (
-    <div className="container NavLinks">
+    <Container className={styles.NavLinks}>
       {/* <div className="NavLink-logo">
         <img src={logo} />
         <span className="close-button">
           <img src={closeButtonNavlink} onClick={toggled} />
         </span>
-      </div>
-      <div className="LinkCards">
+      </div> */}
+      <div className={styles.LinkCards}>
         <Links title="Movies" List={Movies} />
         <Links title="TV Shows" List={TV} />
         <Links title="Awards" List={Awards} />
-      </div> */}
-      <span className={{ color: "white" }}>HELLO</span>
-    </div>
+      </div>
+    </Container>
   );
 }
 
