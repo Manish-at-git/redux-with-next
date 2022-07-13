@@ -21,16 +21,22 @@ import { Pagination, Navigation } from "swiper";
 import { useSelector, useDispatch } from "react-redux";
 
 import styles from "./MoviePick.module.css";
-import { getMoviePick } from "../../redux/actions/main";
+import { getMoviePick, getMoviePickTwo } from "../../redux/actions/main";
 
 function MoviePick(props) {
-  let [Image, setImage] = useState();
-  const Movies = useSelector((state) => state.main.moviePick);
+  let Tvs;
+  let Movies;
+  if (props.data === "Two") {
+    Movies = useSelector((state) => state.main.moviePickTwo);
+  } else {
+    Movies = useSelector((state) => state.main.moviePick);
+  }
+
   // const isLoading = useSelector((state) => state.isLoading);
   // const error = useSelector((state) => state.error);
 
   const dispatch = useDispatch();
-  console.log(Movies);
+  console.log(props.data);
 
   // let data = Array.from(datalist);
 
@@ -40,12 +46,21 @@ function MoviePick(props) {
     borderColor: "red",
   };
 
-  useEffect(() => {
-    dispatch(getMoviePick());
-    // fetch("https://imdb-api.com/en/API/Top250Movies/k_ms6ozdd4")
-    //   .then((response) => response.json())
-    //   .then((data) => setImage(data));
-  }, []);
+  if (props.data === "Two") {
+    useEffect(() => {
+      dispatch(getMoviePickTwo());
+      // fetch("https://imdb-api.com/en/API/Top250Movies/k_ms6ozdd4")
+      //   .then((response) => response.json())
+      //   .then((data) => setImage(data));
+    }, []);
+  } else {
+    useEffect(() => {
+      dispatch(getMoviePick());
+      // fetch("https://imdb-api.com/en/API/Top250Movies/k_ms6ozdd4")
+      //   .then((response) => response.json())
+      //   .then((data) => setImage(data));
+    }, []);
+  }
 
   var list;
   try {

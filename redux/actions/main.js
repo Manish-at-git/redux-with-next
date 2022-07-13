@@ -6,6 +6,9 @@ import {
   GET_MOVIEPICK,
   GET_MOVIEPICK_SUCCESS,
   GET_MOVIEPICK_ERROR,
+  GET_MOVIEPICK_TWO,
+  GET_MOVIEPICK_SUCCESS_TWO,
+  GET_MOVIEPICK_ERROR_TWO,
 } from "../types";
 
 // export const setInfo = (name) => {
@@ -68,6 +71,32 @@ const setErrorMoviePick = (error) => {
 
 //////
 
+/// MOVIEPICK TWO
+
+const getMoviePickTwo = () => {
+  console.log("action.js");
+  return {
+    type: GET_MOVIEPICK_TWO,
+  };
+};
+
+const setMoviePickTwo = (users) => {
+  console.log(users, "action.js set");
+  return {
+    type: GET_MOVIEPICK_SUCCESS_TWO,
+    users,
+  };
+};
+const setErrorMoviePickTwo = (error) => {
+  console.log(error, "action.js error");
+  return {
+    type: GET_MOVIEPICK_ERROR_TWO,
+    error,
+  };
+};
+
+//////
+
 export {
   loadUsers,
   setUsers,
@@ -76,4 +105,7 @@ export {
   getMoviePick,
   setMoviePick,
   setErrorMoviePick,
+  getMoviePickTwo,
+  setMoviePickTwo,
+  setErrorMoviePickTwo,
 };

@@ -30,7 +30,8 @@ function Home() {
 
   return (
     <>
-      <MoviePick />
+      <MoviePick data={"Two"} />
+      <MoviePick data={"One"} />
 
       {/* <div className={styles.container}> */}
       {/* <p> {data.main.main.users}</p> */}
