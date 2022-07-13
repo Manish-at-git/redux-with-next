@@ -12,6 +12,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
 import WhatToWatch from "../components/WhatToWatch/WhatToWatch";
+import MoviePick from "../components/MoviePick/MoviePick";
 
 function Home() {
   const dispatch = useDispatch();
@@ -29,22 +30,8 @@ function Home() {
 
   return (
     <>
-      <div>
-        <WhatToWatch
-          heading="What To Watch"
-          recommend="Get More Recommendations"
-          title="Box Office of All Time"
-          text="TV Shows and Movies just for you"
-          url="https://imdb-api.com/en/API/BoxOffice/k_67o8cg68"
-        />
-        <WhatToWatch
-          heading=""
-          recommend=""
-          title="In Theatre"
-          text="TV Shows and Movies just for you"
-          url="https://imdb-api.com/en/API/Top250Movies/k_67o8cg68"
-        />
-      </div>
+      <MoviePick />
+
       {/* <div className={styles.container}> */}
       {/* <p> {data.main.main.users}</p> */}
       {/* {console.log(navbarData, "hello")}

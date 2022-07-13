@@ -11,10 +11,10 @@
   cursor: pointer;
 }
 
-.card-body {
+.CardBody {
   padding: 8px;
 }
-.card-img {
+.CardImg {
   object-fit: cover;
   width: 100%;
   height: 300px;
@@ -22,12 +22,12 @@
   border: none;
 }
 
-.icons-rating {
+.IconsRating {
   padding-right: 5px;
   color: yellow;
 }
 
-.watch-options {
+.WatchOptions {
   margin-top: 30px;
   margin-bottom: 20px;
   text-align: center;
@@ -40,7 +40,7 @@
   font-size: 0.9rem;
 }
 
-.title {
+.Title {
   font-size: 1rem;
   height: 20px;
 }
@@ -49,16 +49,16 @@
   text-decoration: underline;
 }
 
-.rating {
+.Rating {
   padding: 8px;
   margin: 0;
   /* opacity: 0.8; */
 }
-.icons-rating-thin {
+.iconsRatingThin {
   color: #5594e7;
 }
 
-.icons-rating-thin:hover {
+.iconsRatingThin:hover {
   color: #fff;
 }
 
@@ -66,7 +66,7 @@
   /* padding: 10px; */
 }
 
-.thin {
+.Thin {
   padding: 10px 40px;
 }
 
@@ -80,7 +80,7 @@
   justify-content: center;
 } */
 
-.trailer {
+.Trailer {
   font-size: 0.9rem;
   font-weight: 600;
   padding: 10px;
@@ -88,26 +88,26 @@
   justify-content: space-around; /* text-align: center; */
 }
 
-.trailer-text {
+.TrailerText {
   /* border: 1px solid red; */
   /* padding: 10px 10px; */
 }
 
-.trailer-text-icon {
+.TrailerTextIcon {
   /* border: 1px solid red; */
   color: rgb(170, 170, 170);
   padding: 0 10px;
 }
-.trailer-icon {
+.TrailerIcon {
   /* border: 1px solid red; */
   /* padding: 10px 40px; */
 }
 
-.add-bookmark {
+.addBookmark {
   background-color: transparent;
 }
 
-.add-bookmark-span {
+.addBookmarkSpan {
   background-color: #1a1a1a;
   padding: 10px;
   position: absolute;
@@ -117,13 +117,13 @@
   opacity: 0.8;
 }
 
-.add-bookmark-span:hover {
+.addBookmarkSpan:hover {
   background-color: #4e4e4e;
 }
 
-.add-bookmark-span:hover {
+.addBookmarkSpan:hover {
   background-color: #4e4e4e;
 }
-.trailer-text:hover {
+.TrailerText:hover {
   /* background-color: #4e4e4e; */
 }

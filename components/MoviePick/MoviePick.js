@@ -1,13 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
-import BeatLoader from "react-spinners/BeatLoader";
-import ErrorHandler from "../ErrorHander/ErrorHandler";
+// import BeatLoader from "react-spinners/BeatLoader";
+// import ErrorHandler from "../ErrorHander/ErrorHandler";
+// import WhatToWatch from "../WhatToWatch/WhatToWatch";
 import WhatToWatch from "../WhatToWatch/WhatToWatch";
-import Card from "../Cards/Card";
+import Cards from "../Cards/Card";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { loadMovieList } from "../../redux/actions";
-import { NavLink } from "react-router-dom";
+// import { loadMovieList } from "../../redux/actions";
+// import { NavLink } from "react-router-dom";
+
+import Container from "react-bootstrap/Container";
 
 // Import Swiper styles
 import "swiper/css";
@@ -17,16 +20,19 @@ import { Pagination, Navigation } from "swiper";
 
 import { useSelector, useDispatch } from "react-redux";
 
-import "./MoviePick.css";
+import styles from "./MoviePick.module.css";
+import { getMoviePick } from "../../redux/actions/main";
 
 function MoviePick(props) {
-  const datalist = useSelector((state) => state.movielist);
-  const isLoading = useSelector((state) => state.isLoading);
-  const error = useSelector((state) => state.error);
+  let [Image, setImage] = useState();
+  const Movies = useSelector((state) => state.main.moviePick);
+  // const isLoading = useSelector((state) => state.isLoading);
+  // const error = useSelector((state) => state.error);
 
   const dispatch = useDispatch();
+  console.log(Movies);
 
-  let data = Array.from(datalist);
+  // let data = Array.from(datalist);
 
   const override = {
     display: "block",
@@ -35,17 +41,20 @@ function MoviePick(props) {
   };
 
   useEffect(() => {
-    dispatch(loadMovieList(props.url));
-    // console.log("api");
+    dispatch(getMoviePick());
+    // fetch("https://imdb-api.com/en/API/Top250Movies/k_ms6ozdd4")
+    //   .then((response) => response.json())
+    //   .then((data) => setImage(data));
   }, []);
 
   var list;
   try {
-    list = data[0].items.slice(0, 20).map((item) => (
+    list = Movies.slice(0, 20).map((item) => (
       <SwiperSlide>
-        <NavLink to={`/title/${item.id}`} state={item.id} className="NavLink">
-          <Card item={item} />
-        </NavLink>
+        {/* <NavLink to={`/title/${item.id}`} state={item.id} className="NavLink"> */}
+        <Cards item={item} />
+        {/* </NavLink> */}
+        {/* {item.id} */}
       </SwiperSlide>
     ));
   } catch (error) {
@@ -53,53 +62,40 @@ function MoviePick(props) {
   }
 
   return (
-    <div className="container-fluid" style={{ background: "black" }}>
-      <div className="container MoviePick">
-        <div className="MoviePick-Heading">
+    <Container fluid style={{ background: "black" }}>
+      <Container className={styles.MoviePick}>
+        MOVIEPICKL
+        {/* {console.log(Image.items)} */}
+        <div className={styles.MoviePickHeading}>
           <WhatToWatch
-            heading={props.heading}
-            recommend={props.recommend}
-            title={props.title}
-            text={props.text}
-            url={props.url}
+            heading="What To Watch"
+            recommend="Get More Recommendations"
+            title="Box Office of All Time"
+            text="TV Shows and Movies just for you"
+            // url="https://imdb-api.com/en/API/BoxOffice/k_67o8cg68"
           />
-          {error ? (
+          {/* {error ? (
             <ErrorHandler />
-          ) : (
-            <div className="MoviePick-Cards">
-              <Swiper
-                slidesPerView={5}
-                spaceBetween={0}
-                slidesPerGroup={2}
-                loop={false}
-                loopFillGroupWithBlank={false}
-                navigation={true}
-                modules={[Pagination, Navigation]}
-                className="mySwiper"
-              >
-                {isLoading ? (
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <BeatLoader
-                      color="#f5c518"
-                      cssOverride={override}
-                      size={20}
-                    />
-                  </div>
-                ) : (
-                  list
-                )}
-              </Swiper>
-            </div>
-          )}
+          ) : ( */}
+          <div className={styles.MoviePickCards}>
+            <Swiper
+              slidesPerView={5}
+              spaceBetween={0}
+              slidesPerGroup={2}
+              loop={false}
+              loopFillGroupWithBlank={false}
+              navigation={true}
+              modules={[Pagination, Navigation]}
+              className="mySwiper"
+            >
+              {list}
+            </Swiper>
+          </div>
+          {/* )}
+           */}
         </div>
-      </div>
-    </div>
+      </Container>
+    </Container>
   );
 }
 

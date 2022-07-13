@@ -28,7 +28,7 @@ function WhatToWatch(props) {
         </span>
       </div>
       <h4 className={styles.MoviePickHeadingLarge}>
-        <FontAwesomeIcon icon="fa-solid fa-pipe" />
+        {/* <FontAwesomeIcon icon="fa-solid fa-pipe" /> */}
         <Link
           href="/"
           // style={props.style}

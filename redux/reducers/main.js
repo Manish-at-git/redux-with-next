@@ -1,13 +1,19 @@
-import { GET_USERS_SUCCESS, GET_USERS_ERROR, NAVBARTOGGLED } from "../types";
+import {
+  GET_USERS_SUCCESS,
+  GET_USERS_ERROR,
+  NAVBARTOGGLED,
+  GET_MOVIEPICK_SUCCESS,
+} from "../types";
 import { HYDRATE } from "next-redux-wrapper";
 
 const initialState = {
   users: [],
   navbarOpened: false,
+  moviePick: [],
 };
 
 export default function (state = initialState, action) {
-  console.log(action);
+  console.log(action, "action in reducer");
   console.log(state);
 
   if (action.type === HYDRATE) {
@@ -31,6 +37,11 @@ export default function (state = initialState, action) {
   else if (action.type === GET_USERS_ERROR)
     return {
       error: action.payload,
+    };
+  else if (action.type === GET_MOVIEPICK_SUCCESS)
+    return {
+      ...state,
+      moviePick: [...action.users.items],
     };
   else {
     return state;
