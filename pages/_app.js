@@ -1,7 +1,16 @@
 import React from "react";
+// import "../styles/H"
 import "bootstrap/dist/css/bootstrap.css";
 import { wrapper } from "../redux/store";
+import Navbar from "../components/Navbar/Navbar";
 
-const MyApp = ({ Component, pageProps }) => <Component {...pageProps} />;
+const MyApp = ({ Component, pageProps }) => {
+  return (
+    <>
+      <Navbar />
+      <Component {...pageProps} />
+    </>
+  );
+};
 
 export default wrapper.withRedux(MyApp);

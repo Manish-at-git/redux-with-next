@@ -11,8 +11,6 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
-import WhatToWatch from "../components/WhatToWatch/WhatToWatch";
-
 function Home() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.main.users);
@@ -29,22 +27,6 @@ function Home() {
 
   return (
     <>
-      <div>
-        <WhatToWatch
-          heading="What To Watch"
-          recommend="Get More Recommendations"
-          title="Box Office of All Time"
-          text="TV Shows and Movies just for you"
-          url="https://imdb-api.com/en/API/BoxOffice/k_67o8cg68"
-        />
-        <WhatToWatch
-          heading=""
-          recommend=""
-          title="In Theatre"
-          text="TV Shows and Movies just for you"
-          url="https://imdb-api.com/en/API/Top250Movies/k_67o8cg68"
-        />
-      </div>
       {/* <div className={styles.container}> */}
       {/* <p> {data.main.main.users}</p> */}
       {/* {console.log(navbarData, "hello")}
@@ -75,10 +57,10 @@ function Home() {
   );
 }
 
-export default Home;
-
 // export const getStaticProps = wrapper.getStaticProps((store) => async () => {
 //   store.dispatch(loadUsers());
 //   store.dispatch(END);
 //   await store.sagaTask.toPromise();
 // });
+
+export default Home;
