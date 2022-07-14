@@ -2,16 +2,16 @@ import React, { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Cards from "../Cards/Card";
 import WhatToWatch from "../WhatToWatch/WhatToWatch";
-import ErrorHandler from "../ErrorHander/ErrorHandler";
+// import ErrorHandler from "../ErrorHander/ErrorHandler";
 
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
 
-import "./Grid.css";
-import { loadMovieList } from "../../redux/actions";
+import styles from "./Grid.module.css";
+// import { loadMovieList } from "../../redux/actions";
 
 function Grid() {
-  const location = useLocation();
+  // const location = useLocation();
   const datalist = useSelector((state) => state.movielist);
   const error = useSelector((state) => state.error);
   const dispatch = useDispatch();

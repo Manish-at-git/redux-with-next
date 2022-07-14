@@ -15,7 +15,7 @@ export function* handleMoviePickLoad() {
   try {
     const users = yield call(
       axios.get,
-      "https://imdb-api.com/en/API/Top250Movies/k_udicaalo"
+      "https://imdb-api.com/en/API/Top250Movies/k_udicaalo//"
     );
 
     yield put(setMoviePick(users.data));
@@ -28,7 +28,7 @@ export function* handleMoviePickLoadtwo() {
   try {
     const users = yield call(
       axios.get,
-      "https://imdb-api.com/en/API/Top250TVs/k_udicaalo"
+      "https://imdb-api.com/en/API/Top250TVs/k_udicaalo//"
     );
 
     yield put(setMoviePickTwo(users.data));
@@ -40,13 +40,10 @@ export function* handleMoviePickLoadtwo() {
 export function* handleMovieListLoad(action) {
   try {
     let url = action.MovieListPage;
-    console.log(url, "{{{{[[[[[[[[[[[[[[[[[[[[[[[[[[[");
     const users = yield call(
       axios.get,
-      `https://imdb-api.com/en/API/${url}/k_udicaalo`
+      `https://imdb-api.com/en/API/${url}/k_udicaalo//`
     );
-
-    console.log(users, "SAGA USERSSSSSSSSSSSSSSSSSSSSS");
 
     yield put(setgetMovieList(users.data));
   } catch (error) {
