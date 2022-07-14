@@ -12,12 +12,16 @@ import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Alert } from "react-bootstrap";
 
+import { useRouter } from "next/router";
+
 import { wrapper } from "../redux/store";
 import { END } from "redux-saga";
 import { getMovieList } from "../redux/actions/main";
 
 function MovieListPage(props) {
-  console.log(props);
+  const router = useRouter();
+  const title = router.query.MovieListPage;
+  console.log();
   return (
     <div className={styles.MovieList}>
       <Container className={styles.MovieListContainer}>
@@ -25,8 +29,8 @@ function MovieListPage(props) {
           <div className={styles.MovieListPage}>
             <div className={styles.MovieListHeaderpage}>
               <div className={styles.MovieListHead}>
-                <h5>IMDb Charts</h5>
-                <h3 className={styles.MovieListHeader}>IMDb</h3>
+                <h5>IMDb Charts </h5>
+                <h3 className={styles.MovieListHeader}>IMDb {title}</h3>
                 <small className={styles.MovieListByline}>
                   IMDb as rated by regular IMDb voters.
                 </small>

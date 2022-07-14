@@ -20,6 +20,7 @@ function Links(props) {
         <Link
           href={{
             pathname: `/${item.url}`,
+            title: item.title,
           }}
           key={id}
         >
