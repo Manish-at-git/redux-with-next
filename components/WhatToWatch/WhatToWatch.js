@@ -23,7 +23,7 @@ function WhatToWatch(props) {
             <FontAwesomeIcon
               icon={faChevronRight}
               className={styles.faChevronRightRecommend}
-              style={{ color: props.color }}
+              style={{ color: props.props.color }}
             />
           </small>
         </span>

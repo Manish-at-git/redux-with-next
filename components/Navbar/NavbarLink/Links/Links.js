@@ -4,8 +4,12 @@ import Container from "react-bootstrap/Container";
 import styles from "./Links.module.css";
 
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { navbarToggle } from "../../../../redux/actions/main";
 
 function Links(props) {
+  const dispatch = useDispatch();
+
   const { title, List } = props;
 
   return (
@@ -14,14 +18,14 @@ function Links(props) {
 
       {List.map((item, id) => (
         <Link
-          href="/"
-          // state={{
-          //   title: `${item.category}`,
-          //   url: `https://imdb-api.com/en/API/${item.url}/${API_KEY}`,
-          // }}
-          // key={id}
+          href={{
+            pathname: `/${item.url}`,
+          }}
+          key={id}
         >
-          <a className={styles.Links}>{item.category}</a>
+          <a className={styles.Links} onClick={() => dispatch(navbarToggle())}>
+            {item.category}
+          </a>
         </Link>
       ))}
     </Container>
