@@ -38,7 +38,11 @@ export function* handleMoviePickLoad() {
       "https://imdb-api.com/en/API/Top250Movies/k_pw119nae"
     );
 
-    console.log(users.data, "sagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    console.log(
+      users,
+      "sagaaaQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ",
+      "HELLO"
+    );
     yield put(setMoviePick(users.data));
   } catch (error) {
     yield put(setErrorMoviePick(error.toString()));

@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { loadUsers, navbarToggle } from "../redux/actions/main";
+import {
+  getMoviePickTwo,
+  loadUsers,
+  navbarToggle,
+} from "../redux/actions/main";
 import styles from "../styles/Home.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { wrapper } from "../redux/store";
@@ -13,6 +17,8 @@ import Navbar from "react-bootstrap/Navbar";
 
 import WhatToWatch from "../components/WhatToWatch/WhatToWatch";
 import MoviePick from "../components/MoviePick/MoviePick";
+
+import { getMoviePick } from "../redux/actions/main";
 
 function Home() {
   const dispatch = useDispatch();
@@ -80,8 +86,18 @@ function Home() {
 
 export default Home;
 
-// export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-//   store.dispatch(loadUsers());
-//   store.dispatch(END);
-//   await store.sagaTask.toPromise();
-// });
+export const getStaticProps = wrapper.getStaticProps((store) => async () => {
+  store.dispatch(getMoviePick());
+  store.dispatch(getMoviePickTwo());
+  store.dispatch(END);
+  await store.sagaTask.toPromise();
+});
+
+// export const getServerSideProps = wrapper.getServerSideProps(
+//   (store) => async () => {
+//     console.log("HELOOOOOOO");
+
+//     store.dispatch(END);
+//     await store.sagaTask.toPromise();
+//   }
+// );

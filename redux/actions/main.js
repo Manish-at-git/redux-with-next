@@ -20,14 +20,14 @@ import {
 // };
 
 const navbarToggle = () => {
-  console.log("Action.jssssssssssssssssssssssssssssssssssssssss");
+  console.log("Action.js");
   return {
     type: NAVBARTOGGLED,
   };
 };
 
 const loadUsers = () => {
-  console.log("object");
+  console.log("action.jsssssssssssssssssssssssss");
   return {
     type: GET_USERS,
   };
@@ -49,7 +49,7 @@ const setError = (error) => ({
 /// MOVIEPICK ONE
 
 const getMoviePick = () => {
-  console.log("Action.jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+  console.log("action.jsssssssssssssssssssssssss");
   return {
     type: GET_MOVIEPICK,
   };

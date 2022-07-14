@@ -24,11 +24,16 @@ import { Pagination, Navigation } from "swiper";
 import { useSelector, useDispatch } from "react-redux";
 
 import styles from "./MoviePick.module.css";
-import { getMoviePick, getMoviePickTwo } from "../../redux/actions/main";
+import {
+  getMoviePick,
+  getMoviePickTwo,
+  navbarToggle,
+} from "../../redux/actions/main";
 
 function MoviePick(props) {
   let Tvs;
   let Movies;
+  // console.log(data);
   if (props.data === "Two") {
     Movies = useSelector((state) => state.main.moviePickTwo);
   } else {
@@ -49,22 +54,22 @@ function MoviePick(props) {
     borderColor: "red",
   };
 
-  if (props.data === "Two") {
-    useEffect(() => {
-      dispatch(getMoviePickTwo());
-      console.log("useEffect");
-      // fetch("https://imdb-api.com/en/API/Top250Movies/k_ms6ozdd4")
-      //   .then((response) => response.json())
-      //   .then((data) => setImage(data));
-    }, []);
-  } else {
-    useEffect(() => {
-      dispatch(getMoviePick());
-      // fetch("https://imdb-api.com/en/API/Top250Movies/k_ms6ozdd4")
-      //   .then((response) => response.json())
-      //   .then((data) => setImage(data));
-    }, []);
-  }
+  // if (props.data === "Two") {
+  //   useEffect(() => {
+  //     dispatch(getMoviePickTwo());
+  //     console.log("useEffect");
+  //     // fetch("https://imdb-api.com/en/API/Top250Movies/k_ms6ozdd4")
+  //     //   .then((response) => response.json())
+  //     //   .then((data) => setImage(data));
+  //   }, []);
+  // } else {
+  //   useEffect(() => {
+  //     dispatch(getMoviePick());
+  //     // fetch("https://imdb-api.com/en/API/Top250Movies/k_ms6ozdd4")
+  //     //   .then((response) => response.json())
+  //     //   .then((data) => setImage(data));
+  //   }, []);
+  // }
 
   var list;
   try {
