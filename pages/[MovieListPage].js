@@ -37,7 +37,7 @@ function MovieListPage(props) {
                 </small>
               </div>
               <div className={styles.MovieListSort}>
-                <label for="sort">Sort by : </label>
+                <label HTMLfor="sort">Sort by : </label>
                 <select name="sort" id="sort" form="sortform">
                   <option value="Ranking">Ranking</option>
                   <option value="Release">Release</option>
