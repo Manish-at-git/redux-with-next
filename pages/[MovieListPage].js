@@ -12,6 +12,10 @@ import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Alert } from "react-bootstrap";
 
+import { wrapper } from "../redux/store";
+import { END } from "redux-saga";
+import { getMovieList } from "../redux/actions/main";
+
 function MovieListPage(props) {
   console.log(props);
   return (
@@ -193,15 +197,24 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps(context) {
-  const MovieListPage = context.params.MovieListPage;
-  const res = await fetch(
-    `https://imdb-api.com/en/API/${MovieListPage}/k_nrcppo4w`
-  );
-  const posts = await res.json();
-  return {
-    props: {
-      posts,
-    },
-  };
-}
+// export async function getStaticProps(context) {
+//   const MovieListPage = context.params.MovieListPage;
+//   const res = await fetch(
+//     `https://imdb-api.com/en/API/${MovieListPage}/k_nrcppo4w`
+//   );
+//   const posts = await res.json();
+//   return {
+//     props: {
+//       posts,
+//     },
+//   };
+// }
+
+export const getStaticProps = wrapper.getStaticProps(
+  (store) => async (context) => {
+    const MovieListPage = context.params.MovieListPage;
+    store.dispatch(getMovieList(MovieListPage));
+    store.dispatch(END);
+    await store.sagaTask.toPromise();
+  }
+);

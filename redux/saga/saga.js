@@ -5,8 +5,10 @@ import {
   setErrorMoviePick,
   setMoviePickTwo,
   setErrorMoviePickTwo,
+  setgetMovieList,
+  setErrorgetMovieList,
 } from "../actions/main";
-import { GET_MOVIEPICK, GET_MOVIEPICK_TWO } from "../types";
+import { GET_MOVIEPICK, GET_MOVIEPICK_TWO, GET_MOVIELIST } from "../types";
 import axios from "axios";
 
 export function* handleMoviePickLoad() {
@@ -35,7 +37,25 @@ export function* handleMoviePickLoadtwo() {
   }
 }
 
+export function* handleMovieListLoad(action) {
+  try {
+    let url = action.MovieListPage;
+    console.log(url, "{{{{[[[[[[[[[[[[[[[[[[[[[[[[[[[");
+    const users = yield call(
+      axios.get,
+      `https://imdb-api.com/en/API/${url}/k_udicaalo`
+    );
+
+    console.log(users, "SAGA USERSSSSSSSSSSSSSSSSSSSSS");
+
+    yield put(setgetMovieList(users.data));
+  } catch (error) {
+    yield put(setErrorgetMovieList(error.toString()));
+  }
+}
+
 export default function* watchImagesLoad() {
   yield takeEvery(GET_MOVIEPICK, handleMoviePickLoad);
   yield takeEvery(GET_MOVIEPICK_TWO, handleMoviePickLoadtwo);
+  yield takeEvery(GET_MOVIELIST, handleMovieListLoad);
 }

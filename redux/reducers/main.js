@@ -4,6 +4,8 @@ import {
   NAVBARTOGGLED,
   GET_MOVIEPICK_SUCCESS,
   GET_MOVIEPICK_SUCCESS_TWO,
+  GET_MOVIELIST_SUCCESS,
+  GET_MOVIELIST_ERROR,
 } from "../types";
 import { HYDRATE } from "next-redux-wrapper";
 
@@ -12,6 +14,7 @@ const initialState = {
   navbarOpened: false,
   moviePick: [],
   moviePickTwo: [],
+  movieList: [],
 };
 
 export default function (state = initialState, action) {
@@ -48,6 +51,11 @@ export default function (state = initialState, action) {
     return {
       ...state,
       moviePickTwo: [...action.users.items],
+    };
+  else if (action.type === GET_MOVIELIST_SUCCESS)
+    return {
+      ...state,
+      movieList: [...action.users.items],
     };
   else {
     return state;
