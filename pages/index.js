@@ -13,7 +13,6 @@ import MoviePick from "../components/MoviePick/MoviePick";
 
 import { getMoviePick } from "../redux/actions/main";
 import Categories from "../components/MovieList/Categories/Categories";
-import MovieList from "../components/MovieList/MovieList";
 
 function Home() {
   // const data = useSelector((state) => state.main.users);
@@ -23,7 +22,7 @@ function Home() {
     <>
       {/* <MovieList /> */}
       <div>
-        {/* <MoviePick
+        <MoviePick
           heading="What To Watch"
           recommend="Get More Recommendations"
           title="TV Shows"
@@ -35,9 +34,9 @@ function Home() {
           recommend=""
           title="Movies"
           text="TV Shows and Movies just for you"
-          data="One"
+          data=""
           color="black"
-        /> */}
+        />
         TEXT
       </div>
     </>

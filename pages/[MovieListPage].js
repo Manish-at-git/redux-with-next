@@ -1,5 +1,4 @@
 import React from "react";
-import MovieList from "../components/MovieList/MovieList";
 import { NavRoutes } from "./NavbarRoutes";
 import Categories from "../components/MovieList/Categories/Categories";
 import { useSelector, useDispatch } from "react-redux";

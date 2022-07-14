@@ -18,14 +18,22 @@ import { Pagination, Navigation } from "swiper";
 import { useSelector, useDispatch } from "react-redux";
 
 import styles from "./MoviePick.module.css";
+import Link from "next/link";
 
 function MoviePick(props) {
-  let MoviesList;
+  const MoviesListOne = useSelector((state) => state.main.moviePick);
+  const MoviesListTwo = useSelector((state) => state.main.moviePickTwo);
+
+  let MovieList;
   if (props.data === "Two") {
-    MoviesList = useSelector((state) => state.main.moviePickTwo);
+    MovieList = MoviesListTwo;
   } else {
-    MoviesList = useSelector((state) => state.main.moviePick);
+    MovieList = MoviesListOne;
   }
+
+  // let MovieList = "MovieList" + props.data;
+
+  // console.log(typeof MovieList);
 
   // const isLoading = useSelector((state) => state.isLoading);
   // const error = useSelector((state) => state.error);
@@ -37,7 +45,7 @@ function MoviePick(props) {
 
   var list;
   try {
-    list = MoviesList.slice(0, 20).map((item) => (
+    list = MovieList.slice(0, 20).map((item) => (
       <SwiperSlide>
         {/* <NavLink to={`/title/${item.id}`} state={item.id} className="NavLink"> */}
         <Cards item={item} />
@@ -48,12 +56,22 @@ function MoviePick(props) {
   } catch (error) {
     console.log(error);
   }
-
+  console.log(MovieList);
   return (
     <Container fluid style={{ background: "black" }}>
       <Container className={styles.MoviePick}>
         <div className={styles.MoviePickHeading}>
           <WhatToWatch props={props} />
+          <Link
+            href={{
+              pathname: "/Grid",
+              query: {
+                data: props.data,
+              },
+            }}
+          >
+            Hello
+          </Link>
 
           <div className={styles.MoviePickCards}>
             <Swiper
