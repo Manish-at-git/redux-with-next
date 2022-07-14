@@ -10,7 +10,7 @@ function Categories() {
         </span>
         <div className={styles.SidebarCheck}>
           <input type="checkbox" />
-          <label>Hide titles I've seen</label>
+          <label>Hide titles I have seen</label>
         </div>
       </div>
       <hr className={styles.Hr} />
@@ -37,8 +37,10 @@ function Categories() {
           "Sport",
           "Thriller",
           "Western",
-        ].map((item) => (
-          <small className="categoryList">{item}</small>
+        ].map((item, id) => (
+          <small key={id} className="categoryList">
+            {item}
+          </small>
         ))}
       </div>
     </div>
