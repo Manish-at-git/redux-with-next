@@ -1,11 +1,9 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Cards from "../components/Cards/Card";
-// import Cards from "../Cards/Card";
-// import WhatToWatch from "../WhatToWatch/WhatToWatch";
 // import ErrorHandler from "../ErrorHander/ErrorHandler";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Link from "next/link";
 import styles from "../components/Grid/Grid.module.css";
 import { useRouter } from "next/router";
@@ -27,17 +25,6 @@ function Grid() {
   } else {
     datalist = datalistOne;
   }
-
-  console.log(datalist);
-  //   let data;
-
-  //   try {
-  //     data = datalist[0].items;
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-
-  //   console.log(location.state);
 
   return (
     <div className={styles.GridMain}>

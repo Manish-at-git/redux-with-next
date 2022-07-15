@@ -142,11 +142,11 @@ function MovieListPage(props) {
                       .map((user) => (
                         <tr className={styles.tr} key={user.id}>
                           <td>
-                            <img
+                            <Image
                               layout="fill"
-                              src={user.image}
+                              // src={user.image}
+                              src={share}
                               alt="poster"
-                              style={{ width: "50px" }}
                               className={styles.TableImage}
                             />
                             <small className="table-row">
