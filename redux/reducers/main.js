@@ -27,10 +27,6 @@ export default function (state = initialState, action) {
       ...state,
       navbarOpened: !state.navbarOpened,
     };
-  else if (action.type === GET_USERS_ERROR)
-    return {
-      error: action.payload,
-    };
   else if (action.type === GET_MOVIEPICK_SUCCESS)
     return {
       ...state,
