@@ -6,8 +6,8 @@ import { Movies, TV, Awards } from "../../../pages/NavbarRoutes";
 
 import { navbarToggle } from "../../../redux/actions/main";
 
-import Logo from "../../../assests/images/logo-NavbarLink.png";
-import CloseButton from "../../../assests/images/close-Button-Navlink.png";
+import LogoNavbarLinkgo from "../../../assests/images/LogoNavbarLink.png";
+import CloseButton from "../../../assests/images/CloseButton.png";
 
 import Links from "./Links/Links";
 import Image from "next/image";
@@ -24,7 +24,7 @@ function NavLinks() {
   return (
     <Container className={styles.NavLinks}>
       <div className={styles.NavLinkLogo}>
-        <Image src={Logo} alt="logo" />
+        <Image src={LogoNavbarLink} alt="logo" />
         <span className={styles.CloseButton}>
           <Image src={CloseButton} alt="Close" onClick={CloseNavbar} />
         </span>

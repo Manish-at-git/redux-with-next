@@ -143,7 +143,6 @@ function MovieListPage(props) {
                         <tr className={styles.tr} key={user.id}>
                           <td>
                             <Image
-                              layout="fill"
                               // src={user.image}
                               src={share}
                               alt="poster"

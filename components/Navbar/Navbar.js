@@ -24,7 +24,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 //IMAGES
-import logo from "../../assests/images/logo.png";
+import Logo from "../../assests/images/logo.png";
 import NavbarLogo2 from "../../assests/images/NavbarLogo2.png";
 
 // import NavLinks from "./NavbarLink/NavLinks";
@@ -41,7 +41,6 @@ import { Container } from "react-bootstrap";
 
 function Navbar() {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.main.users);
   const navbarData = useSelector((state) => state.main.navbarOpened);
 
   const changeState = () => {
@@ -84,7 +83,7 @@ function Navbar() {
         <Container className={styles.Navbar}>
           <Link href="/">
             <a className={styles.Logo}>
-              <Image src={logo} alt="IMDb Logo" />
+              <Image src={Logo} alt="IMDb Logo" />
             </a>
           </Link>
           <span className={styles.Menu} onClick={changeState}>
