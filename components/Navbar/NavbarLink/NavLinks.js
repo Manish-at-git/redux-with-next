@@ -6,7 +6,7 @@ import { Movies, TV, Awards } from "../../../pages/NavbarRoutes";
 
 import { navbarToggle } from "../../../redux/actions/main";
 
-import LogoNavbarLinkgo from "../../../assests/images/LogoNavbarLink.png";
+import LogoNavbarLink from "../../../assests/images/LogoNavbarLink.png";
 import CloseButton from "../../../assests/images/CloseButton.png";
 
 import Links from "./Links/Links";
