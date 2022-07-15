@@ -18,7 +18,6 @@ function Grid() {
   const datalistOne = useSelector((state) => state.main.moviePick);
   const datalistTwo = useSelector((state) => state.main.moviePickTwo);
 
-  console.log(Data);
   let datalist;
   if (Data === "Two") {
     datalist = datalistTwo;
