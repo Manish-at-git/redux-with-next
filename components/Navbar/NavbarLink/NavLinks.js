@@ -24,9 +24,9 @@ function NavLinks() {
   return (
     <Container className={styles.NavLinks}>
       <div className={styles.NavLinkLogo}>
-        <Image src={Logo} />
+        <Image src={Logo} alt="logo" />
         <span className={styles.CloseButton}>
-          <Image src={CloseButton} onClick={CloseNavbar} />
+          <Image src={CloseButton} alt="Close" onClick={CloseNavbar} />
         </span>
       </div>
       <div className={styles.LinkCards}>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Cards from "../components/Cards/Card";
 // import Cards from "../Cards/Card";
@@ -12,7 +12,6 @@ import { useRouter } from "next/router";
 // import { loadMovieList } from "../../redux/actions";
 
 function Grid() {
-  const dispatch = useDispatch();
   const router = useRouter();
   const Data = router.query.Container;
   // let data = JSON.parse(Data);
@@ -47,7 +46,7 @@ function Grid() {
           <h1 className={styles.GridHeading}>What to Watch</h1>
           {datalist &&
             datalist.map((item) => (
-              <Col className={styles.GridCard}>
+              <Col className={styles.GridCard} key={item.id}>
                 <Link
                   href={{
                     pathname: `/title/${item.id}`,

@@ -140,7 +140,7 @@ function MovieListPage(props) {
                         }
                       })
                       .map((user) => (
-                        <tr className={styles.tr}>
+                        <tr className={styles.tr} key={user.id}>
                           <td>
                             <img
                               layout="fill"

@@ -46,7 +46,7 @@ function MoviePick(props) {
   var list;
   try {
     list = MovieList.slice(0, 20).map((item) => (
-      <SwiperSlide>
+      <SwiperSlide key={item.id}>
         {/* <NavLink to={`/title/${item.id}`} state={item.id} className="NavLink"> */}
         <Cards item={item} />
         {/* </NavLink> */}
