@@ -1,11 +1,8 @@
 import {
-  GET_USERS_SUCCESS,
-  GET_USERS_ERROR,
   NAVBARTOGGLED,
   GET_MOVIEPICK_SUCCESS,
   GET_MOVIEPICK_SUCCESS_TWO,
   GET_MOVIELIST_SUCCESS,
-  GET_MOVIELIST_ERROR,
 } from "../types";
 import { HYDRATE } from "next-redux-wrapper";
 
@@ -18,9 +15,6 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
-  console.log(action, "action in reducer");
-  console.log(state);
-
   if (action.type === HYDRATE) {
     const nextState = {
       ...state, // use previous state

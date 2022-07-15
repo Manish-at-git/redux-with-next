@@ -2,8 +2,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import styles from "./NavLink.module.css";
 
-import { Movies, TV, Awards } from "../../../pages/NavbarRoutes";
-
+import { Movies, TV, Awards } from "../../../NavbarRoutes";
 import { navbarToggle } from "../../../redux/actions/main";
 
 import LogoNavbarLink from "../../../assests/images/LogoNavbarLink.png";

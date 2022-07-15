@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavRoutes } from "./NavbarRoutes";
+import { NavRoutes } from "../NavbarRoutes";
 import Categories from "../components/MovieList/Categories/Categories";
 import { useSelector, useDispatch } from "react-redux";
 import Container from "react-bootstrap/Container";
