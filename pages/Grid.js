@@ -15,14 +15,14 @@ import { useRouter } from "next/router";
 function Grid() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const Data = router.query.data;
-  let data = JSON.parse(Data);
-  console.log(data);
+  const Data = router.query.Container;
+  // let data = JSON.parse(Data);
+  // console.log(data);
 
   const datalistOne = useSelector((state) => state.main.moviePick);
   const datalistTwo = useSelector((state) => state.main.moviePickTwo);
 
-  console.log(datalistOne);
+  console.log(Data);
   let datalist;
   if (Data === "Two") {
     datalist = datalistTwo;
@@ -30,7 +30,7 @@ function Grid() {
     datalist = datalistOne;
   }
 
-  console.log(data);
+  console.log(datalist);
   //   let data;
 
   //   try {
@@ -46,8 +46,8 @@ function Grid() {
       <Container>
         <Row className={styles.GallaryContainer}>
           <h1 className={styles.GridHeading}>What to Watch</h1>
-          {data &&
-            data.map((item) => (
+          {datalist &&
+            datalist.map((item) => (
               <Col className={styles.GridCard}>
                 {/* <NavLink
                   to={`/title/${item.id}`}

@@ -61,7 +61,7 @@ function MoviePick(props) {
     <Container fluid style={{ background: "black" }}>
       <Container className={styles.MoviePick}>
         <div className={styles.MoviePickHeading}>
-          <WhatToWatch props={props} data={MovieList} />
+          <WhatToWatch props={props} />
           {/* <Link
             href={{
               pathname: "/Grid",

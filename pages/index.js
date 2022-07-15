@@ -22,13 +22,13 @@ function Home() {
     <>
       {/* <MovieList /> */}
       <div>
-        <MoviePick
+        {/* <MoviePick
           heading="What To Watch"
           recommend="Get More Recommendations"
           title="TV Shows"
           text="TV Shows and Movies just for you"
           data="Two"
-        />
+        /> */}
         <MoviePick
           heading="What To Watch"
           recommend=""
@@ -37,7 +37,6 @@ function Home() {
           data=""
           color="black"
         />
-        TEXT
       </div>
     </>
   );
