@@ -27,11 +27,6 @@ export default function (state = initialState, action) {
       ...state,
       navbarOpened: !state.navbarOpened,
     };
-  else if (action.type === GET_USERS_SUCCESS)
-    return {
-      ...state,
-      users: [...action.users],
-    };
   else if (action.type === GET_USERS_ERROR)
     return {
       error: action.payload,
