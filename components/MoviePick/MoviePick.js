@@ -24,8 +24,10 @@ function MoviePick(props) {
   const MoviesListOne = useSelector((state) => state.main.moviePick);
   const MoviesListTwo = useSelector((state) => state.main.moviePickTwo);
 
+  const { heading, recommend, title, text, data } = props;
+
   let MovieList;
-  if (props.data === "Two") {
+  if (data === "Two") {
     MovieList = MoviesListTwo;
   } else {
     MovieList = MoviesListOne;
@@ -61,7 +63,12 @@ function MoviePick(props) {
     <Container fluid style={{ background: "black" }}>
       <Container className={styles.MoviePick}>
         <div className={styles.MoviePickHeading}>
-          <WhatToWatch props={props} />
+          <WhatToWatch
+            heading={heading}
+            recommend={recommend}
+            title={title}
+            text={text}
+          />
           {/* <Link
             href={{
               pathname: "/Grid",

@@ -20,8 +20,7 @@ function Links(props) {
       {List.map((item, id) => (
         <Link
           href={{
-            pathname: `/${item.url}`,
-            query: { title: item.category },
+            pathname: "/",
           }}
           key={id}
         >

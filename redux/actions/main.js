@@ -87,6 +87,30 @@ export const setErrorgetMovieList = (error) => {
 
 //////
 
+/// MOVIELIST
+
+export const getSingleMovie = (MovieListPage) => {
+  return {
+    type: GET_MOVIELIST,
+    MovieListPage,
+  };
+};
+
+export const setgetSingleMovie = (users) => {
+  return {
+    type: GET_MOVIELIST_SUCCESS,
+    users,
+  };
+};
+export const setErrorgetSingleMovie = (error) => {
+  return {
+    type: GET_MOVIELIST_ERROR,
+    error,
+  };
+};
+
+//////
+
 export {
   navbarToggle,
   getMoviePick,

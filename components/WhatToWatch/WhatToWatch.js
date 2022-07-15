@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 function WhatToWatch(props) {
-  console.log(props.props.data);
+  console.log(props);
 
   // let data = JSON.stringify(props.data);
   return (
@@ -17,14 +17,14 @@ function WhatToWatch(props) {
       // style={props.style}
     >
       <div className={styles.WhatToWatch}>
-        <h3 className={styles.Watch}>{props.props.heading}</h3>
+        <h3 className={styles.Watch}>{props.heading}</h3>
         <span className={styles.Recommend}>
           <small>
-            {props.props.recommend}
+            {props.recommend}
             <FontAwesomeIcon
               icon={faChevronRight}
               className={styles.faChevronRightRecommend}
-              style={{ color: props.props.color }}
+              style={{ color: props.color }}
             />
           </small>
         </span>
@@ -33,20 +33,20 @@ function WhatToWatch(props) {
         <Link
           href={{
             pathname: "/Grid",
-            query: { Container: props.props.data },
+            query: { Container: props.data },
           }}
 
           // style={props.style}
           // state={{ url: `${props.url}` }}
         >
-          <a className={styles.NavLink}>{props.props.title}</a>
+          <a className={styles.NavLink}>{props.title}</a>
         </Link>
         <FontAwesomeIcon
           icon={faChevronRight}
           className={styles.faChevronRight}
         />
       </h4>
-      <p className={styles.MoviePickHeadingSmall}>{props.props.text}</p>
+      <p className={styles.MoviePickHeadingSmall}>{props.text}</p>
     </Container>
   );
 }
