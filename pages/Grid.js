@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import Cards from "../components/Cards/Card";
 // import Cards from "../Cards/Card";
 // import WhatToWatch from "../WhatToWatch/WhatToWatch";
 // import ErrorHandler from "../ErrorHander/ErrorHandler";
@@ -7,7 +8,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 // import { NavLink, useLocation } from "react-router-dom";
 
-// import styles from "./Grid.module.css";
+import styles from "../components/Grid/Grid.module.css";
 import { useRouter } from "next/router";
 // import { loadMovieList } from "../../redux/actions";
 
@@ -15,7 +16,8 @@ function Grid() {
   const dispatch = useDispatch();
   const router = useRouter();
   const Data = router.query.data;
-  console.log(router.query.data);
+  let data = JSON.parse(Data);
+  console.log(data);
 
   const datalistOne = useSelector((state) => state.main.moviePick);
   const datalistTwo = useSelector((state) => state.main.moviePickTwo);
@@ -28,7 +30,7 @@ function Grid() {
     datalist = datalistOne;
   }
 
-  console.log(datalist);
+  console.log(data);
   //   let data;
 
   //   try {
@@ -40,22 +42,22 @@ function Grid() {
   //   console.log(location.state);
 
   return (
-    <div className="grid-main">
+    <div className={styles.GridMain}>
       <Container>
-        <Row className="Gallary_Container">
-          <h1 className="grid-heading">What to Watch</h1>
-          {/* {data &&
+        <Row className={styles.GallaryContainer}>
+          <h1 className={styles.GridHeading}>What to Watch</h1>
+          {data &&
             data.map((item) => (
-              <Col className="Grid-Card">
-                <NavLink
+              <Col className={styles.GridCard}>
+                {/* <NavLink
                   to={`/title/${item.id}`}
                   state={item.id}
                   className="NavLink"
-                >
-                  <Cards item={item} />
-                </NavLink>
+                > */}
+                <Cards item={item} />
+                {/* </NavLink> */}
               </Col>
-            ))} */}
+            ))}
         </Row>
       </Container>
     </div>

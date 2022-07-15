@@ -56,13 +56,13 @@ function MoviePick(props) {
   } catch (error) {
     console.log(error);
   }
-  console.log(MovieList);
+  console.log(props);
   return (
     <Container fluid style={{ background: "black" }}>
       <Container className={styles.MoviePick}>
         <div className={styles.MoviePickHeading}>
-          <WhatToWatch props={props} />
-          <Link
+          <WhatToWatch props={props} data={MovieList} />
+          {/* <Link
             href={{
               pathname: "/Grid",
               query: {
@@ -71,7 +71,7 @@ function MoviePick(props) {
             }}
           >
             Hello
-          </Link>
+          </Link> */}
 
           <div className={styles.MoviePickCards}>
             <Swiper

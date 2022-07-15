@@ -8,8 +8,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 function WhatToWatch(props) {
-  // console.log(props);
+  console.log(props);
 
+  let data = JSON.stringify(props.data);
   return (
     <Container
       className={styles.MoviePickHeading}
@@ -30,7 +31,11 @@ function WhatToWatch(props) {
       </div>
       <h4 className={styles.MoviePickHeadingLarge}>
         <Link
-          href="/"
+          href={{
+            pathname: "/Grid",
+            query: { data: data, Container: props.props.data },
+          }}
+
           // style={props.style}
           // state={{ url: `${props.url}` }}
         >
