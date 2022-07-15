@@ -11,6 +11,7 @@ function Links(props) {
   const dispatch = useDispatch();
 
   const { title, List } = props;
+  console.log(List);
 
   return (
     <Container className={styles.Link}>
@@ -20,7 +21,7 @@ function Links(props) {
         <Link
           href={{
             pathname: `/${item.url}`,
-            title: item.title,
+            query: { title: item.category },
           }}
           key={id}
         >

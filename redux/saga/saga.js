@@ -15,7 +15,7 @@ export function* handleMoviePickLoad() {
   try {
     const users = yield call(
       axios.get,
-      "https://imdb-api.com/en/API/Top250Movies/k_fulo16js"
+      "https://imdb-api.com/en/API/Top250Movies/k_fus"
     );
 
     yield put(setMoviePick(users.data));
@@ -42,7 +42,7 @@ export function* handleMovieListLoad(action) {
     let url = action.MovieListPage;
     const users = yield call(
       axios.get,
-      `https://imdb-api.com/en/API/${url}/k_udicaalo//`
+      `https://imdb-api.com/en/API/${url}/k_fulo16js`
     );
 
     yield put(setgetMovieList(users.data));

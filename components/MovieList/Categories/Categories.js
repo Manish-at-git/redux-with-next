@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Categories.module.css";
 function Categories() {
   return (
-    <div className={styles.categoryList}>
+    <div className={styles.MovieListSideBar}>
       <div className={styles.SidebarHeader}>
         <h5>You Have Seen</h5>
         <span>
@@ -38,7 +38,7 @@ function Categories() {
           "Thriller",
           "Western",
         ].map((item, id) => (
-          <small key={id} className="categoryList">
+          <small key={id} className={styles.categoryList}>
             {item}
           </small>
         ))}

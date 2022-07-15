@@ -6,8 +6,7 @@ import Cards from "../components/Cards/Card";
 // import ErrorHandler from "../ErrorHander/ErrorHandler";
 
 import { useSelector, useDispatch } from "react-redux";
-// import { NavLink, useLocation } from "react-router-dom";
-
+import Link from "next/link";
 import styles from "../components/Grid/Grid.module.css";
 import { useRouter } from "next/router";
 // import { loadMovieList } from "../../redux/actions";
@@ -49,13 +48,17 @@ function Grid() {
           {datalist &&
             datalist.map((item) => (
               <Col className={styles.GridCard}>
-                {/* <NavLink
-                  to={`/title/${item.id}`}
+                <Link
+                  href={{
+                    pathname: `/title/${item.id}`,
+                    query: { state: item.id },
+                  }}
                   state={item.id}
-                  className="NavLink"
-                > */}
-                <Cards item={item} />
-                {/* </NavLink> */}
+                >
+                  <a className={styles.NavLink}>
+                    <Cards item={item} />
+                  </a>
+                </Link>
               </Col>
             ))}
         </Row>

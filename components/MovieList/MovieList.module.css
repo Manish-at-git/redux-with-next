@@ -5,11 +5,15 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.MovieList-Container {
+.MovieListContainer {
   background-color: rgb(199, 199, 199);
   color: #000;
   height: auto;
   padding: 0 150px;
+}
+
+.Hr {
+  margin: 2px;
 }
 
 .MovieListMain {
@@ -31,7 +35,7 @@
   font-size: 0.8em;
 }
 
-.your-Rating {
+.YourRating {
   display: block;
   margin: 0;
   padding: 0;
@@ -42,16 +46,11 @@
   min-width: 70%;
 }
 
-.MovieListPage,
-.MovieList-sideBar {
+.MovieListPage {
   padding: 20px;
   min-height: 100vh;
 }
 
-.MovieList-sideBar {
-  border-left: 3px solid rgb(128, 128, 128);
-  min-width: 30%;
-}
 .MovieListHeader {
   color: #424242;
   margin: 0;
@@ -84,17 +83,6 @@
   padding: 0 10px;
 }
 
-#sort {
-  width: 150px;
-  padding: 2px 10px;
-}
-
-#search_input {
-  margin-left: 5px;
-  width: 150px;
-  padding: 0 10px;
-}
-
 .MovieListList {
   padding: 5px 0;
   font-family: Verdana, Arial, sans-serif;
@@ -114,27 +102,35 @@
   width: 100%;
 }
 
-/* th {
+.tr {
+  border: 1px solid white;
+}
+
+.tr:nth-child(even) {
+  background-color: #f6f6f5;
+  margin: 1px 0;
+  border: #fff 1px solid;
+}
+
+.th {
   color: rgb(90, 90, 90);
   width: "10%";
   font-size: "0.9rem";
 }
 
-tr {
-  border: 1px solid white;
-} */
-
-/* tr:hover {
-  cursor: pointer;
-} */
-
-/* tr:nth-child(even) { */
-/* background-color: #f6f6f5; */
-/* margin: 1px 0; */
-/* border: #fff 1px solid; */
-/* } */
-
-.MovieListNavLink {
+.MovieListLink {
   text-decoration: none;
   /* color: rgb(216, 169, 169) */
+}
+
+.MovieListLink:hover {
+  text-decoration: underline;
+}
+
+.FontSize {
+  font-size: "0.8rem";
+}
+
+.TableImage {
+  width: "50px";
 }
