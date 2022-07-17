@@ -49,10 +49,15 @@ function MoviePick(props) {
   try {
     list = MovieList.slice(0, 20).map((item) => (
       <SwiperSlide key={item.id}>
-        {/* <NavLink to={`/title/${item.id}`} state={item.id} className="NavLink"> */}
-        <Cards item={item} />
-        {/* </NavLink> */}
-        {/* {item.id} */}
+        <Link
+          href={{
+            pathname: `/SingleMovie/${item.id}`,
+          }}
+        >
+          <a>
+            <Cards item={item} />
+          </a>
+        </Link>
       </SwiperSlide>
     ));
   } catch (error) {

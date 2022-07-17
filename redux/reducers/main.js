@@ -3,6 +3,8 @@ import {
   GET_MOVIEPICK_SUCCESS,
   GET_MOVIEPICK_SUCCESS_TWO,
   GET_MOVIELIST_SUCCESS,
+  GET_SINGLEMOVIE_SUCCESS,
+  GET_SINGLEMOVIE_ERROR,
 } from "../types";
 import { HYDRATE } from "next-redux-wrapper";
 
@@ -12,6 +14,7 @@ const initialState = {
   moviePick: [],
   moviePickTwo: [],
   movieList: [],
+  singleMovie: [],
 };
 
 export default function (state = initialState, action) {
@@ -41,6 +44,11 @@ export default function (state = initialState, action) {
     return {
       ...state,
       movieList: [...action.users.items],
+    };
+  else if (action.type === GET_SINGLEMOVIE_SUCCESS)
+    return {
+      ...state,
+      singleMovie: action.users,
     };
   else {
     return state;

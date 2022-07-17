@@ -35,10 +35,8 @@ function Grid() {
               <Col className={styles.GridCard} key={item.id}>
                 <Link
                   href={{
-                    pathname: `/title/${item.id}`,
-                    query: { state: item.id },
+                    pathname: `/SingleMovie/${item.id}`,
                   }}
-                  state={item.id}
                 >
                   <a className={styles.NavLink}>
                     <Cards item={item} />

@@ -7,15 +7,22 @@ import {
   setErrorMoviePickTwo,
   setgetMovieList,
   setErrorgetMovieList,
+  setSingleMovie,
+  setErrorSingleMovie,
 } from "../actions/main";
-import { GET_MOVIEPICK, GET_MOVIEPICK_TWO, GET_MOVIELIST, GET } from "../types";
+import {
+  GET_MOVIEPICK,
+  GET_MOVIEPICK_TWO,
+  GET_MOVIELIST,
+  GET_SINGLEMOVIE,
+} from "../types";
 import axios from "axios";
 
 export function* handleMoviePickLoad() {
   try {
     const users = yield call(
       axios.get,
-      "https://imdb-api.com/en/API/Top250Movies/k_fulom,.16js"
+      "https://imdb-api.com/en/API/Top250Movies/k_28734vj4"
     );
 
     yield put(setMoviePick(users.data));
@@ -28,7 +35,7 @@ export function* handleMoviePickLoadtwo() {
   try {
     const users = yield call(
       axios.get,
-      "https://imdb-api.com/en/API/Top250TVs/k_fulom,.16js"
+      "https://imdb-api.com/en/API/Top250TVs/k_28734vj4"
     );
 
     yield put(setMoviePickTwo(users.data));
@@ -42,7 +49,7 @@ export function* handleMovieListLoad(action) {
     let url = action.MovieListPage;
     const users = yield call(
       axios.get,
-      `https://imdb-api.com/en/API/${url}/k_fulo1m,.6js`
+      `https://imdb-api.com/en/API/${url}/k_28734vj4`
     );
 
     yield put(setgetMovieList(users.data));
@@ -51,8 +58,23 @@ export function* handleMovieListLoad(action) {
   }
 }
 
+export function* handleSingleMovieLoad(action) {
+  try {
+    const users = yield call(
+      axios.get,
+      `https://imdb-api.com/en/API/Title/k_28734vj4/${action.id}`
+    );
+
+    yield put(setSingleMovie(users.data));
+    console.log(users.data);
+  } catch (error) {
+    yield put(setErrorSingleMovie(error.toString()));
+  }
+}
+
 export default function* watchImagesLoad() {
   yield takeEvery(GET_MOVIEPICK, handleMoviePickLoad);
   yield takeEvery(GET_MOVIEPICK_TWO, handleMoviePickLoadtwo);
   yield takeEvery(GET_MOVIELIST, handleMovieListLoad);
+  yield takeEvery(GET_SINGLEMOVIE, handleSingleMovieLoad);
 }

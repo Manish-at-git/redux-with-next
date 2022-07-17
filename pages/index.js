@@ -38,8 +38,8 @@ function Home() {
 }
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  // store.dispatch(getMoviePick());
-  // store.dispatch(getMoviePickTwo());
+  store.dispatch(getMoviePick());
+  store.dispatch(getMoviePickTwo());
   store.dispatch(END);
   await store.sagaTask.toPromise();
 });

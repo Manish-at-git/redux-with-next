@@ -142,9 +142,9 @@ function MovieListPage(props) {
                       .map((user) => (
                         <tr className={styles.tr} key={user.id}>
                           <td>
-                            <image
+                            <Image
                               // src={user.image}
-                              src={user.image}
+                              src={share}
                               alt="poster"
                               className={styles.TableImage}
                             />
@@ -152,8 +152,7 @@ function MovieListPage(props) {
                               {user.rank}.{" "}
                               <Link
                                 href={{
-                                  pathname: `/title/${user.id}`,
-                                  query: user.id,
+                                  pathname: `/SingleMovie/${user.id}`,
                                 }}
                               >
                                 <a className={styles.MovieListLink}>

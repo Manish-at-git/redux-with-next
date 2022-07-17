@@ -9,6 +9,9 @@ import {
   GET_MOVIELIST,
   GET_MOVIELIST_SUCCESS,
   GET_MOVIELIST_ERROR,
+  GET_SINGLEMOVIE,
+  GET_SINGLEMOVIE_SUCCESS,
+  GET_SINGLEMOVIE_ERROR,
 } from "../types";
 
 const navbarToggle = () => {
@@ -87,24 +90,25 @@ export const setErrorgetMovieList = (error) => {
 
 //////
 
-/// MOVIELIST
+/// SINGLEMOVIE
 
-export const getSingleMovie = (MovieListPage) => {
+export const getSingleMovie = (id) => {
+  console.log("EEEEEEEEEEEEEEEEEEEE", id);
   return {
-    type: GET_MOVIELIST,
-    MovieListPage,
+    type: GET_SINGLEMOVIE,
+    id,
   };
 };
 
-export const setgetSingleMovie = (users) => {
+export const setSingleMovie = (users) => {
   return {
-    type: GET_MOVIELIST_SUCCESS,
+    type: GET_SINGLEMOVIE_SUCCESS,
     users,
   };
 };
-export const setErrorgetSingleMovie = (error) => {
+export const setErrorSingleMovie = (error) => {
   return {
-    type: GET_MOVIELIST_ERROR,
+    type: GET_SINGLEMOVIE_ERROR,
     error,
   };
 };
