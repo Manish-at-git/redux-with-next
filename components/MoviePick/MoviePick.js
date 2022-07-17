@@ -24,7 +24,7 @@ function MoviePick(props) {
   const MoviesListOne = useSelector((state) => state.main.moviePick);
   const MoviesListTwo = useSelector((state) => state.main.moviePickTwo);
 
-  const { heading, recommend, title, text, data } = props;
+  const { heading, recommend, title, text, data, color } = props;
 
   let MovieList;
   if (data === "Two") {
@@ -73,6 +73,7 @@ function MoviePick(props) {
             recommend={recommend}
             title={title}
             text={text}
+            color={color}
           />
           {/* <Link
             href={{

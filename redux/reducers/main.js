@@ -5,6 +5,8 @@ import {
   GET_MOVIELIST_SUCCESS,
   GET_SINGLEMOVIE_SUCCESS,
   GET_SINGLEMOVIE_ERROR,
+  GET_SEARCHMOVIE_SUCCESS,
+  GET_SEARCHMOVIE_ERROR,
 } from "../types";
 import { HYDRATE } from "next-redux-wrapper";
 
@@ -15,9 +17,11 @@ const initialState = {
   moviePickTwo: [],
   movieList: [],
   singleMovie: [],
+  search: { loading: false, searchResults: [] },
 };
 
 export default function (state = initialState, action) {
+  console.log(action);
   if (action.type === HYDRATE) {
     const nextState = {
       ...state, // use previous state
@@ -49,6 +53,15 @@ export default function (state = initialState, action) {
     return {
       ...state,
       singleMovie: action.users,
+    };
+  else if (action.type === GET_SEARCHMOVIE_SUCCESS)
+    return {
+      ...state,
+      search: {
+        ...state.search,
+        loading: true,
+        searchResults: action.users.results,
+      },
     };
   else {
     return state;

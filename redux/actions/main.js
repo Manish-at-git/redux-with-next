@@ -12,6 +12,9 @@ import {
   GET_SINGLEMOVIE,
   GET_SINGLEMOVIE_SUCCESS,
   GET_SINGLEMOVIE_ERROR,
+  GET_SEARCHMOVIE,
+  GET_SEARCHMOVIE_SUCCESS,
+  GET_SEARCHMOVIE_ERROR,
 } from "../types";
 
 const navbarToggle = () => {
@@ -93,7 +96,6 @@ export const setErrorgetMovieList = (error) => {
 /// SINGLEMOVIE
 
 export const getSingleMovie = (id) => {
-  console.log("EEEEEEEEEEEEEEEEEEEE", id);
   return {
     type: GET_SINGLEMOVIE,
     id,
@@ -109,6 +111,31 @@ export const setSingleMovie = (users) => {
 export const setErrorSingleMovie = (error) => {
   return {
     type: GET_SINGLEMOVIE_ERROR,
+    error,
+  };
+};
+
+//////
+
+/// SINGLEMOVIE
+
+export const getSearchMovie = (search) => {
+  console.log(search, "ACTIONNNNNNNNNNNNNNNNNNn");
+  return {
+    type: GET_SEARCHMOVIE,
+    search,
+  };
+};
+
+export const setSearchMovie = (users) => {
+  return {
+    type: GET_SEARCHMOVIE_SUCCESS,
+    users,
+  };
+};
+export const setErrorSearchMovie = (error) => {
+  return {
+    type: GET_SEARCHMOVIE_ERROR,
     error,
   };
 };

@@ -7,13 +7,10 @@ import { useSelector } from "react-redux";
 import Link from "next/link";
 import styles from "../components/Grid/Grid.module.css";
 import { useRouter } from "next/router";
-// import { loadMovieList } from "../../redux/actions";
 
 function Grid() {
   const router = useRouter();
   const Data = router.query.Container;
-  // let data = JSON.parse(Data);
-  // console.log(data);
 
   const datalistOne = useSelector((state) => state.main.moviePick);
   const datalistTwo = useSelector((state) => state.main.moviePickTwo);

@@ -4,14 +4,12 @@ import { wrapper } from "../redux/store";
 import { END } from "redux-saga";
 
 import MoviePick from "../components/MoviePick/MoviePick";
-import SingleMovie from "../components/SingleMovie/SingleMovie";
 import SignIn from "../components/SignIn/SignIn";
 
 function Home() {
   const navbarData = useSelector((state) => state.main.navbarOpened);
   return (
     <>
-      {/* <SingleMovie /> */}
       {!navbarData && (
         <div>
           <MoviePick
@@ -20,7 +18,7 @@ function Home() {
             title="TV Shows"
             text="TV Shows and Movies just for you"
             data="Two"
-            color="black"
+            color=""
           />
           <MoviePick
             heading=""

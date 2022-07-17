@@ -1,14 +1,14 @@
 import React, { useCallback, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { navbarToggle } from "../../redux/actions/main";
+import { getSearchMovie, navbarToggle } from "../../redux/actions/main";
 
 import Link from "next/link";
 
 import NavLinks from "./NavbarLink/NavLinks";
 
 import Image from "next/image";
-// import { debounce } from "lodash";
+import { debounce } from "lodash";
 
 // import { NavLink } from "react-router-dom";
 // import { auth } from "../../firebase/firebase-config";
@@ -21,6 +21,7 @@ import {
   faBookmark,
   faCaretDown,
   faSearch,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 
 //IMAGES
@@ -38,38 +39,46 @@ import NavbarLogo2 from "../../assests/images/NavbarLogo2.png";
 // CSS
 import styles from "./Navbar.module.css";
 import { Container } from "react-bootstrap";
+import Search from "../Search/Search";
 
 function Navbar() {
   const dispatch = useDispatch();
   const navbarData = useSelector((state) => state.main.navbarOpened);
+  const searchdata = useSelector((state) => state.main.search.searchResults);
+  //   const signinData = useSelector((state) => state.registeredUser);
+
+  const [search, setSearch] = useState("");
+  // const debounce = (func) => {
+  //   let timer;
+  //   return function (...args) {
+  //     const context = this;
+  //     if (timer) {
+  //       clearTimeout(timer);
+  //     }
+  //     timer = setTimeout(() => {
+  //       timer = null;
+  //       func.apply(context, args);
+  //     }, 1000);
+  //   };
+  // };
+
+  // const handleChange = (event) => {
+  //   setSearch(event.target.value);
+
+  //   dispatch(loadSearch(event.target.value));
+  // };
+
+  // const optimizedVersion = useCallback(debounce(handleChange), []);
 
   const changeState = () => {
     dispatch(navbarToggle());
   };
 
-  //   const toggle = useSelector((state) => state.navbarToggle);
-  //   const searchdata = useSelector((state) => state.search);
-  //   const signinData = useSelector((state) => state.registeredUser);
-  //   const dispatch = useDispatch();
-  //   const navigate = useNavigate();
-
-  //   let navbarNotToggled = true;
-  //   // console.log(signinData);
-
-  //   const changeState = () => {
-  //     dispatch(navbarToggle(navbarNotToggled));
-  //   };
-
-  //   console.log(toggle);
-  //   let slide = {};
-  //   toggle ? (slide = { position: "absolute", top: "-100%" }) : (slide = null);
-
-  //   const [search, setSearch] = useState("");
-
-  //   const handleChange = debounce((event) => {
-  //     setSearch(event.target.value);
-  //     dispatch(loadSearch(event.target.value));
-  //   }, 1000);
+  const handleChange = debounce((event) => {
+    setSearch(event.target.value);
+    dispatch(getSearchMovie(event.target.value));
+    console.log(search);
+  }, 1000);
 
   //   const logout = async () => {
   //     await signOut(auth);
@@ -92,29 +101,29 @@ function Navbar() {
           </span>
           <span className={styles.Search}>
             <input
+              id="search-input"
               className={styles.SearchInput}
               type="text"
               placeholder="Search IMDb"
-              //   onChange={handleChange}
-              // value={search}
+              onChange={handleChange}
             />
-            {/* {search && (
+            {search && (
               <FontAwesomeIcon
                 icon={faXmark}
-                className="iconss"
+                className={styles.iconss}
                 style={{
                   color: "grey",
                   backgroundColor: "#fff",
-                  padding: "9px 10px",
+                  padding: "10px",
                   borderRadius: "3px",
                   marginLeft: "2px",
                 }}
                 onClick={() => {
                   setSearch("");
-                  document.querySelector(".search-input").value = "";
+                  document.querySelector("#search-input").value = "";
                 }}
               />
-            )} */}
+            )}
           </span>
           {/* <img className="logo logo2" src={NavbarLogo2} /> */}
           <span className={styles.Logo}>
@@ -158,11 +167,9 @@ function Navbar() {
             <FontAwesomeIcon icon={faCaretDown} className={styles.NavIcons} />
           </span>
         </Container>
-        {navbarData ? <NavLinks /> : null}
+        {navbarData && <NavLinks />}
       </Container>
-      {/* {search ? <Search props={searchdata} /> : null} */}
-      {/* {console.log(search)} */}
-      {/* <Search /> */}
+      {search && <Search props={searchdata} />}
     </>
   );
 }
