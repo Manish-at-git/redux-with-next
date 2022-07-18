@@ -59,32 +59,32 @@
 }
 
 .SingleMovieTrailer {
+  margin: 0 5px;
   flex: 1;
-  /* height: 600px; */
-  /* width: 50%; */
   object-fit: cover;
   /* border: 1px solid red; */
 }
 .SingleMovieImages {
-  margin: 0 2px;
+  background-color: rgb(34, 34, 34);
+  border-radius: 3px;
   display: flex;
   flex-direction: column;
-  height: 50%;
   justify-content: center;
   align-items: center;
-
-  /* border: 1px solid red; */
+  flex: 1;
+  margin: 2px;
 }
 
 .Icons {
-  width: 100%;
-  /* border: 1px solid red; */
+  padding: 10px;
 }
 
 .SingleMovieMedia {
-  width: 15%;
-  /* border: 1px solid red; */
-  /* text-align: center; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 13%;
+  text-align: center;
 }
 
 .SingleMovieInfo {
@@ -175,7 +175,7 @@
   width: "40%";
   position: absolute;
   top: 0;
-  right: -130px;
+  right: -50px;
 }
 
 .Watchlist,
@@ -205,13 +205,13 @@
   background-color: #f5c518;
   color: #000;
 }
-.bookmark-down {
+.BookmarkDown {
   /* border: 1px solid red; */
   font-size: 14px;
   margin-left: 20px;
 }
 
-.bookmark-down span {
+.BookmarkDown span {
   margin: 0 5px;
   color: #5799ef;
 }
