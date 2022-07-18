@@ -1,4 +1,6 @@
 import {
+  SIGNIN,
+  SIGNOUT,
   NAVBARTOGGLED,
   GET_MOVIEPICK,
   GET_MOVIEPICK_SUCCESS,
@@ -17,6 +19,21 @@ import {
   GET_SEARCHMOVIE_ERROR,
 } from "../types";
 
+///  FIREBASE
+
+export const loadSignIn = (email) => {
+  return {
+    type: SIGNIN,
+    email,
+  };
+};
+
+export const loadSignOut = () => ({
+  type: SIGNOUT,
+});
+
+/// NAVBAR TOGGLE
+
 const navbarToggle = () => {
   return {
     type: NAVBARTOGGLED,
@@ -25,42 +42,40 @@ const navbarToggle = () => {
 
 /// MOVIEPICK ONE
 
-const getMoviePick = () => {
+export const getMoviePick = () => {
   return {
     type: GET_MOVIEPICK,
   };
 };
 
-const setMoviePick = (users) => {
+export const setMoviePick = (users) => {
   return {
     type: GET_MOVIEPICK_SUCCESS,
     users,
   };
 };
-const setErrorMoviePick = (error) => {
+export const setErrorMoviePick = (error) => {
   return {
     type: GET_MOVIEPICK_ERROR,
     error,
   };
 };
 
-//////
-
 /// MOVIEPICK TWO
 
-const getMoviePickTwo = () => {
+export const getMoviePickTwo = () => {
   return {
     type: GET_MOVIEPICK_TWO,
   };
 };
 
-const setMoviePickTwo = (users) => {
+export const setMoviePickTwo = (users) => {
   return {
     type: GET_MOVIEPICK_SUCCESS_TWO,
     users,
   };
 };
-const setErrorMoviePickTwo = (error) => {
+export const setErrorMoviePickTwo = (error) => {
   return {
     type: GET_MOVIEPICK_ERROR_TWO,
     error,
@@ -141,13 +156,3 @@ export const setErrorSearchMovie = (error) => {
 };
 
 //////
-
-export {
-  navbarToggle,
-  getMoviePick,
-  setMoviePick,
-  setErrorMoviePick,
-  getMoviePickTwo,
-  setMoviePickTwo,
-  setErrorMoviePickTwo,
-};

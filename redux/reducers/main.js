@@ -8,13 +8,15 @@ import {
   GET_SEARCHMOVIE_SUCCESS,
   GET_SEARCHMOVIE_ERROR,
   GET_SEARCHMOVIE,
+  SIGNIN,
 } from "../types";
 import { HYDRATE } from "next-redux-wrapper";
 
 const initialState = {
+  signIn: "",
   loading: false,
-  users: [],
   navbarOpened: false,
+  users: [],
   moviePick: [],
   moviePickTwo: [],
   movieList: [],
@@ -35,6 +37,11 @@ export default function (state = initialState, action) {
     return {
       ...state,
       navbarOpened: !state.navbarOpened,
+    };
+  else if (action.type === SIGNIN)
+    return {
+      ...state,
+      signIn: action.email,
     };
   else if (action.type === GET_MOVIEPICK_SUCCESS)
     return {

@@ -45,25 +45,6 @@ function MoviePick(props) {
   //   borderColor: "red",
   // };
 
-  var list;
-  try {
-    list = MovieList.slice(0, 20).map((item) => (
-      <SwiperSlide key={item.id}>
-        <Link
-          href={{
-            pathname: `/SingleMovie/${item.id}`,
-          }}
-        >
-          <a>
-            <Cards item={item} />
-          </a>
-        </Link>
-      </SwiperSlide>
-    ));
-  } catch (error) {
-    console.log(error);
-  }
-  console.log(props);
   return (
     <Container fluid style={{ background: "black" }}>
       <Container className={styles.MoviePick}>
@@ -75,16 +56,6 @@ function MoviePick(props) {
             text={text}
             color={color}
           />
-          {/* <Link
-            href={{
-              pathname: "/Grid",
-              query: {
-                data: props.data,
-              },
-            }}
-          >
-            Hello
-          </Link> */}
 
           <div className={styles.MoviePickCards}>
             <Swiper
@@ -97,7 +68,19 @@ function MoviePick(props) {
               modules={[Pagination, Navigation]}
               className="mySwiper"
             >
-              {list}
+              {MovieList?.slice(0, 20).map((item) => (
+                <SwiperSlide key={item.id}>
+                  <Link
+                    href={{
+                      pathname: `/SingleMovie/${item.id}`,
+                    }}
+                  >
+                    <a>
+                      <Cards item={item} />
+                    </a>
+                  </Link>
+                </SwiperSlide>
+              ))}
             </Swiper>
           </div>
         </div>

@@ -8,14 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 function WhatToWatch(props) {
-  console.log(props);
-
-  // let data = JSON.stringify(props.data);
   return (
-    <Container
-      className={styles.MoviePickHeading}
-      // style={props.style}
-    >
+    <Container className={styles.MoviePickHeading}>
       <div className={styles.WhatToWatch}>
         <h3 className={styles.Watch}>{props.heading}</h3>
         <span className={styles.Recommend}>
@@ -35,9 +29,6 @@ function WhatToWatch(props) {
             pathname: "/Grid",
             query: { Container: props.data },
           }}
-
-          // style={props.style}
-          // state={{ url: `${props.url}` }}
         >
           <a className={styles.NavLink}>{props.title}</a>
         </Link>
