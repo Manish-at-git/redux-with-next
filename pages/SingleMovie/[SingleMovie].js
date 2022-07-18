@@ -28,6 +28,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
+import Link from "next/link";
 
 function SingleMovie() {
   const data = useSelector((state) => state.main.singleMovie);
@@ -298,23 +299,25 @@ function SingleMovie() {
           <div className={styles.SingleSidebar}>
             {data &&
               data.data.similars.slice(0, 8).map((item) => (
-                // <NavLink
-                //   to={`/title/${item.id}`}
-                //   state={item.id}
-                //   className="search-NavLink"
-                // >
-                <div className={styles.SingleSidebarBox}>
-                  <div className={styles.WatchedSeries}>
-                    <small className={styles.WatchedSeriesSpan}>
-                      {item.title}
-                    </small>
-                    <small className={styles.CreatedYearSpan}>
-                      {item.imDbRating}
-                    </small>
-                  </div>
-                  <img src={item.image} className={styles.CreatedYear} />
-                </div>
-                // </NavLink>
+                <Link
+                  href={{
+                    pathname: `/SingleMovie/${item.id}`,
+                  }}
+                >
+                  <a className={styles.SearchLink}>
+                    <div className={styles.SingleSidebarBox}>
+                      <div className={styles.WatchedSeries}>
+                        <small className={styles.WatchedSeriesSpan}>
+                          {item.title}
+                        </small>
+                        <small className={styles.CreatedYearSpan}>
+                          {item.imDbRating}
+                        </small>
+                      </div>
+                      <img src={item.image} className={styles.CreatedYear} />
+                    </div>
+                  </a>
+                </Link>
               ))}
           </div>
         </Container>
@@ -328,7 +331,6 @@ export default SingleMovie;
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async (context) => {
     store.dispatch(getSingleMovie(context.query.SingleMovie));
-    console.log(context, "HELOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
     store.dispatch(END);
     await store.sagaTask.toPromise();
   }
