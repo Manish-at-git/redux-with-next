@@ -85,10 +85,6 @@ export function* handleSingleMovieLoad(action) {
     };
 
     yield put(setSingleMovie(singleMovie));
-    console.log(
-      singleMovie,
-      "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa"
-    );
   } catch (error) {
     yield put(setErrorSingleMovie(error.toString()));
   }

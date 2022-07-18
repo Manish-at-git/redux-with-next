@@ -61,7 +61,7 @@
 .SearchInput:focus {
   outline: none;
   border: 1px solid white;
-  background: #fff;
+  /* background: #fff; */
   border-radius: 3px;
   flex-grow: 1;
   max-width: 750px;
@@ -122,4 +122,5 @@
   padding: "10px";
   border-radius: "3px";
   margin-left: "2px";
+  padding: 10px;
 }

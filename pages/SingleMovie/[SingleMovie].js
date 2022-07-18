@@ -124,7 +124,7 @@ function SingleMovie() {
           <div className={styles.Info}>
             <div className={styles.SingleMovieInfo} style={{ width: "60%" }}>
               <div className={styles.Categories}>
-                {data &&
+                {data.data.genreList &&
                   data.data.genreList.map((item) => (
                     <span className={styles.CategoriesAction}>
                       {item.value}
@@ -223,7 +223,7 @@ function SingleMovie() {
                 modules={[Pagination, Navigation]}
                 className="mySwiper"
               >
-                {data &&
+                {Object.keys(data.images).length &&
                   data.images.slice(0, 10).map((item) => (
                     <SwiperSlide>
                       <div className={styles.SliderImage}>
@@ -236,7 +236,7 @@ function SingleMovie() {
 
             <div>
               <div className={styles.GridCast}>
-                {data &&
+                {data.data.length &&
                   data.data.actorList.slice(0, 8).map((item) => (
                     <div
                       style={{
@@ -297,7 +297,7 @@ function SingleMovie() {
             </Container>
           </Container>
           <div className={styles.SingleSidebar}>
-            {data &&
+            {data.data.length &&
               data.data.similars.slice(0, 8).map((item) => (
                 <Link
                   href={{

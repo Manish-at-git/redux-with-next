@@ -7,10 +7,12 @@ import {
   GET_SINGLEMOVIE_ERROR,
   GET_SEARCHMOVIE_SUCCESS,
   GET_SEARCHMOVIE_ERROR,
+  GET_SEARCHMOVIE,
 } from "../types";
 import { HYDRATE } from "next-redux-wrapper";
 
 const initialState = {
+  loading: false,
   users: [],
   navbarOpened: false,
   moviePick: [],
@@ -59,13 +61,21 @@ export default function (state = initialState, action) {
         trailer: action.users.trailer,
       },
     };
-  else if (action.type === GET_SEARCHMOVIE_SUCCESS)
+  else if (action.type === GET_SEARCHMOVIE)
     return {
       ...state,
       search: {
         ...state.search,
         loading: true,
+      },
+    };
+  else if (action.type === GET_SEARCHMOVIE_SUCCESS)
+    return {
+      ...state,
+      search: {
+        ...state.search,
         searchResults: action.users.results,
+        loading: false,
       },
     };
   else {

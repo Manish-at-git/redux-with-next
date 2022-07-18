@@ -37,7 +37,7 @@ import Search from "../Search/Search";
 function Navbar() {
   const dispatch = useDispatch();
   const navbarData = useSelector((state) => state.main.navbarOpened);
-  const searchdata = useSelector((state) => state.main.search.searchResults);
+
   //   const signinData = useSelector((state) => state.registeredUser);
 
   const [search, setSearch] = useState("");
@@ -83,13 +83,6 @@ function Navbar() {
               <FontAwesomeIcon
                 icon={faXmark}
                 className={styles.iconss}
-                style={{
-                  color: "grey",
-                  backgroundColor: "#fff",
-                  padding: "10px",
-                  borderRadius: "3px",
-                  marginLeft: "2px",
-                }}
                 onClick={() => {
                   setSearch("");
                   document.querySelector("#search-input").value = "";
@@ -140,7 +133,7 @@ function Navbar() {
         </Container>
         {navbarData && <NavLinks />}
       </Container>
-      {search && <Search props={searchdata} />}
+      {search && <Search />}
     </>
   );
 }
