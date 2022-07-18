@@ -10,7 +10,6 @@ import NavLinks from "./NavbarLink/NavLinks";
 import Image from "next/image";
 import { debounce } from "lodash";
 
-// import { NavLink } from "react-router-dom";
 // import { auth } from "../../firebase/firebase-config";
 // import { signOut } from "firebase/auth";
 
@@ -28,13 +27,7 @@ import {
 import Logo from "../../assests/images/logo.png";
 import NavbarLogo2 from "../../assests/images/NavbarLogo2.png";
 
-// import NavLinks from "./NavbarLink/NavLinks";
-// import Search from "../Search/Search";
-
-// import { useSelector, useDispatch } from "react-redux";
 // import { loadSearch, loadSignOut } from "../../redux/actions/index";
-// import { navbarToggle } from "../../redux/actions";
-// import { useNavigate } from "react-router-dom";
 
 // CSS
 import styles from "./Navbar.module.css";
@@ -48,27 +41,6 @@ function Navbar() {
   //   const signinData = useSelector((state) => state.registeredUser);
 
   const [search, setSearch] = useState("");
-  // const debounce = (func) => {
-  //   let timer;
-  //   return function (...args) {
-  //     const context = this;
-  //     if (timer) {
-  //       clearTimeout(timer);
-  //     }
-  //     timer = setTimeout(() => {
-  //       timer = null;
-  //       func.apply(context, args);
-  //     }, 1000);
-  //   };
-  // };
-
-  // const handleChange = (event) => {
-  //   setSearch(event.target.value);
-
-  //   dispatch(loadSearch(event.target.value));
-  // };
-
-  // const optimizedVersion = useCallback(debounce(handleChange), []);
 
   const changeState = () => {
     dispatch(navbarToggle());
@@ -125,7 +97,6 @@ function Navbar() {
               />
             )}
           </span>
-          {/* <img className="logo logo2" src={NavbarLogo2} /> */}
           <span className={styles.Logo}>
             <Image src={NavbarLogo2} alt="IMDb Logo" />
           </span>
