@@ -95,8 +95,8 @@
 .CategoriesAdventure,
 .CategoriesComedy {
   border: 2px solid grey;
-  padding: 4px 8px;
-  border-radius: 20px;
+  padding: 2px 8px 4px;
+  border-radius: 17px;
   margin: 0 5px;
 }
 
@@ -123,10 +123,11 @@
   color: #5799ef;
 }
 
-.SingleMovie-main2 {
+.SingleMovieMain2 {
   background-color: #fff;
   color: #000;
   margin: 0;
+  width: 60%;
 }
 
 .Cast {
@@ -139,29 +140,38 @@
   /* padding-top: 10px; */
 }
 
-.Cast-Name {
+.CastName {
   font-weight: bold;
 
   /* display: block; */
 }
 
-.Cast-desc {
+.CastDesc {
   /* display: block; */
   color: rgb(104, 104, 104);
   font-size: 1em;
   font-weight: 300;
 }
 
-.Cast-item {
+.CastItem {
   height: 100px;
+
   /* border: 1px solid blue; */
 }
 
-.inline {
+.Inline {
   display: inline-block;
 }
 
-.gridCast {
+/* .CastItem img {
+  width: "100px";
+  height: "100px";
+  object-fit: "cover";
+  border-radius: "50%";
+  margin-right: "10px";
+} */
+
+.GridCast {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   margin: 30px 0;
@@ -238,7 +248,7 @@
   display: none;
 }
 
-.slider-image {
+.SliderImage {
   margin: 0;
   height: 200px;
   /* border: 1px solid grey; */
@@ -248,28 +258,28 @@
   align-items: center;
 }
 
-.slider-image img {
+.SliderImage img {
   height: 175px;
   width: 175px;
   object-fit: cover;
 }
 
-.single-sidebar {
+.SingleSidebar {
   width: 30%;
   /* padding-left: 100px; */
 }
 
-.single-sidebar-box {
+.SingleSidebarBox {
   margin-top: 10px;
   border: 1px solid rgb(226, 226, 226);
   display: flex;
   border-radius: 5px;
 }
-.watched-series small {
+.WatchedSeries small {
   padding: 10px 15px;
 }
 
-.watched-series {
+.WatchedSeries {
   font-family: "Roboto", sans-serif;
   width: 90%;
   display: flex;
@@ -277,20 +287,20 @@
   justify-content: space-between;
 }
 
-.created-year {
+.CreatedYear {
   height: 80px;
   width: 65px;
   object-fit: cover;
   margin: 5px;
 }
 
-.watched-series-span {
+.WatchedSeriesSpan {
   color: #000;
   font-size: 14px;
   font-weight: 400;
 }
 
-.created-year-span {
+.CreatedYearSpan {
   color: #000;
   font-size: 12px;
   color: rgb(141, 141, 141);

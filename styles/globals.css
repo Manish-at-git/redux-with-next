@@ -15,7 +15,7 @@ a {
   box-sizing: border-box;
 }
 
-.carousel-indicators {
+.swiper-pagination {
   display: none;
 }
 
@@ -27,11 +27,11 @@ a {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.swiper-button-next:after,
-.swiper-button-prev:after {
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 22px;
   font-weight: 900;
   color: white;
-  font-size: 22px;
 }
 
 #sort {
