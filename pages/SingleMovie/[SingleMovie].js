@@ -223,7 +223,7 @@ function SingleMovie() {
                 modules={[Pagination, Navigation]}
                 className="mySwiper"
               >
-                {Object.keys(data.images).length &&
+                {Object.keys(data.images).length !== 0 &&
                   data.images.slice(0, 10).map((item) => (
                     <SwiperSlide>
                       <div className={styles.SliderImage}>
@@ -236,37 +236,37 @@ function SingleMovie() {
 
             <div>
               <div className={styles.GridCast}>
-                {data.data.length &&
-                  data.data.actorList.slice(0, 8).map((item) => (
+                {console.log(data.data.length !== 0)}
+                {data?.data?.actorList?.slice(0, 8).map((item) => (
+                  <div
+                    style={{
+                      padding: "10px",
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <div className={(styles.CastItem, styles.Inline)}>
+                      <img
+                        style={{
+                          height: "100px",
+                          width: "100px",
+                          objectFit: "cover",
+                          borderRadius: "50%",
+                        }}
+                        src={item.image}
+                      />
+                    </div>
                     <div
-                      style={{
-                        padding: "10px",
-                        display: "flex",
-                        alignItems: "center",
-                      }}
+                      className={(styles.CastItem, styles.Inline)}
+                      style={{ padding: "0 20px" }}
                     >
-                      <div className={(styles.CastItem, styles.Inline)}>
-                        <img
-                          style={{
-                            height: "100px",
-                            width: "100px",
-                            objectFit: "cover",
-                            borderRadius: "50%",
-                          }}
-                          src={item.image}
-                        />
-                      </div>
-                      <div
-                        className={(styles.CastItem, styles.Inline)}
-                        style={{ padding: "0 20px" }}
-                      >
-                        <div className={styles.CastName}>{item.name}</div>
-                        <div className={styles.CastDesc}>
-                          {item.asCharacter.slice(0, 40)}
-                        </div>
+                      <div className={styles.CastName}>{item.name}</div>
+                      <div className={styles.CastDesc}>
+                        {item.asCharacter.slice(0, 40)}
                       </div>
                     </div>
-                  ))}
+                  </div>
+                ))}
               </div>
             </div>
             <Container>
@@ -297,28 +297,27 @@ function SingleMovie() {
             </Container>
           </Container>
           <div className={styles.SingleSidebar}>
-            {data.data.length &&
-              data.data.similars.slice(0, 8).map((item) => (
-                <Link
-                  href={{
-                    pathname: `/SingleMovie/${item.id}`,
-                  }}
-                >
-                  <a className={styles.SearchLink}>
-                    <div className={styles.SingleSidebarBox}>
-                      <div className={styles.WatchedSeries}>
-                        <small className={styles.WatchedSeriesSpan}>
-                          {item.title}
-                        </small>
-                        <small className={styles.CreatedYearSpan}>
-                          {item.imDbRating}
-                        </small>
-                      </div>
-                      <img src={item.image} className={styles.CreatedYear} />
+            {data?.data?.similars?.slice(0, 8).map((item) => (
+              <Link
+                href={{
+                  pathname: `/SingleMovie/${item.id}`,
+                }}
+              >
+                <a className={styles.SearchLink}>
+                  <div className={styles.SingleSidebarBox}>
+                    <div className={styles.WatchedSeries}>
+                      <small className={styles.WatchedSeriesSpan}>
+                        {item.title}
+                      </small>
+                      <small className={styles.CreatedYearSpan}>
+                        {item.imDbRating}
+                      </small>
                     </div>
-                  </a>
-                </Link>
-              ))}
+                    <img src={item.image} className={styles.CreatedYear} />
+                  </div>
+                </a>
+              </Link>
+            ))}
           </div>
         </Container>
       </Container>
