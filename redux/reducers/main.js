@@ -9,6 +9,7 @@ import {
   GET_SEARCHMOVIE_ERROR,
   GET_SEARCHMOVIE,
   SIGNIN,
+  SIGNOUT,
 } from "../types";
 import { HYDRATE } from "next-redux-wrapper";
 
@@ -42,6 +43,11 @@ export default function (state = initialState, action) {
     return {
       ...state,
       signIn: action.email,
+    };
+  else if (action.type === SIGNOUT)
+    return {
+      ...state,
+      signIn: "",
     };
   else if (action.type === GET_MOVIEPICK_SUCCESS)
     return {

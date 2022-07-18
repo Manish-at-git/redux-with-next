@@ -34,7 +34,7 @@ export const loadSignOut = () => ({
 
 /// NAVBAR TOGGLE
 
-const navbarToggle = () => {
+export const navbarToggle = () => {
   return {
     type: NAVBARTOGGLED,
   };

@@ -42,20 +42,6 @@ function Register() {
     errorMsg = errorMessageList[0].toString();
     setErrorMEssage(errorMsg);
   };
-  // const register = async () => {
-  //   try {
-  //     const user = await createUserWithEmailAndPassword(
-  //       auth,
-  //       registerEmail,
-  //       registerPassword
-  //     );
-  //     // console.log(user);
-  //
-  //     navigate("/");
-  //   } catch (error) {
-  //
-  //   }
-  // };
 
   const register = async () => {
     try {
@@ -66,7 +52,7 @@ function Register() {
       );
       setShow(false);
       console.log(user);
-      router.push("/");
+      // router.push("/");
     } catch (error) {
       console.log(error.message);
       showError(error);
@@ -107,14 +93,14 @@ function Register() {
                   Create User
                 </button>
               </div>
-              {userLogged?.email}
+
               <hr className={styles.Hr} />
               <div className={styles.AlreadyAccount}>
                 <span>
                   Already have an account?{" "}
                   <Link
                     href={{
-                      pathname: "/SignIn",
+                      pathname: "/signin",
                     }}
                   >
                     <a className={styles.SigninLink}>Sign In</a>
