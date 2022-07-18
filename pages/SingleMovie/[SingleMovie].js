@@ -199,6 +199,7 @@ export default SingleMovie;
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async (context) => {
     store.dispatch(getSingleMovie(context.query.SingleMovie));
+    console.log(context, "HELOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
     store.dispatch(END);
     await store.sagaTask.toPromise();
   }

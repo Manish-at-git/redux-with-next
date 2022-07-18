@@ -16,12 +16,12 @@ const initialState = {
   moviePick: [],
   moviePickTwo: [],
   movieList: [],
-  singleMovie: [],
+  singleMovie: { data: {}, images: {}, trailer: "" },
   search: { loading: false, searchResults: [] },
 };
 
 export default function (state = initialState, action) {
-  console.log(action);
+  console.log(action, "ACTIONNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
   if (action.type === HYDRATE) {
     const nextState = {
       ...state, // use previous state
@@ -52,7 +52,12 @@ export default function (state = initialState, action) {
   else if (action.type === GET_SINGLEMOVIE_SUCCESS)
     return {
       ...state,
-      singleMovie: action.users,
+      singleMovie: {
+        ...state.singleMovie,
+        data: action.users.data,
+        images: action.users.images,
+        trailer: action.users.trailer,
+      },
     };
   else if (action.type === GET_SEARCHMOVIE_SUCCESS)
     return {

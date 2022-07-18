@@ -69,9 +69,26 @@ export function* handleSingleMovieLoad(action) {
       axios.get,
       `https://imdb-api.com/en/API/Title/${API_KEY}/${action.id}`
     );
+    const images = yield call(
+      axios.get,
+      `https://imdb-api.com/en/API/Images/${API_KEY}/${action.id}`
+    );
+    const trailers = yield call(
+      axios.get,
+      `https://imdb-api.com/en/API/Trailer/${API_KEY}/${action.id}`
+    );
 
-    yield put(setSingleMovie(users.data));
-    console.log(users.data);
+    const singleMovie = {
+      data: users.data,
+      images: images.data.items,
+      trailer: trailers.data.linkEmbed,
+    };
+
+    yield put(setSingleMovie(singleMovie));
+    console.log(
+      singleMovie,
+      "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa"
+    );
   } catch (error) {
     yield put(setErrorSingleMovie(error.toString()));
   }
