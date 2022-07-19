@@ -260,8 +260,8 @@ function SingleMovie() {
               >
                 {Object.keys(data.images).length !== 0 &&
                   data.images.slice(0, 10).map((item, id) => (
-                    <SwiperSlide>
-                      <div className={styles.SliderImage} key={id}>
+                    <SwiperSlide key={id}>
+                      <div className={styles.SliderImage}>
                         <Image
                           src={item.image}
                           width={175}
