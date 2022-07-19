@@ -35,7 +35,7 @@ import styles from "./Navbar.module.css";
 import { Container } from "react-bootstrap";
 import Search from "../Search/Search";
 
-let localStorageList;
+let localStorageList = "";
 
 function Navbar() {
   const router = useRouter();
@@ -61,14 +61,8 @@ function Navbar() {
     router.push("/register");
   };
 
-  {
-    typeof window !== "undefined"
-      ? (localStorageList = JSON.parse(localStorage.getItem("User")) || [])
-      : null;
-  }
-
   const RemoveUser = () => {
-    typeof window !== "undefined" ? localStorage.removeItem("User") : null;
+    typeof window !== "undefined" ? localStorage.setItem("USER", "") : null;
   };
 
   return (
@@ -109,7 +103,7 @@ function Navbar() {
           <div className={styles.VerticleLine}></div>
 
           {signinData == "" ? (
-            <Link href="/watchlist">
+            <Link href="/register">
               <a className={styles.Watchlist}>
                 <FontAwesomeIcon
                   icon={faBookmark}

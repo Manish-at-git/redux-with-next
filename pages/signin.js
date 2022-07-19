@@ -49,8 +49,13 @@ function SignIn() {
         loginPassword
       );
       console.log(user);
+      if (typeof window !== "undefined") {
+        localStorage.setItem("USER", loginEmail);
+      } else {
+        console.log("we are running on the server");
+      }
       setShow(false);
-      router.push("/");
+      // router.push("/");
     } catch (error) {
       showError(error);
       setShow(true);

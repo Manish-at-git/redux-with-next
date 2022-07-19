@@ -22,3 +22,5 @@ export const GET_SEARCHMOVIE_ERROR = "GET_SEARCHMOVIE_ERROR";
 
 export const SIGNIN = "SIGNIN";
 export const SIGNOUT = "SIGNOUT";
+
+export const SORT = "SORT";

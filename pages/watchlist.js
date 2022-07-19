@@ -13,7 +13,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as thinStar } from "@fortawesome/free-regular-svg-icons";
 import {
   faCheck,
-  faPlus,
   faStar as solidStar,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -137,7 +136,7 @@ function Watchlist() {
                           </td>
                           <td>
                             <FontAwesomeIcon
-                              icon={faPlus}
+                              icon={faCheck}
                               style={{ color: "grey", cursor: "pointer" }}
                             />
                           </td>

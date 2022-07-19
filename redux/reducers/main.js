@@ -41,12 +41,12 @@ export default function (state = initialState, action) {
   else if (action.type === SIGNIN)
     return {
       ...state,
-      signIn: action.email,
+      signIn: localStorage.getItem("USER"),
     };
   else if (action.type === SIGNOUT)
     return {
       ...state,
-      signIn: "",
+      signIn: localStorage.getItem("USER"),
     };
   else if (action.type === GET_MOVIEPICK_SUCCESS)
     return {

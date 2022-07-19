@@ -52,6 +52,11 @@ function Register() {
         registerEmail,
         registerPassword
       );
+      if (typeof window !== "undefined") {
+        localStorage.setItem("USER", registerEmail);
+      } else {
+        console.log("we are running on the server");
+      }
       setShow(false);
       // router.push("/");
     } catch (error) {
