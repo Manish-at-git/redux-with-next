@@ -144,10 +144,8 @@ function MovieListPage(props) {
                           <td>
                             <img
                               src={user.image}
-                              // src={share}
                               alt="poster"
                               style={{ width: "50px" }}
-                              className={styles.TableImage}
                             />
                             <small className={styles.TableRow}>
                               {user.rank}.{" "}

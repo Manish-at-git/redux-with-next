@@ -84,7 +84,7 @@ function Watchlist() {
                     ? localStorageList.map((user) => (
                         <tr className={styles.tr} key={user.id}>
                           <td>
-                            <img
+                            <Image
                               // src={user.image}
                               src={user.image}
                               alt="poster"
