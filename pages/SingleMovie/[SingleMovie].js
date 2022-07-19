@@ -30,6 +30,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
 import Link from "next/link";
+import Image from "next/image";
 
 function SingleMovie() {
   const [show, setShow] = useState(false);
@@ -123,7 +124,7 @@ function SingleMovie() {
           </div>
           <div className={styles.SingleMovieCard}>
             <div className={(styles.CardElement, styles.SingleMoviePoster)}>
-              <img src={data && data.data.image} />
+              <Image src={data.data.image} alt="poster" layout="fill" />
             </div>
             <div className={(styles.CardElement, styles.SingleMovieTrailer)}>
               <div style={{ width: "100%", height: "100%" }}>
@@ -256,10 +257,10 @@ function SingleMovie() {
                 className="mySwiper"
               >
                 {Object.keys(data.images).length !== 0 &&
-                  data.images.slice(0, 10).map((item, id) => (
-                    <SwiperSlide key={id}>
+                  data.images.slice(0, 10).map((item) => (
+                    <SwiperSlide>
                       <div className={styles.SliderImage}>
-                        <img src={item.image} />
+                        <Image src={item.image} width={175} height={175} />
                       </div>
                     </SwiperSlide>
                   ))}
@@ -269,9 +270,8 @@ function SingleMovie() {
             <div>
               <div className={styles.GridCast}>
                 {console.log(data.data.length !== 0)}
-                {data?.data?.actorList?.slice(0, 8).map((item, id) => (
+                {data?.data?.actorList?.slice(0, 8).map((item) => (
                   <div
-                    key={id}
                     style={{
                       padding: "10px",
                       display: "flex",
@@ -330,9 +330,8 @@ function SingleMovie() {
             </Container>
           </Container>
           <div className={styles.SingleSidebar}>
-            {data?.data?.similars?.slice(0, 8).map((item, id) => (
+            {data?.data?.similars?.slice(0, 8).map((item) => (
               <Link
-                key={id}
                 href={{
                   pathname: `/SingleMovie/${item.id}`,
                 }}

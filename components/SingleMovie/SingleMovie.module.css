@@ -36,9 +36,13 @@
   font-weight: 600;
 }
 
-.SingleMoviePoster img {
-  height: 390px;
-  object-fit: cover;
+.SingleMoviePoster {
+  height: 400px;
+  width: 280px;
+  position: relative;
+}
+
+.SingleMoviePoster Image {
 }
 
 .SingleMovieCard {
@@ -258,7 +262,7 @@
   align-items: center;
 }
 
-.SliderImage img {
+.SliderImage Image {
   height: 175px;
   width: 175px;
   object-fit: cover;
