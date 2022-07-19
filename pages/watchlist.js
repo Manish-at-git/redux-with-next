@@ -85,7 +85,6 @@ function Watchlist() {
                         <tr className={styles.tr} key={user.id}>
                           <td>
                             <Image
-                              // src={user.image}
                               src={user.image}
                               alt="poster"
                               style={{ width: "50px" }}

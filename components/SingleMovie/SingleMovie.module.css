@@ -38,7 +38,7 @@
 
 .SingleMoviePoster {
   height: 400px;
-  width: 280px;
+  width: 260px;
   position: relative;
 }
 
@@ -291,12 +291,10 @@
   justify-content: space-between;
 }
 
-.CreatedYear {
-  height: 80px;
-  width: 65px;
+/* .CreatedYear {
+ 
   object-fit: cover;
-  margin: 5px;
-}
+} */
 
 .WatchedSeriesSpan {
   color: #000;
