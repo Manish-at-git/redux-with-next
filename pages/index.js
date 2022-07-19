@@ -10,7 +10,7 @@ function Home() {
   const navbarData = useSelector((state) => state.main.navbarOpened);
   return (
     <>
-      {/* {!navbarData && (
+      {!navbarData && (
         <div>
           <MoviePick
             heading="What To Watch"
@@ -30,7 +30,7 @@ function Home() {
           />
           <SignIn />
         </div>
-      )} */}
+      )}
     </>
   );
 }

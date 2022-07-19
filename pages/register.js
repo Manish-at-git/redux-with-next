@@ -15,6 +15,8 @@ import { loadSignIn } from "../redux/actions/main";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import { wrapper } from "../redux/store";
+
 let errorMsg;
 
 function Register() {
@@ -51,7 +53,6 @@ function Register() {
         registerPassword
       );
       setShow(false);
-      console.log(user);
       // router.push("/");
     } catch (error) {
       console.log(error.message);
@@ -82,7 +83,6 @@ function Register() {
                     setRegisterPassword(event.target.value);
                   }}
                 />
-                {/* {console.log(errorMessage, "errorMessagejsx")} */}
                 <button
                   className={styles.AuthButton}
                   onClick={() => {
@@ -117,5 +117,7 @@ function Register() {
     </div>
   );
 }
+
+export const getStaticProps = wrapper.getStaticProps((store) => async () => {});
 
 export default Register;

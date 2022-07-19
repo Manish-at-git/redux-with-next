@@ -26,7 +26,6 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
-  console.log(action, "ACTIONNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
   if (action.type === HYDRATE) {
     const nextState = {
       ...state, // use previous state

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import styles from "../../components/SingleMovie/SingleMovie.module.css";
+import { Alert } from "react-bootstrap";
 import { useRouter } from "next/router";
 
 import { wrapper } from "../../redux/store";
@@ -31,13 +32,45 @@ import { Pagination, Navigation } from "swiper";
 import Link from "next/link";
 
 function SingleMovie() {
+  const [show, setShow] = useState(false);
+  const [message, setMessage] = useState("");
+  const [variant, setVariant] = useState("");
   const data = useSelector((state) => state.main.singleMovie);
-  console.log(data);
   const router = useRouter();
+
+  const watchlist = (user) => {
+    let localStorageList = JSON.parse(localStorage.getItem("signedIn")) || [];
+    let duplicate = false;
+    localStorageList.forEach((item) => {
+      if (item.id === user.id) {
+        duplicate = true;
+      }
+    });
+    if (duplicate === false) {
+      localStorageList.push(user);
+      localStorage.setItem("signedIn", JSON.stringify(localStorageList));
+      setMessage("Added to Watchlist");
+      setVariant("success");
+      setShow(true);
+    } else {
+      setMessage("Movie Already Exist");
+      setVariant("danger");
+      setShow(true);
+    }
+  };
+
   return (
     <>
       <Container fluid className={styles.SingleMovieMain1}>
         <Container className={styles.SingleMovie}>
+          <Alert
+            show={show}
+            variant={variant}
+            onClose={() => setShow(false)}
+            dismissible
+          >
+            <Alert.Heading>{message}</Alert.Heading>
+          </Alert>
           <div className={styles.SingleMovieHeading}>
             <div className={styles.SingleMovieHeadingTitle}>
               <h1>{data && data.data.title}</h1>
@@ -168,11 +201,10 @@ function SingleMovie() {
               </div>
               <div
                 className={styles.Watchlist}
-                // onClick={() => watchlist(...data)}
+                onClick={() => watchlist(data.data)}
               >
                 <span>
                   <FontAwesomeIcon icon={faPlus} size="md" />
-                  {"  "}
                   Add to Watchlist{" "}
                 </span>
                 <FontAwesomeIcon icon={faAngleDown} size="md" />

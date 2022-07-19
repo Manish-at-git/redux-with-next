@@ -9,6 +9,8 @@ import { useDispatch } from "react-redux";
 import { loadSignIn } from "../redux/actions/main";
 import { useRouter } from "next/router";
 
+import { wrapper } from "../redux/store";
+
 import styles from "../styles/SignIn.module.css";
 
 let errorMsg;
@@ -100,5 +102,7 @@ function SignIn() {
     </div>
   );
 }
+
+export const getStaticProps = wrapper.getStaticProps((store) => async () => {});
 
 export default SignIn;
