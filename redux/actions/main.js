@@ -82,8 +82,6 @@ export const setErrorMoviePickTwo = (error) => {
   };
 };
 
-//////
-
 /// MOVIELIST
 
 export const getMovieList = (MovieListPage) => {
@@ -105,8 +103,6 @@ export const setErrorgetMovieList = (error) => {
     error,
   };
 };
-
-//////
 
 /// SINGLEMOVIE
 
@@ -130,12 +126,9 @@ export const setErrorSingleMovie = (error) => {
   };
 };
 
-//////
-
-/// SINGLEMOVIE
+/// SEARCHMOVIE
 
 export const getSearchMovie = (search) => {
-  console.log(search, "ACTIONNNNNNNNNNNNNNNNNNn");
   return {
     type: GET_SEARCHMOVIE,
     search,
@@ -154,5 +147,3 @@ export const setErrorSearchMovie = (error) => {
     error,
   };
 };
-
-//////

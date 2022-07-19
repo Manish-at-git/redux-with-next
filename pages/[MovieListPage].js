@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import Image from "next/image";
+import Link from "next/link";
+
 import { NavRoutes } from "../NavbarRoutes";
 import Categories from "../components/MovieList/Categories/Categories";
-import { useSelector, useDispatch } from "react-redux";
+
 import Container from "react-bootstrap/Container";
-import styles from "../components/MovieList/MovieList.module.css";
+import styles from "../styles/MovieList.module.css";
 import share from "../assests/images/share.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,37 +15,105 @@ import { faStar as thinStar } from "@fortawesome/free-regular-svg-icons";
 import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Alert } from "react-bootstrap";
+import { auth } from "../firebase/firebase-config";
 
-import { useRouter } from "next/router";
-
+import { useSelector } from "react-redux";
 import { wrapper } from "../redux/store";
 import { END } from "redux-saga";
 import { getMovieList } from "../redux/actions/main";
-import Image from "next/image";
-import Link from "next/link";
+import { onAuthStateChanged } from "firebase/auth";
 
 function MovieListPage(props) {
+  const [show, setShow] = useState(false);
+  const [message, setMessage] = useState("");
+  const [variant, setVariant] = useState("");
+  const [userLogged, setUserLogged] = useState({});
   const [searchTerm, setSearchTerm] = useState("");
   const [sortDirection, setsortDirection] = useState("Ranking");
 
   const List = useSelector((state) => state.main.movieList);
   const router = useRouter();
-  const title = router.query.title;
-  console.log(router);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setUserLogged(user);
+    });
+  }, []);
+
+  const watchlist = (user, e) => {
+    if (userLogged != undefined) {
+      e.preventDefault();
+      if (typeof window !== "undefined") {
+        let duplicate = false;
+        let localStorageList =
+          JSON.parse(localStorage.getItem(userLogged?.email)) || [];
+
+        localStorageList.forEach((item) => {
+          if (item.id === user.id) {
+            duplicate = true;
+          }
+        });
+
+        if (duplicate === false) {
+          localStorageList.push(user);
+          localStorage.setItem(
+            userLogged?.email,
+            JSON.stringify(localStorageList)
+          );
+          setMessage("Added to Watchlist");
+          setVariant("success");
+          setShow(true);
+        } else {
+          setMessage("Movie Already Exist");
+          setVariant("danger");
+          setShow(true);
+        }
+      } else {
+        console.log("we are running on the server");
+      }
+    } else {
+      router.push("/register");
+    }
+  };
 
   const sortByYear = (e) => {
     const sortDirection = e.target.value;
-
     setsortDirection(sortDirection);
   };
-  console.log(searchTerm);
-  console.log(sortDirection);
+
+  const CategorySort = List.sort((a, b) => {
+    if (sortDirection === "Ranking") {
+      return a.rank - b.rank;
+    } else if (sortDirection === "Rating") {
+      return b.imDbRating - a.imDbRating;
+    } else {
+      return a.year - b.year;
+    }
+  }).filter((user) => {
+    if (searchTerm == "") {
+      return user;
+    } else if (
+      user.title.trim().toLowerCase().includes(searchTerm.trim().toLowerCase())
+    ) {
+      return user;
+    }
+  });
+
+  const title = router.query.title;
 
   return (
     <div className={styles.MovieList}>
       <Container className={styles.MovieListContainer}>
         <div className={styles.MovieListMain}>
           <div className={styles.MovieListPage}>
+            <Alert
+              show={show}
+              variant={variant}
+              onClose={() => setShow(false)}
+              dismissible
+            >
+              <Alert.Heading>{message}</Alert.Heading>
+            </Alert>
             <div className={styles.MovieListHeaderpage}>
               <div className={styles.MovieListHead}>
                 <h5>IMDb Charts </h5>
@@ -117,86 +189,65 @@ function MovieListPage(props) {
                     </th>
                     <th className={styles.th}></th>
                   </tr>
-                  {List &&
-                    List.sort((a, b) => {
-                      if (sortDirection === "Ranking") {
-                        return a.rank - b.rank;
-                      } else if (sortDirection === "Rating") {
-                        return b.imDbRating - a.imDbRating;
-                      } else {
-                        return a.year - b.year;
-                      }
-                    })
-                      .filter((user) => {
-                        if (searchTerm == "") {
-                          return user;
-                        } else if (
-                          user.title
-                            .trim()
-                            .toLowerCase()
-                            .includes(searchTerm.trim().toLowerCase())
-                        ) {
-                          return user;
-                        }
-                      })
-                      .map((user) => (
-                        <tr className={styles.tr} key={user.id}>
-                          <td style={{ display: "flex", alignItems: "center" }}>
-                            <Image
-                              src={user.image}
-                              alt="poster"
-                              width={50}
-                              height={70}
-                            />
-                            <small className={styles.TableRow}>
-                              {user.rank}.{" "}
-                              <Link
-                                href={{
-                                  pathname: `/SingleMovie/${user.id}`,
-                                }}
-                              >
-                                <a className={styles.MovieListLink}>
-                                  <span className={styles.BlueName}>
-                                    {user.title}
-                                  </span>
-                                </a>
-                              </Link>
-                              <small
-                                style={{ fontSize: "0.9em" }}
-                              >{`(${user.year})`}</small>
-                            </small>
-                          </td>
-                          <td
-                            className={styles.FontSize}
-                            style={{
-                              fontSize: "0.8rem",
-                            }}
-                          >
-                            <FontAwesomeIcon
-                              icon={solidStar}
-                              style={{
-                                color: "#f5c518",
-                                padding: "0 5px",
+                  {CategorySort &&
+                    CategorySort.map((user) => (
+                      <tr className={styles.tr} key={user.id}>
+                        <td style={{ display: "flex", alignItems: "center" }}>
+                          <Image
+                            src={user.image}
+                            alt="poster"
+                            width={50}
+                            height={70}
+                          />
+                          <small className={styles.TableRow}>
+                            {user.rank}.{" "}
+                            <Link
+                              href={{
+                                pathname: `/SingleMovie/${user.id}`,
                               }}
-                              size="lg"
-                            />
-                            <b>{user.imDbRating}</b>
-                          </td>
-                          <td>
-                            <FontAwesomeIcon
-                              icon={thinStar}
-                              style={{ color: "grey", opacity: "0.5" }}
-                            />
-                          </td>
-                          <td>
-                            <FontAwesomeIcon
-                              icon={faPlus}
-                              style={{ color: "grey", cursor: "pointer" }}
-                              // onClick={() => watchlist(user)}
-                            />
-                          </td>
-                        </tr>
-                      ))}
+                            >
+                              <a className={styles.MovieListLink}>
+                                <span className={styles.BlueName}>
+                                  {user.title}
+                                </span>
+                              </a>
+                            </Link>
+                            <small
+                              style={{ fontSize: "0.9em" }}
+                            >{`(${user.year})`}</small>
+                          </small>
+                        </td>
+                        <td
+                          className={styles.FontSize}
+                          style={{
+                            fontSize: "0.8rem",
+                          }}
+                        >
+                          <FontAwesomeIcon
+                            icon={solidStar}
+                            style={{
+                              color: "#f5c518",
+                              padding: "0 5px",
+                            }}
+                            size="lg"
+                          />
+                          <b>{user.imDbRating}</b>
+                        </td>
+                        <td>
+                          <FontAwesomeIcon
+                            icon={thinStar}
+                            style={{ color: "grey", opacity: "0.5" }}
+                          />
+                        </td>
+                        <td>
+                          <FontAwesomeIcon
+                            icon={faPlus}
+                            style={{ color: "grey", cursor: "pointer" }}
+                            onClick={(e) => watchlist(user, e)}
+                          />
+                        </td>
+                      </tr>
+                    ))}
                 </table>
               </div>
             </div>

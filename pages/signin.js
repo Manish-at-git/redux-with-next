@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+
 import { Container, Row, Col } from "react-bootstrap";
 import { Alert } from "react-bootstrap";
+import styles from "../styles/SignIn.module.css";
 
 import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/firebase-config";
@@ -8,10 +10,7 @@ import { auth } from "../firebase/firebase-config";
 import { useDispatch } from "react-redux";
 import { loadSignIn } from "../redux/actions/main";
 import { useRouter } from "next/router";
-
 import { wrapper } from "../redux/store";
-
-import styles from "../styles/SignIn.module.css";
 
 let errorMsg;
 
@@ -48,14 +47,9 @@ function SignIn() {
         loginEmail,
         loginPassword
       );
-      console.log(user);
-      if (typeof window !== "undefined") {
-        localStorage.setItem("USER", loginEmail);
-      } else {
-        console.log("we are running on the server");
-      }
+
       setShow(false);
-      // router.push("/");
+      router.push("/");
     } catch (error) {
       showError(error);
       setShow(true);
@@ -89,7 +83,7 @@ function SignIn() {
                   className={styles.AuthButton}
                   onClick={() => {
                     login();
-                    dispatch(loadSignIn(loginEmail));
+                    dispatch(loadSignIn(userLogged?.email));
                   }}
                 >
                   {" "}

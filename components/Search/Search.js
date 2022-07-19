@@ -1,6 +1,5 @@
 import React from "react";
 import BeatLoader from "react-spinners/BeatLoader";
-// import ErrorHandler from "../ErrorHander/ErrorHandler";
 
 import styles from "./Search.module.css";
 
@@ -18,14 +17,7 @@ function Search(props) {
   };
   const isLoading = useSelector((state) => state.main.search.loading);
   const searchdata = useSelector((state) => state.main.search.searchResults);
-  // const error = useSelector((state) => state.error);
-  let SeacrhData;
-  // let errorData;
-  // try {
-  //   SeacrhData = props.props[0].results;
-  // } catch (error) {
-  console.log(isLoading);
-  // }
+
   return (
     <Container className={styles.SearchPop}>
       {isLoading ? (

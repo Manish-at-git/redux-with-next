@@ -1,6 +1,9 @@
-import React, { useState } from "react";
-import { Container, Row } from "react-bootstrap";
-import styles from "../../components/SingleMovie/SingleMovie.module.css";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+
+import { Container } from "react-bootstrap";
+import styles from "../../styles/SingleMovie.module.css";
 import { Alert } from "react-bootstrap";
 import { useRouter } from "next/router";
 
@@ -14,33 +17,39 @@ import { faStar as thinStar } from "@fortawesome/free-regular-svg-icons";
 import {
   faAngleDown,
   faStar as solidStar,
+  faChartLine,
+  faImages,
+  faFilm,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
-import { faChartLine } from "@fortawesome/free-solid-svg-icons";
-import { faImages } from "@fortawesome/free-solid-svg-icons";
-import { faFilm } from "@fortawesome/free-solid-svg-icons";
-// import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
-import Link from "next/link";
-import Image from "next/image";
+
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebase/firebase-config";
 
 function SingleMovie() {
+  const [userLogged, setUserLogged] = useState({});
   const [show, setShow] = useState(false);
   const [message, setMessage] = useState("");
   const [variant, setVariant] = useState("");
   const data = useSelector((state) => state.main.singleMovie);
   const router = useRouter();
 
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setUserLogged(user);
+    });
+  }, []);
+
   const watchlist = (user) => {
-    let localStorageList = JSON.parse(localStorage.getItem("signedIn")) || [];
+    let localStorageList =
+      JSON.parse(localStorage.getItem(userLogged?.email)) || [];
     let duplicate = false;
     localStorageList.forEach((item) => {
       if (item.id === user.id) {
@@ -49,7 +58,7 @@ function SingleMovie() {
     });
     if (duplicate === false) {
       localStorageList.push(user);
-      localStorage.setItem("signedIn", JSON.stringify(localStorageList));
+      localStorage.setItem(userLogged?.email, JSON.stringify(localStorageList));
       setMessage("Added to Watchlist");
       setVariant("success");
       setShow(true);
@@ -124,7 +133,7 @@ function SingleMovie() {
           </div>
           <div className={styles.SingleMovieCard}>
             <div className={(styles.CardElement, styles.SingleMoviePoster)}>
-              {data.data.length && (
+              {data?.data?.image != undefined && (
                 <Image src={data.data.image} alt="poster" layout="fill" />
               )}
             </div>
@@ -193,10 +202,7 @@ function SingleMovie() {
                 </span>
               </div>
             </div>
-            <div
-              // className="SingleMovie-info
-              className={styles.WatchlistBookmark}
-            >
+            <div className={styles.WatchlistBookmark}>
               <div className={styles.SeeShowtime}>
                 <FontAwesomeIcon icon={faPlus} size="md" />
                 {"  "}
@@ -249,8 +255,6 @@ function SingleMovie() {
                 slidesPerView={4}
                 spaceBetween={0}
                 slidesPerGroup={1}
-                // loop={true}
-                // loopFillGroupWithBlank={true}
                 pagination={{
                   clickable: true,
                 }}
@@ -276,7 +280,6 @@ function SingleMovie() {
 
             <div>
               <div className={styles.GridCast}>
-                {console.log(data.data.length !== 0)}
                 {data?.data?.actorList?.slice(0, 8).map((item, id) => (
                   <div
                     key={id}

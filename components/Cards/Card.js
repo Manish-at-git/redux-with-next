@@ -1,9 +1,13 @@
-import Card from "react-bootstrap/Card";
-// import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
+//CSS
+import Card from "react-bootstrap/Card";
+import styles from "./Card.module.css";
+
+///ICONS
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as thinStar } from "@fortawesome/free-regular-svg-icons";
-
 import {
   faCircleInfo,
   faPlay,
@@ -11,35 +15,48 @@ import {
   faStar as solidStar,
 } from "@fortawesome/free-solid-svg-icons";
 
-import styles from "./Card.module.css";
-// import { useSelector } from "react-redux";
+///FIREBASE
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebase/firebase-config";
 
 function Cards(props) {
-  // const signedIn = useSelector((state) => state.registeredUser);
-  // let localStorageList = JSON.parse(localStorage.getItem(signedIn)) || [];
+  const router = useRouter();
+  const [userLogged, setUserLogged] = useState({});
 
-  // const navigate = useNavigate();
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setUserLogged(user);
+    });
+  }, []);
 
-  // const watchlist = (user) => {
-  //   // console.log(signedIn);
-  //   if (!(signedIn.toString().trim() === "")) {
-  //     let duplicate = false;
-  //     localStorageList.forEach((item) => {
-  //       if (item.id === user.id) {
-  //         duplicate = true;
-  //         // console.log("dupliocate");
-  //         // console.log(duplicate);
-  //       }
-  //     });
+  const watchlist = (user, e) => {
+    if (userLogged != undefined) {
+      e.preventDefault();
+      if (typeof window !== "undefined") {
+        let duplicate = false;
+        let localStorageList =
+          JSON.parse(localStorage.getItem(userLogged?.email)) || [];
 
-  //     if (duplicate === false) {
-  //       localStorageList.push(user);
-  //       localStorage.setItem(signedIn, JSON.stringify(localStorageList));
-  //     }
-  //   } else {
-  //     navigate("/register");
-  //   }
-  // };
+        localStorageList.forEach((item) => {
+          if (item.id === user.id) {
+            duplicate = true;
+          }
+        });
+        if (duplicate === false) {
+          localStorageList.push(user);
+          localStorage.setItem(
+            userLogged?.email,
+            JSON.stringify(localStorageList)
+          );
+        }
+      } else {
+        console.log("App running on server");
+      }
+    } else {
+      router.push("/register");
+    }
+  };
+
   return (
     <div className={styles.AppCard}>
       <Card className={styles.Cards}>
@@ -50,7 +67,7 @@ function Cards(props) {
         />
         <span
           className={styles.addBookmarkSpan}
-          // onClick={() => watchlist(props.item)}
+          onClick={(e) => watchlist(props.item, e)}
         >
           <FontAwesomeIcon
             icon={Plus}
@@ -66,7 +83,8 @@ function Cards(props) {
                 icon={solidStar}
                 className={styles.IconsRating}
               />
-              7.2
+              {/* {props.item.rating} */}
+              7.5
             </span>
             <span className={styles.Thin}>
               <FontAwesomeIcon

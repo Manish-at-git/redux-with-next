@@ -1,12 +1,15 @@
 import React from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
+
 import { Container, Row, Col } from "react-bootstrap";
+import styles from "../styles/Grid.module.css";
+
 import Cards from "../components/Cards/Card";
+
 // import ErrorHandler from "../ErrorHander/ErrorHandler";
 
 import { useSelector } from "react-redux";
-import Link from "next/link";
-import styles from "../components/Grid/Grid.module.css";
-import { useRouter } from "next/router";
 
 function Grid() {
   const router = useRouter();

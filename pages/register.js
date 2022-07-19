@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+
 import { Container, Row, Col } from "react-bootstrap";
 import { Alert } from "react-bootstrap";
+import styles from "../styles/register.module.css";
 
 import { auth } from "../firebase/firebase-config";
 import {
@@ -8,13 +12,8 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-import styles from "../styles/register.module.css";
-
 import { useDispatch } from "react-redux";
 import { loadSignIn } from "../redux/actions/main";
-import Link from "next/link";
-import { useRouter } from "next/router";
-
 import { wrapper } from "../redux/store";
 
 let errorMsg;
@@ -52,15 +51,10 @@ function Register() {
         registerEmail,
         registerPassword
       );
-      if (typeof window !== "undefined") {
-        localStorage.setItem("USER", registerEmail);
-      } else {
-        console.log("we are running on the server");
-      }
+
       setShow(false);
-      // router.push("/");
+      router.push("/");
     } catch (error) {
-      console.log(error.message);
       showError(error);
       setShow(true);
     }
@@ -92,7 +86,7 @@ function Register() {
                   className={styles.AuthButton}
                   onClick={() => {
                     register();
-                    dispatch(loadSignIn(registerEmail));
+                    dispatch(loadSignIn(userLogged.email));
                   }}
                 >
                   Create User

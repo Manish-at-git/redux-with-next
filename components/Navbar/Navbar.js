@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/router";
+
 import NavbarLinks from "./NavbarLink/NavLinks";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -8,16 +12,10 @@ import {
   loadSignOut,
 } from "../../redux/actions/main";
 
-import Link from "next/link";
-import { useRouter } from "next/router";
-
-import Image from "next/image";
 import { debounce } from "lodash";
-
 import { auth } from "../../firebase/firebase-config";
-import { signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 
-//ICONS
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
@@ -26,25 +24,26 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 
-//IMAGES
 import Logo from "../../assests/images/logo.png";
 import NavbarLogo2 from "../../assests/images/NavbarLogo2.png";
 
-// CSS
 import styles from "./Navbar.module.css";
 import { Container } from "react-bootstrap";
 import Search from "../Search/Search";
-
-let localStorageList = "";
 
 function Navbar() {
   const router = useRouter();
   const dispatch = useDispatch();
   const navbarData = useSelector((state) => state.main.navbarOpened);
 
-  const signinData = useSelector((state) => state.main.signIn);
-
   const [search, setSearch] = useState("");
+  const [userLogged, setUserLogged] = useState({});
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setUserLogged(user);
+    });
+  }, []);
 
   const changeState = () => {
     dispatch(navbarToggle());
@@ -53,16 +52,11 @@ function Navbar() {
   const handleChange = debounce((event) => {
     setSearch(event.target.value);
     dispatch(getSearchMovie(event.target.value));
-    console.log(search);
   }, 1000);
 
   const logout = async () => {
     await signOut(auth);
     router.push("/register");
-  };
-
-  const RemoveUser = () => {
-    typeof window !== "undefined" ? localStorage.setItem("USER", "") : null;
   };
 
   return (
@@ -102,7 +96,7 @@ function Navbar() {
           </span>
           <div className={styles.VerticleLine}></div>
 
-          {signinData == "" ? (
+          {userLogged == undefined ? (
             <Link href="/register">
               <a className={styles.Watchlist}>
                 <FontAwesomeIcon
@@ -124,7 +118,7 @@ function Navbar() {
             </Link>
           )}
 
-          {signinData == "" ? (
+          {userLogged == undefined ? (
             <Link href="/register">
               <a className={styles.SignIn}> Sign In</a>
             </Link>
@@ -132,7 +126,6 @@ function Navbar() {
             <button
               className={styles.SignIn}
               onClick={() => {
-                RemoveUser();
                 logout();
                 dispatch(loadSignOut());
               }}

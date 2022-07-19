@@ -38,4 +38,3 @@ export const Awards = [
 ];
 
 export const NavRoutes = [...Movies, ...TV, ...Awards];
-export const API_KEY = "k_yh3hnyd5";

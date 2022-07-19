@@ -1,24 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
-// import BeatLoader from "react-spinners/BeatLoader";
-// import ErrorHandler from "../ErrorHander/ErrorHandler";
+import React from "react";
+import Link from "next/link";
+
 import WhatToWatch from "../WhatToWatch/WhatToWatch";
 import Cards from "../Cards/Card";
 
 import Container from "react-bootstrap/Container";
+import styles from "./MoviePick.module.css";
 
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
-
-import { useSelector, useDispatch } from "react-redux";
-
-import styles from "./MoviePick.module.css";
-import Link from "next/link";
+import { useSelector } from "react-redux";
 
 function MoviePick(props) {
   const MoviesListOne = useSelector((state) => state.main.moviePick);
@@ -32,18 +26,6 @@ function MoviePick(props) {
   } else {
     MovieList = MoviesListOne;
   }
-
-  // let MovieList = "MovieList" + props.data;
-
-  // console.log(typeof MovieList);
-
-  // const isLoading = useSelector((state) => state.isLoading);
-  // const error = useSelector((state) => state.error);
-  // const override = {
-  //   display: "block",
-  //   margin: "0 auto",
-  //   borderColor: "red",
-  // };
 
   return (
     <Container fluid style={{ background: "black" }}>
