@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Link from "next/link";
 import Image from "next/image";
@@ -15,12 +15,21 @@ import {
   faCheck,
   faStar as solidStar,
 } from "@fortawesome/free-solid-svg-icons";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase/firebase-config";
 
 function Watchlist() {
   const signedIn = useSelector((state) => state.main.signIn);
+  const [userLogged, setUserLogged] = useState({});
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setUserLogged(user);
+    });
+  }, []);
   let localStorageList;
   if (typeof window !== "undefined") {
-    localStorageList = JSON.parse(localStorage.getItem("signedIn")) || [];
+    localStorageList =
+      JSON.parse(localStorage.getItem(userLogged?.email)) || [];
   }
   return (
     <div className={styles.MovieList}>
@@ -83,11 +92,12 @@ function Watchlist() {
                   {typeof window !== "undefined"
                     ? localStorageList.map((user) => (
                         <tr className={styles.tr} key={user.id}>
-                          <td>
+                          <td style={{ display: "flex", alignItems: "center" }}>
                             <Image
                               src={user.image}
                               alt="poster"
-                              style={{ width: "50px" }}
+                              width={50}
+                              height={70}
                             />
                             <small className={styles.TableRow}>
                               {user.rank

@@ -133,7 +133,7 @@ function SingleMovie() {
           </div>
           <div className={styles.SingleMovieCard}>
             <div className={(styles.CardElement, styles.SingleMoviePoster)}>
-              {data?.data?.image != undefined && (
+              {Object.keys(data?.data).length !== 0 && (
                 <Image src={data.data.image} alt="poster" layout="fill" />
               )}
             </div>
