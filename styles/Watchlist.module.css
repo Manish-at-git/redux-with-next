@@ -129,3 +129,8 @@
 .MovieListLink:hover {
   text-decoration: underline;
 }
+
+.NextImageTd {
+  display: flex;
+  align-items: center;
+}

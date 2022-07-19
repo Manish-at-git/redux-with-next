@@ -158,8 +158,8 @@ function SingleMovie() {
             <div className={styles.SingleMovieInfo} style={{ width: "60%" }}>
               <div className={styles.Categories}>
                 {data.data.genreList &&
-                  data.data.genreList.map((item) => (
-                    <span className={styles.CategoriesAction}>
+                  data.data.genreList.map((item, id) => (
+                    <span key={id} className={styles.CategoriesAction}>
                       {item.value}
                     </span>
                   ))}
@@ -256,8 +256,8 @@ function SingleMovie() {
                 className="mySwiper"
               >
                 {Object.keys(data.images).length !== 0 &&
-                  data.images.slice(0, 10).map((item) => (
-                    <SwiperSlide>
+                  data.images.slice(0, 10).map((item, id) => (
+                    <SwiperSlide key={id}>
                       <div className={styles.SliderImage}>
                         <img src={item.image} />
                       </div>
@@ -269,8 +269,9 @@ function SingleMovie() {
             <div>
               <div className={styles.GridCast}>
                 {console.log(data.data.length !== 0)}
-                {data?.data?.actorList?.slice(0, 8).map((item) => (
+                {data?.data?.actorList?.slice(0, 8).map((item, id) => (
                   <div
+                    key={id}
                     style={{
                       padding: "10px",
                       display: "flex",
@@ -329,8 +330,9 @@ function SingleMovie() {
             </Container>
           </Container>
           <div className={styles.SingleSidebar}>
-            {data?.data?.similars?.slice(0, 8).map((item) => (
+            {data?.data?.similars?.slice(0, 8).map((item, id) => (
               <Link
+                key={id}
                 href={{
                   pathname: `/SingleMovie/${item.id}`,
                 }}

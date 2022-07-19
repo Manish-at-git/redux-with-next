@@ -44,7 +44,7 @@ function Search(props) {
             <Row>
               <Col lg={1} className={styles.SearchFloatImage}>
                 <div className={styles.WhiteName}>
-                  <img src={item.image} />
+                  <Image src={item.image} alt="poster" width={50} height={70} />
                 </div>
               </Col>
               <Col lg={11} className={styles.SearchFloatContent}>
