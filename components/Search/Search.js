@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import Link from "next/link";
 import Image from "next/image";
 
-function Search(props) {
+function Search() {
   const override = {
     display: "block",
     margin: "0 auto",
