@@ -49,24 +49,31 @@ function SingleMovie() {
   }, []);
 
   const watchlist = (user) => {
-    let localStorageList =
-      JSON.parse(localStorage.getItem(userLogged?.email)) || [];
-    let duplicate = false;
-    localStorageList.forEach((item) => {
-      if (item.id === user.id) {
-        duplicate = true;
+    if (userLogged != undefined) {
+      let localStorageList =
+        JSON.parse(localStorage.getItem(userLogged?.email)) || [];
+      let duplicate = false;
+      localStorageList.forEach((item) => {
+        if (item.id === user.id) {
+          duplicate = true;
+        }
+      });
+      if (duplicate === false) {
+        localStorageList.push(user);
+        localStorage.setItem(
+          userLogged?.email,
+          JSON.stringify(localStorageList)
+        );
+        setMessage("Added to Watchlist");
+        setVariant("success");
+        setShow(true);
+      } else {
+        setMessage("Movie Already Exist");
+        setVariant("danger");
+        setShow(true);
       }
-    });
-    if (duplicate === false) {
-      localStorageList.push(user);
-      localStorage.setItem(userLogged?.email, JSON.stringify(localStorageList));
-      setMessage("Added to Watchlist");
-      setVariant("success");
-      setShow(true);
     } else {
-      setMessage("Movie Already Exist");
-      setVariant("danger");
-      setShow(true);
+      router.push("/register");
     }
   };
 
