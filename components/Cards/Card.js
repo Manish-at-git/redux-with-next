@@ -115,8 +115,7 @@ function Cards(props) {
                 icon={solidStar}
                 className={styles.IconsRating}
               />
-              {/* {props.item.rating} */}
-              7.5
+              {props.item.imDbRating}
             </span>
             <span className={styles.Thin}>
               <FontAwesomeIcon

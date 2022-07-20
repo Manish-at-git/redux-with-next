@@ -40,7 +40,7 @@ export function* handleMoviePickLoadtwo() {
   try {
     const users = yield call(
       axios.get,
-      `https://imdb-api.com/en/API/Top250TVs/${API_KEY}`
+      `https://imdb-api.com/en/API/InTheaters/${API_KEY}`
     );
 
     yield put(setMoviePickTwo(users.data));

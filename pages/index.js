@@ -15,7 +15,7 @@ function Home() {
           <MoviePick
             heading="What To Watch"
             recommend="Get More Recommendations"
-            title="TV Shows"
+            title="In Theatures"
             text="TV Shows and Movies just for you"
             data="Two"
             color=""
@@ -23,7 +23,7 @@ function Home() {
           <MoviePick
             heading=""
             recommend=""
-            title="Movies"
+            title="Top Movies"
             text="TV Shows and Movies just for you"
             data=""
             color="black"
