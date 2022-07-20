@@ -102,7 +102,14 @@ export default function (state = initialState, action) {
     case GET_SEARCHMOVIE_ERROR:
     case GET_SINGLEMOVIE_ERROR:
     case GET_SEARCHMOVIE_ERROR:
-      return action.error;
+      return {
+        ...state,
+        error: action.error,
+        search: {
+          ...state.search,
+          loading: false,
+        },
+      };
 
     default:
       return state;

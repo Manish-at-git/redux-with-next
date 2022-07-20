@@ -32,6 +32,7 @@ function MovieListPage(props) {
   const [sortDirection, setsortDirection] = useState("Ranking");
 
   const List = useSelector((state) => state.main.movieList);
+  const error = useSelector((state) => state.main.error);
   const router = useRouter();
 
   useEffect(() => {
@@ -104,156 +105,171 @@ function MovieListPage(props) {
   return (
     <div className={styles.MovieList}>
       <Container className={styles.MovieListContainer}>
-        <div className={styles.MovieListMain}>
-          <div className={styles.MovieListPage}>
-            <Alert
-              show={show}
-              variant={variant}
-              onClose={() => setShow(false)}
-              dismissible
-            >
-              <Alert.Heading>{message}</Alert.Heading>
-            </Alert>
-            <div className={styles.MovieListHeaderpage}>
-              <div className={styles.MovieListHead}>
-                <h5>IMDb Charts </h5>
-                <h3 className={styles.MovieListHeader}>IMDb {title}</h3>
-                <small className={styles.MovieListByline}>
-                  IMDb {title} as rated by regular IMDb voters.
-                </small>
+        {error == "" ? (
+          <div className={styles.MovieListMain}>
+            <div className={styles.MovieListPage}>
+              <Alert
+                show={show}
+                variant={variant}
+                onClose={() => setShow(false)}
+                dismissible
+              >
+                <Alert.Heading>{message}</Alert.Heading>
+              </Alert>
+              <div className={styles.MovieListHeaderpage}>
+                <div className={styles.MovieListHead}>
+                  <h5>IMDb Charts </h5>
+                  <h3 className={styles.MovieListHeader}>IMDb {title}</h3>
+                  <small className={styles.MovieListByline}>
+                    IMDb {title} as rated by regular IMDb voters.
+                  </small>
+                </div>
+                <div className={styles.Image}>
+                  <Image src={share} alt="share" />
+                </div>
               </div>
-              <div className={styles.Image}>
-                <Image src={share} alt="share" />
+              <hr className={styles.Hr} />
+              <div className={styles.MovieListLowerHeader}>
+                <div className={styles.MovieListTitle}>
+                  <small className={styles.Showing}>Showing {title}</small>
+                </div>
+                <div className={styles.MovieListSort}>
+                  <label htmlFor={"sort"}>Sort by : </label>
+                  <select
+                    name="sort"
+                    id="sort"
+                    form="sortform"
+                    onChange={sortByYear}
+                  >
+                    <option value="Ranking">Ranking</option>
+                    <option value="Release">Release</option>
+                    <option value="Rating">Rating</option>
+                  </select>
+                  <input
+                    type="text"
+                    placeholder="Search Here"
+                    id="search_input"
+                    onChange={(event) => setSearchTerm(event.target.value)}
+                  />
+                </div>
               </div>
-            </div>
-            <hr className={styles.Hr} />
-            <div className={styles.MovieListLowerHeader}>
-              <div className={styles.MovieListTitle}>
-                <small className={styles.Showing}>Showing {title}</small>
-              </div>
-              <div className={styles.MovieListSort}>
-                <label htmlFor={"sort"}>Sort by : </label>
-                <select
-                  name="sort"
-                  id="sort"
-                  form="sortform"
-                  onChange={sortByYear}
-                >
-                  <option value="Ranking">Ranking</option>
-                  <option value="Release">Release</option>
-                  <option value="Rating">Rating</option>
-                </select>
-                <input
-                  type="text"
-                  placeholder="Search Here"
-                  id="search_input"
-                  onChange={(event) => setSearchTerm(event.target.value)}
-                />
-              </div>
-            </div>
-            <div className={styles.MovieListList}>
-              <div>
-                <table className={styles.Table}>
-                  <tr className={styles.tr} style={{ border: "none" }}>
-                    <th
-                      className={styles.th}
-                      style={{
-                        width: "70%",
-                        fontSize: "0.8rem",
-                        paddingLeft: "60px",
-                      }}
-                    >
-                      Rank & Title
-                    </th>
-                    <th
-                      className={styles.th}
-                      style={{
-                        fontSize: "0.8rem",
-                      }}
-                    >
-                      <span>
-                        <span className={styles.YourRating}>IMDb</span>
-                        <span className={styles.YourRating}>Rating</span>
-                      </span>
-                    </th>
-                    <th
-                      className={styles.th}
-                      style={{
-                        fontSize: "0.8rem",
-                      }}
-                    >
-                      <span>
-                        <span className={styles.YourRating}>Your</span>
-                        <span className={styles.YourRating}>Rating</span>
-                      </span>
-                    </th>
-                    <th className={styles.th}></th>
-                  </tr>
-                  {CategorySort &&
-                    CategorySort.map((user) => (
-                      <tr className={styles.tr} key={user.id}>
-                        <td style={{ display: "flex", alignItems: "center" }}>
-                          <Image
-                            src={user.image}
-                            alt="poster"
-                            width={50}
-                            height={70}
-                          />
-                          <small className={styles.TableRow}>
-                            {user.rank}.{" "}
-                            <Link
-                              href={{
-                                pathname: `/SingleMovie/${user.id}`,
-                              }}
-                            >
-                              <a className={styles.MovieListLink}>
-                                <span className={styles.BlueName}>
-                                  {user.title}
-                                </span>
-                              </a>
-                            </Link>
-                            <small
-                              style={{ fontSize: "0.9em" }}
-                            >{`(${user.year})`}</small>
-                          </small>
-                        </td>
-                        <td
-                          className={styles.FontSize}
-                          style={{
-                            fontSize: "0.8rem",
-                          }}
-                        >
-                          <FontAwesomeIcon
-                            icon={solidStar}
+              <div className={styles.MovieListList}>
+                <div>
+                  <table className={styles.Table}>
+                    <tr className={styles.tr} style={{ border: "none" }}>
+                      <th
+                        className={styles.th}
+                        style={{
+                          width: "70%",
+                          fontSize: "0.8rem",
+                          paddingLeft: "60px",
+                        }}
+                      >
+                        Rank & Title
+                      </th>
+                      <th
+                        className={styles.th}
+                        style={{
+                          fontSize: "0.8rem",
+                        }}
+                      >
+                        <span>
+                          <span className={styles.YourRating}>IMDb</span>
+                          <span className={styles.YourRating}>Rating</span>
+                        </span>
+                      </th>
+                      <th
+                        className={styles.th}
+                        style={{
+                          fontSize: "0.8rem",
+                        }}
+                      >
+                        <span>
+                          <span className={styles.YourRating}>Your</span>
+                          <span className={styles.YourRating}>Rating</span>
+                        </span>
+                      </th>
+                      <th className={styles.th}></th>
+                    </tr>
+                    {CategorySort &&
+                      CategorySort.map((user) => (
+                        <tr className={styles.tr} key={user.id}>
+                          <td style={{ display: "flex", alignItems: "center" }}>
+                            <Image
+                              src={user.image}
+                              alt="poster"
+                              width={50}
+                              height={70}
+                            />
+                            <small className={styles.TableRow}>
+                              {user.rank}.{" "}
+                              <Link
+                                href={{
+                                  pathname: `/SingleMovie/${user.id}`,
+                                }}
+                              >
+                                <a className={styles.MovieListLink}>
+                                  <span className={styles.BlueName}>
+                                    {user.title}
+                                  </span>
+                                </a>
+                              </Link>
+                              <small
+                                style={{ fontSize: "0.9em" }}
+                              >{`(${user.year})`}</small>
+                            </small>
+                          </td>
+                          <td
+                            className={styles.FontSize}
                             style={{
-                              color: "#f5c518",
-                              padding: "0 5px",
+                              fontSize: "0.8rem",
                             }}
-                            size="lg"
-                          />
-                          <b>{user.imDbRating}</b>
-                        </td>
-                        <td>
-                          <FontAwesomeIcon
-                            icon={thinStar}
-                            style={{ color: "grey", opacity: "0.5" }}
-                          />
-                        </td>
-                        <td>
-                          <FontAwesomeIcon
-                            icon={faPlus}
-                            style={{ color: "grey", cursor: "pointer" }}
-                            onClick={(e) => watchlist(user, e)}
-                          />
-                        </td>
-                      </tr>
-                    ))}
-                </table>
+                          >
+                            <FontAwesomeIcon
+                              icon={solidStar}
+                              style={{
+                                color: "#f5c518",
+                                padding: "0 5px",
+                              }}
+                              size="lg"
+                            />
+                            <b>{user.imDbRating}</b>
+                          </td>
+                          <td>
+                            <FontAwesomeIcon
+                              icon={thinStar}
+                              style={{ color: "grey", opacity: "0.5" }}
+                            />
+                          </td>
+                          <td>
+                            <FontAwesomeIcon
+                              icon={faPlus}
+                              style={{ color: "grey", cursor: "pointer" }}
+                              onClick={(e) => watchlist(user, e)}
+                            />
+                          </td>
+                        </tr>
+                      ))}
+                  </table>
+                </div>
               </div>
             </div>
+            <Categories />
           </div>
-          <Categories />
-        </div>
+        ) : (
+          <div
+            style={{
+              paddingTop: "300px",
+              fontSize: "22px",
+              height: "100vh",
+              width: "100%",
+              color: "red",
+              textAlign: "center",
+            }}
+          >
+            {error}
+          </div>
+        )}
       </Container>
     </div>
   );

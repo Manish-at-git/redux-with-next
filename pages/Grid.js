@@ -7,8 +7,6 @@ import styles from "../styles/Grid.module.css";
 
 import Cards from "../components/Cards/Card";
 
-// import ErrorHandler from "../ErrorHander/ErrorHandler";
-
 import { useSelector } from "react-redux";
 
 function Grid() {
@@ -17,6 +15,7 @@ function Grid() {
 
   const datalistOne = useSelector((state) => state.main.moviePick);
   const datalistTwo = useSelector((state) => state.main.moviePickTwo);
+  const error = useSelector((state) => state.main.error);
 
   let datalist;
   if (Data === "Two") {
@@ -30,20 +29,37 @@ function Grid() {
       <Container>
         <Row className={styles.GallaryContainer}>
           <h1 className={styles.GridHeading}>What to Watch</h1>
-          {datalist &&
-            datalist.map((item) => (
-              <Col className={styles.GridCard} key={item.id}>
-                <Link
-                  href={{
-                    pathname: `/SingleMovie/${item.id}`,
-                  }}
-                >
-                  <a className={styles.NavLink}>
-                    <Cards item={item} />
-                  </a>
-                </Link>
-              </Col>
-            ))}
+          {error == "" ? (
+            <>
+              {datalist &&
+                datalist.map((item) => (
+                  <Col className={styles.GridCard} key={item.id}>
+                    <Link
+                      href={{
+                        pathname: `/SingleMovie/${item.id}`,
+                      }}
+                    >
+                      <a className={styles.NavLink}>
+                        <Cards item={item} />
+                      </a>
+                    </Link>
+                  </Col>
+                ))}
+            </>
+          ) : (
+            <div
+              style={{
+                paddingTop: "300px",
+                fontSize: "22px",
+                height: "200px",
+                width: "100%",
+                color: "red",
+                textAlign: "center",
+              }}
+            >
+              {error}
+            </div>
+          )}
         </Row>
       </Container>
     </div>

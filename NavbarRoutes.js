@@ -1,24 +1,24 @@
 export const Movies = [
   {
-    category: "Top 250 Movies",
+    category: "Top 250",
     url: "Top250Movies",
   },
   {
-    category: "popular",
+    category: "Most Popular",
     url: "MostPopularMovies",
   },
   {
-    category: "Top Box Office",
+    category: "Box Office",
     url: "BoxOffice",
   },
 ];
 export const TV = [
   {
-    category: "Top 250 TV Shows",
+    category: "Top 250 ",
     url: "Top250TVs",
   },
   {
-    category: "Popular TV Shows",
+    category: "Most Popular",
     url: "MostPopularTVs",
   },
   {
@@ -29,11 +29,11 @@ export const TV = [
 export const Awards = [
   {
     category: "Academy Awards",
-    url: "ComingSoon",
+    url: "InTheaters",
   },
   {
     category: "Other Awards",
-    url: "Top250Movies",
+    url: "InTheaters",
   },
 ];
 
