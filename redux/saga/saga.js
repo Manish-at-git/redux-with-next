@@ -57,10 +57,7 @@ export function* handleMovieListLoad(action) {
       axios.get,
       `https://imdb-api.com/en/API/${url}/${API_KEY}`
     );
-    console.log(
-      users.data,
-      "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
-    );
+
     yield put(setgetMovieList(users.data));
   } catch (error) {
     yield put(setErrorgetMovieList(error.toString()));
