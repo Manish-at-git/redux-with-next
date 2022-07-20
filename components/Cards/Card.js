@@ -30,8 +30,8 @@ function Cards(props) {
   }, []);
 
   const watchlist = (user, e) => {
+    e.preventDefault();
     if (userLogged != undefined) {
-      e.preventDefault();
       if (typeof window !== "undefined") {
         let duplicate = false;
         let localStorageList =
@@ -40,6 +40,11 @@ function Cards(props) {
         localStorageList.forEach((item) => {
           if (item.id === user.id) {
             duplicate = true;
+            let elem = document.getElementById(props.item.id);
+            elem.style.display = "block";
+            setTimeout(() => {
+              elem.style.display = "none";
+            }, 2000);
           }
         });
         if (duplicate === false) {
@@ -48,6 +53,11 @@ function Cards(props) {
             userLogged?.email,
             JSON.stringify(localStorageList)
           );
+          let elem = document.getElementById(props.item.id + 1);
+          elem.style.display = "block";
+          setTimeout(() => {
+            elem.style.display = "none";
+          }, 2000);
         }
       } else {
         console.log("App running on server");
@@ -59,6 +69,28 @@ function Cards(props) {
 
   return (
     <div className={styles.AppCard}>
+      <span
+        id={props.item.id}
+        style={{
+          display: "none",
+          color: "#f5c518",
+          textAlign: "center",
+          padding: "5px 0",
+        }}
+      >
+        Movie Already Exist
+      </span>
+      <span
+        id={props.item.id + 1}
+        style={{
+          display: "none",
+          color: "#f5c518",
+          textAlign: "center",
+          padding: "5px 0",
+        }}
+      >
+        Movie Added
+      </span>
       <Card className={styles.Cards}>
         <Card.Img
           variant="top"
