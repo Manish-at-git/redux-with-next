@@ -41,20 +41,13 @@ function Cards(props) {
 
   const [local, setLocal] = useState(localStorageList);
   let icons = false;
+  let index;
 
   if (userLogged != undefined) {
     if (typeof window !== "undefined") {
-      localStorageList.forEach((item) => {
-        if (item.id === props.item.id) {
-          icons = true;
-        }
+      index = localStorageList.findIndex((curElem) => {
+        return curElem.id === props.item.id;
       });
-      localStorageList.reduce(function(num, curValue)){
-        if(num.indexOf(curValue) > 0){
-          num.push(curValue)
-          return curValue
-        }
-      }
     } else {
       console.log("App running on server");
     }
@@ -92,14 +85,12 @@ function Cards(props) {
     }
   };
 
-  const removeWatchlist = (user, e) => {
+  const removeWatchlist = (e) => {
     e.preventDefault();
     if (userLogged != undefined) {
       let localStorageList =
         JSON.parse(localStorage.getItem(userLogged?.email)) || [];
-      const index = localStorageList.findIndex((curElem) => {
-        return curElem.id === user.id;
-      });
+
       if (index > 0) {
         localStorageList.splice(index, 1);
         localStorage.setItem(
@@ -122,7 +113,7 @@ function Cards(props) {
           className={styles.CardImg}
         />
         <span className={styles.addBookmarkSpan}>
-          {icon == true || icons == true ? (
+          {icon == true || index > 0 ? (
             <FontAwesomeIcon
               onClick={(e) => removeWatchlist(props.item, e)}
               icon={faCheck}
