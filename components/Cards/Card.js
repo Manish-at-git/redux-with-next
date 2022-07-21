@@ -31,13 +31,18 @@ function Cards(props) {
     });
   }, []);
 
+  let localStorageList;
+
+  if (typeof window !== "undefined") {
+    localStorageList =
+      JSON.parse(localStorage.getItem(userLogged?.email)) || [];
+  }
+
+  const [local, setLocal] = useState(localStorageList);
   let icons = false;
 
   if (userLogged != undefined) {
     if (typeof window !== "undefined") {
-      let localStorageList =
-        JSON.parse(localStorage.getItem(userLogged?.email)) || [];
-
       localStorageList.forEach((item) => {
         if (item.id === props.item.id) {
           icons = true;
@@ -51,7 +56,7 @@ function Cards(props) {
   const watchlist = (user, e) => {
     e.preventDefault();
     if (userLogged != undefined) {
-      if (typeof window !== "undefined") {
+      if (typeof window !== undefined) {
         let duplicate = false;
         let localStorageList =
           JSON.parse(localStorage.getItem(userLogged?.email)) || [];
@@ -67,7 +72,7 @@ function Cards(props) {
             userLogged?.email,
             JSON.stringify(localStorageList)
           );
-
+          setLocal(localStorageList);
           setIcon(false);
         } else {
           setIcon(true);
@@ -92,7 +97,7 @@ function Cards(props) {
           className={styles.addBookmarkSpan}
           onClick={(e) => watchlist(props.item, e)}
         >
-          {icons === true || icon === true ? (
+          {icon == true || icons == true ? (
             <FontAwesomeIcon
               icon={faCheck}
               size="lg"

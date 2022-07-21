@@ -21,6 +21,9 @@ import {
   faImages,
   faFilm,
   faPlus,
+  faCheck,
+  faBucket,
+  faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -38,6 +41,7 @@ function SingleMovie() {
   const [show, setShow] = useState(false);
   const [message, setMessage] = useState("");
   const [variant, setVariant] = useState("");
+  const [iconn, setIcon] = useState(false);
   const data = useSelector((state) => state.main.singleMovie);
   const error = useSelector((state) => state.main.error);
   const router = useRouter();
@@ -47,6 +51,48 @@ function SingleMovie() {
       setUserLogged(user);
     });
   }, []);
+  let duplicate = false;
+  let icons = false;
+
+  if (userLogged != undefined) {
+    if (typeof window !== "undefined") {
+      let localStorageList =
+        JSON.parse(localStorage.getItem(userLogged?.email)) || [];
+
+      localStorageList.forEach((item) => {
+        if (item.id === data.data.id) {
+          icons = true;
+        }
+      });
+    } else {
+      console.log("App running on server");
+    }
+  }
+
+  if (typeof window !== "undefined") {
+    if (userLogged != undefined) {
+      let localStorageList =
+        JSON.parse(localStorage.getItem(userLogged?.email)) || [];
+      localStorageList.forEach((item) => {
+        if (item.id === data.data.id) {
+          icons = true;
+        }
+      });
+      if (iconn === false) {
+        // document.getElementById("plus").style.display = "block";
+        // document.getElementById("check").style.display = "none";
+        // setMessage("Added to Watchlist");
+        // setVariant("success");
+        // setShow(true);
+      } else {
+        // document.getElementById("plus").style.display = "none";
+        // document.getElementById("check").style.display = "block";
+        // setMessage("Movie Already Exist");
+        // setVariant("danger");
+        // setShow(true);
+      }
+    }
+  }
 
   const watchlist = (user) => {
     if (userLogged != undefined) {
@@ -64,13 +110,28 @@ function SingleMovie() {
           userLogged?.email,
           JSON.stringify(localStorageList)
         );
-        setMessage("Added to Watchlist");
-        setVariant("success");
-        setShow(true);
+        setIcon(false);
       } else {
-        setMessage("Movie Already Exist");
-        setVariant("danger");
-        setShow(true);
+        setIcon(true);
+      }
+    } else {
+      router.push("/register");
+    }
+  };
+
+  const removeWatchlist = (user) => {
+    if (userLogged != undefined) {
+      let localStorageList =
+        JSON.parse(localStorage.getItem(userLogged?.email)) || [];
+      const index = localStorageList.findIndex((curElem) => {
+        return curElem.id === user.id;
+      });
+      if (index > 0) {
+        localStorageList.splice(index, 1);
+        localStorage.setItem(
+          userLogged?.email,
+          JSON.stringify(localStorageList)
+        );
       }
     } else {
       router.push("/register");
@@ -228,15 +289,27 @@ function SingleMovie() {
                     {"  "}
                     See Showtime
                   </div>
-                  <div
-                    className={styles.Watchlist}
-                    onClick={() => watchlist(data.data)}
-                  >
-                    <span>
-                      <FontAwesomeIcon icon={faPlus} size="md" />
+                  <div className={styles.Watchlist}>
+                    <span onClick={() => watchlist(data.data)}>
+                      {icons === true && iconn === true ? (
+                        <>
+                          <FontAwesomeIcon
+                            icon={faCheck}
+                            size="md"
+                            // show={show}
+                            id="plus"
+                          />{" "}
+                        </>
+                      ) : (
+                        <>
+                          <FontAwesomeIcon icon={faPlus} size="md" id="check" />
+                        </>
+                      )}{" "}
                       Add to Watchlist{" "}
                     </span>
-                    <FontAwesomeIcon icon={faAngleDown} size="md" />
+                    <span onClick={() => removeWatchlist(data.data)}>
+                      <FontAwesomeIcon icon={faTrashCan} size="md" />
+                    </span>
                   </div>
                   <div className={styles.BookmarkDown}>
                     <span>
