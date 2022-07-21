@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as thinStar } from "@fortawesome/free-regular-svg-icons";
 import {
   faCircleInfo,
+  faCheck,
   faPlay,
   faPlus as Plus,
   faStar as solidStar,
@@ -22,12 +23,30 @@ import { auth } from "../../firebase/firebase-config";
 function Cards(props) {
   const router = useRouter();
   const [userLogged, setUserLogged] = useState({});
+  const [icon, setIcon] = useState(false);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setUserLogged(user);
     });
   }, []);
+
+  let icons = false;
+
+  if (userLogged != undefined) {
+    if (typeof window !== "undefined") {
+      let localStorageList =
+        JSON.parse(localStorage.getItem(userLogged?.email)) || [];
+
+      localStorageList.forEach((item) => {
+        if (item.id === props.item.id) {
+          icons = true;
+        }
+      });
+    } else {
+      console.log("App running on server");
+    }
+  }
 
   const watchlist = (user, e) => {
     e.preventDefault();
@@ -40,11 +59,6 @@ function Cards(props) {
         localStorageList.forEach((item) => {
           if (item.id === user.id) {
             duplicate = true;
-            let elem = document.getElementById(props.item.id);
-            elem.style.display = "block";
-            setTimeout(() => {
-              elem.style.display = "none";
-            }, 2000);
           }
         });
         if (duplicate === false) {
@@ -53,11 +67,10 @@ function Cards(props) {
             userLogged?.email,
             JSON.stringify(localStorageList)
           );
-          let elem = document.getElementById(props.item.id + 1);
-          elem.style.display = "block";
-          setTimeout(() => {
-            elem.style.display = "none";
-          }, 2000);
+
+          setIcon(false);
+        } else {
+          setIcon(true);
         }
       } else {
         console.log("App running on server");
@@ -69,28 +82,6 @@ function Cards(props) {
 
   return (
     <div className={styles.AppCard}>
-      <span
-        id={props.item.id}
-        style={{
-          display: "none",
-          color: "#f5c518",
-          textAlign: "center",
-          padding: "5px 0",
-        }}
-      >
-        Movie Already Exist
-      </span>
-      <span
-        id={props.item.id + 1}
-        style={{
-          display: "none",
-          color: "#f5c518",
-          textAlign: "center",
-          padding: "5px 0",
-        }}
-      >
-        Movie Added
-      </span>
       <Card className={styles.Cards}>
         <Card.Img
           variant="top"
@@ -101,11 +92,19 @@ function Cards(props) {
           className={styles.addBookmarkSpan}
           onClick={(e) => watchlist(props.item, e)}
         >
-          <FontAwesomeIcon
-            icon={Plus}
-            size="lg"
-            className={styles.addBookmark}
-          />
+          {icons === true || icon === true ? (
+            <FontAwesomeIcon
+              icon={faCheck}
+              size="lg"
+              className={styles.addBookmark}
+            />
+          ) : (
+            <FontAwesomeIcon
+              icon={Plus}
+              size="lg"
+              className={styles.addBookmark}
+            />
+          )}
         </span>
 
         <Card.Body className={styles.CardBody}>
