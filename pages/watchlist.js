@@ -21,20 +21,18 @@ import { auth } from "../firebase/firebase-config";
 function Watchlist() {
   const signedIn = useSelector((state) => state.main.signIn);
   const [userLogged, setUserLogged] = useState({});
-  const [localStorageList, setLocalStorageList] = useState(
-    JSON.parse(localStorage.getItem(userLogged?.email)) || []
-  );
+  // const [localStorageList, setLocalStorageList] = useState();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setUserLogged(user);
     });
   }, []);
-  // let localStorageList;
-  // if (typeof window !== "undefined") {
-  //   localStorageList =
-  //     ;
-  // }
+  let localStorageList;
+  if (typeof window !== "undefined") {
+    localStorageList =
+      JSON.parse(localStorage.getItem(userLogged?.email)) || [];
+  }
   return (
     <div className={styles.MovieList}>
       <Container className={styles.MovieListContainer}>

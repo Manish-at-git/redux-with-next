@@ -22,8 +22,9 @@ import { auth } from "../../firebase/firebase-config";
 
 function Cards(props) {
   const router = useRouter();
+
   const [userLogged, setUserLogged] = useState({});
-  const [icon, setIcon] = useState(false);
+  const [icon, setIcon] = useState(false); ///////
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -85,6 +86,27 @@ function Cards(props) {
     }
   };
 
+  const removeWatchlist = (user, e) => {
+    e.preventDefault();
+    if (userLogged != undefined) {
+      let localStorageList =
+        JSON.parse(localStorage.getItem(userLogged?.email)) || [];
+      const index = localStorageList.findIndex((curElem) => {
+        return curElem.id === user.id;
+      });
+      if (index > 0) {
+        localStorageList.splice(index, 1);
+        localStorage.setItem(
+          userLogged?.email,
+          JSON.stringify(localStorageList)
+        );
+        setLocal(localStorageList);
+      }
+    } else {
+      router.push("/register");
+    }
+  };
+
   return (
     <div className={styles.AppCard}>
       <Card className={styles.Cards}>
@@ -93,18 +115,17 @@ function Cards(props) {
           src={props.item.image}
           className={styles.CardImg}
         />
-        <span
-          className={styles.addBookmarkSpan}
-          onClick={(e) => watchlist(props.item, e)}
-        >
+        <span className={styles.addBookmarkSpan}>
           {icon == true || icons == true ? (
             <FontAwesomeIcon
+              onClick={(e) => removeWatchlist(props.item, e)}
               icon={faCheck}
               size="lg"
               className={styles.addBookmark}
             />
           ) : (
             <FontAwesomeIcon
+              onClick={(e) => watchlist(props.item, e)}
               icon={Plus}
               size="lg"
               className={styles.addBookmark}

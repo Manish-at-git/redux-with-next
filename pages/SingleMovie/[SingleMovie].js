@@ -41,24 +41,31 @@ function SingleMovie() {
   const [show, setShow] = useState(false);
   const [message, setMessage] = useState("");
   const [variant, setVariant] = useState("");
-  const [iconn, setIcon] = useState(false);
   const data = useSelector((state) => state.main.singleMovie);
   const error = useSelector((state) => state.main.error);
   const router = useRouter();
+
+  const [icon, setIcon] = useState(false); ////////
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setUserLogged(user);
     });
   }, []);
-  let duplicate = false;
+
+  /////
+  let localStorageList;
+
+  if (typeof window !== "undefined") {
+    localStorageList =
+      JSON.parse(localStorage.getItem(userLogged?.email)) || [];
+  }
+
+  const [local, setLocal] = useState(localStorageList);
   let icons = false;
 
   if (userLogged != undefined) {
     if (typeof window !== "undefined") {
-      let localStorageList =
-        JSON.parse(localStorage.getItem(userLogged?.email)) || [];
-
       localStorageList.forEach((item) => {
         if (item.id === data.data.id) {
           icons = true;
@@ -66,31 +73,6 @@ function SingleMovie() {
       });
     } else {
       console.log("App running on server");
-    }
-  }
-
-  if (typeof window !== "undefined") {
-    if (userLogged != undefined) {
-      let localStorageList =
-        JSON.parse(localStorage.getItem(userLogged?.email)) || [];
-      localStorageList.forEach((item) => {
-        if (item.id === data.data.id) {
-          icons = true;
-        }
-      });
-      if (iconn === false) {
-        // document.getElementById("plus").style.display = "block";
-        // document.getElementById("check").style.display = "none";
-        // setMessage("Added to Watchlist");
-        // setVariant("success");
-        // setShow(true);
-      } else {
-        // document.getElementById("plus").style.display = "none";
-        // document.getElementById("check").style.display = "block";
-        // setMessage("Movie Already Exist");
-        // setVariant("danger");
-        // setShow(true);
-      }
     }
   }
 
@@ -110,6 +92,7 @@ function SingleMovie() {
           userLogged?.email,
           JSON.stringify(localStorageList)
         );
+        setLocal(localStorageList);
         setIcon(false);
       } else {
         setIcon(true);
@@ -132,6 +115,7 @@ function SingleMovie() {
           userLogged?.email,
           JSON.stringify(localStorageList)
         );
+        setLocal(localStorageList);
       }
     } else {
       router.push("/register");
@@ -290,25 +274,31 @@ function SingleMovie() {
                     See Showtime
                   </div>
                   <div className={styles.Watchlist}>
-                    <span onClick={() => watchlist(data.data)}>
-                      {icons === true && iconn === true ? (
+                    <span>
+                      {icon == true || icons == true ? (
                         <>
                           <FontAwesomeIcon
-                            icon={faCheck}
-                            size="md"
-                            // show={show}
-                            id="plus"
+                            onClick={(e) => removeWatchlist(data.data, e)}
+                            icon={faTrashCan}
+                            size="lg"
+                            className={styles.addBookmark}
                           />{" "}
+                          <span>Remove from Watchlist</span>
                         </>
                       ) : (
                         <>
-                          <FontAwesomeIcon icon={faPlus} size="md" id="check" />
+                          <FontAwesomeIcon
+                            onClick={(e) => watchlist(data.data, e)}
+                            icon={faPlus}
+                            size="lg"
+                            className={styles.addBookmark}
+                          />{" "}
+                          <span> Add to Watchlist</span>
                         </>
-                      )}{" "}
-                      Add to Watchlist{" "}
+                      )}
                     </span>
                     <span onClick={() => removeWatchlist(data.data)}>
-                      <FontAwesomeIcon icon={faTrashCan} size="md" />
+                      <FontAwesomeIcon icon={faAngleDown} size="md" />
                     </span>
                   </div>
                   <div className={styles.BookmarkDown}>
