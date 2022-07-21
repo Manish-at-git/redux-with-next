@@ -22,6 +22,7 @@ import { wrapper } from "../redux/store";
 import { END } from "redux-saga";
 import { getMovieList } from "../redux/actions/main";
 import { onAuthStateChanged } from "firebase/auth";
+import Table from "../components/MovieList/Table/Table";
 
 function MovieListPage(props) {
   const [show, setShow] = useState(false);
@@ -191,65 +192,7 @@ function MovieListPage(props) {
                       </th>
                       <th className={styles.th}></th>
                     </tr>
-                    {CategorySort &&
-                      CategorySort.map((user) => (
-                        <tr className={styles.tr} key={user.id}>
-                          <td style={{ display: "flex", alignItems: "center" }}>
-                            <Image
-                              src={user.image}
-                              alt="poster"
-                              width={50}
-                              height={70}
-                            />
-                            <small className={styles.TableRow}>
-                              {user.rank}.{" "}
-                              <Link
-                                href={{
-                                  pathname: `/SingleMovie/${user.id}`,
-                                }}
-                              >
-                                <a className={styles.MovieListLink}>
-                                  <span className={styles.BlueName}>
-                                    {user.title}
-                                  </span>
-                                </a>
-                              </Link>
-                              <small
-                                style={{ fontSize: "0.9em" }}
-                              >{`(${user.year})`}</small>
-                            </small>
-                          </td>
-                          <td
-                            className={styles.FontSize}
-                            style={{
-                              fontSize: "0.8rem",
-                            }}
-                          >
-                            <FontAwesomeIcon
-                              icon={solidStar}
-                              style={{
-                                color: "#f5c518",
-                                padding: "0 5px",
-                              }}
-                              size="lg"
-                            />
-                            <b>{user.imDbRating}</b>
-                          </td>
-                          <td>
-                            <FontAwesomeIcon
-                              icon={thinStar}
-                              style={{ color: "grey", opacity: "0.5" }}
-                            />
-                          </td>
-                          <td>
-                            <FontAwesomeIcon
-                              icon={faPlus}
-                              style={{ color: "grey", cursor: "pointer" }}
-                              onClick={(e) => watchlist(user, e)}
-                            />
-                          </td>
-                        </tr>
-                      ))}
+                    <Table CategorySort={CategorySort} />
                   </table>
                 </div>
               </div>

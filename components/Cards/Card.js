@@ -49,6 +49,12 @@ function Cards(props) {
           icons = true;
         }
       });
+      localStorageList.reduce(function(num, curValue)){
+        if(num.indexOf(curValue) > 0){
+          num.push(curValue)
+          return curValue
+        }
+      }
     } else {
       console.log("App running on server");
     }

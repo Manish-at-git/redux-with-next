@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "../styles/Watchlist.module.css";
+import Table from "../components/MovieList/Table/Table";
 
 import share from "../assests/images/share.png";
 
@@ -91,68 +92,7 @@ function Watchlist() {
                     <th className={styles.th}></th>
                   </tr>
 
-                  {typeof window !== "undefined"
-                    ? localStorageList.map((user) => (
-                        <tr className={styles.tr} key={user.id}>
-                          <td style={{ display: "flex", alignItems: "center" }}>
-                            <Image
-                              src={user.image}
-                              alt="poster"
-                              width={50}
-                              height={70}
-                            />
-                            <small className={styles.TableRow}>
-                              {user.rank
-                                ? user.rank
-                                : Math.ceil(user.imDbRating)}
-                              .{" "}
-                              <Link
-                                href={{
-                                  pathname: `/SingleMovie/${user.id}`,
-                                }}
-                              >
-                                <a className={styles.MovieListLink}>
-                                  <span className={styles.BlueName}>
-                                    {user.title}
-                                  </span>
-                                </a>
-                              </Link>
-                              <small
-                                style={{ fontSize: "0.9em" }}
-                              >{`(${user.year})`}</small>
-                            </small>
-                          </td>
-                          <td
-                            className={styles.FontSize}
-                            style={{
-                              fontSize: "0.8rem",
-                            }}
-                          >
-                            <FontAwesomeIcon
-                              icon={solidStar}
-                              style={{
-                                color: "#f5c518",
-                                padding: "0 5px",
-                              }}
-                              size="lg"
-                            />
-                            <b>{user.imDbRating}</b>
-                          </td>
-                          <td>
-                            <FontAwesomeIcon
-                              icon={thinStar}
-                              style={{ color: "grey", opacity: "0.5" }}
-                            />
-                          </td>
-                          <td>
-                            <FontAwesomeIcon
-                              icon={faCheck}
-                              style={{ color: "grey", cursor: "pointer" }}
-                            />
-                          </td>
-                        </tr>
-                      ))
-                    : null}
+                  <Table CategorySort={localStorageList} />
                 </table>
               </div>
             </div>
