@@ -147,3 +147,25 @@ export const setErrorSearchMovie = (error) => {
     error,
   };
 };
+
+///REVIEW
+
+export const getReview = (search) => {
+  return {
+    type: GET_SEARCHMOVIE,
+    search,
+  };
+};
+
+export const setReview = (users) => {
+  return {
+    type: GET_SEARCHMOVIE_SUCCESS,
+    users,
+  };
+};
+export const setErrorReview = (error) => {
+  return {
+    type: GET_SEARCHMOVIE_ERROR,
+    error,
+  };
+};

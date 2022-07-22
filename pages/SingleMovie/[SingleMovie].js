@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import WhatToWatch from "../../components/WhatToWatch/WhatToWatch";
 
 import { Container } from "react-bootstrap";
 import styles from "../../styles/SingleMovie.module.css";
@@ -21,8 +22,6 @@ import {
   faImages,
   faFilm,
   faPlus,
-  faCheck,
-  faBucket,
   faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -450,6 +449,52 @@ function SingleMovie() {
                 ))}
               </div>
             </Container>
+          </Container>
+          <Container>
+            <WhatToWatch
+              heading=""
+              recommend=""
+              title="Reviews"
+              text=""
+              color="black"
+            />
+            <div style={{ border: "1px solid red" }}>
+              {data.review.slice(0, 5).map((item) => (
+                <div
+                  style={{
+                    color: "white",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "justify",
+                    padding: "10px",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: "18px",
+                      fontWeight: "bold",
+                      color: "grey",
+                    }}
+                  >
+                    {item.username}
+                  </div>
+                  <div style={{ fontSize: "20px" }}>{item.rate}/10</div>
+                  <div>
+                    <span>{item.title} </span>
+                    <span>{item.date}</span>
+                  </div>
+                  <small
+                    style={{
+                      fontWeight: "thin",
+                      textAlign: "justify",
+                      color: "grey",
+                    }}
+                  >
+                    {item.content}
+                  </small>
+                </div>
+              ))}
+            </div>
           </Container>
         </>
       ) : (

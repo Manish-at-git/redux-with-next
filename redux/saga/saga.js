@@ -13,6 +13,8 @@ import {
   setErrorSingleMovie,
   setSearchMovie,
   setErrorSearchMovie,
+  setReview,
+  setErrorReview,
 } from "../actions/main";
 import {
   GET_MOVIEPICK,
@@ -20,6 +22,7 @@ import {
   GET_MOVIELIST,
   GET_SINGLEMOVIE,
   GET_SEARCHMOVIE,
+  GET_REVIEW,
 } from "../types";
 import axios from "axios";
 
@@ -78,11 +81,16 @@ export function* handleSingleMovieLoad(action) {
       axios.get,
       `https://imdb-api.com/en/API/Trailer/${API_KEY}/${action.id}`
     );
+    const review = yield call(
+      axios.get,
+      `https://imdb-api.com/en/API/Reviews/${API_KEY}/${action.id}`
+    );
 
     const singleMovie = {
       data: users.data,
       images: images.data.items,
       trailer: trailers.data.linkEmbed,
+      review: review.data.items,
     };
 
     yield put(setSingleMovie(singleMovie));

@@ -24,7 +24,7 @@ const initialState = {
   moviePick: [],
   moviePickTwo: [],
   movieList: [],
-  singleMovie: { data: {}, images: {}, trailer: "" },
+  singleMovie: { data: {}, images: {}, trailer: "", review: [] },
   search: { loading: false, searchResults: [] },
 };
 
@@ -75,6 +75,7 @@ export default function (state = initialState, action) {
           data: action.users.data,
           images: action.users.images,
           trailer: action.users.trailer,
+          review: [...action.users.review],
         },
       };
     case GET_SEARCHMOVIE:
