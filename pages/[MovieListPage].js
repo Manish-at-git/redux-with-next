@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import Link from "next/link";
 
 import { NavRoutes } from "../NavbarRoutes";
 import Categories from "../components/MovieList/Categories/Categories";
@@ -10,11 +9,6 @@ import Container from "react-bootstrap/Container";
 import styles from "../styles/MovieList.module.css";
 import share from "../assests/images/share.png";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar as thinStar } from "@fortawesome/free-regular-svg-icons";
-import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { Alert } from "react-bootstrap";
 import { auth } from "../firebase/firebase-config";
 
 import { useSelector } from "react-redux";
@@ -24,10 +18,7 @@ import { getMovieList } from "../redux/actions/main";
 import { onAuthStateChanged } from "firebase/auth";
 import Table from "../components/MovieList/Table/Table";
 
-function MovieListPage(props) {
-  const [show, setShow] = useState(false);
-  const [message, setMessage] = useState("");
-  const [variant, setVariant] = useState("");
+function MovieListPage() {
   const [userLogged, setUserLogged] = useState({});
   const [searchTerm, setSearchTerm] = useState("");
   const [sortDirection, setsortDirection] = useState("Ranking");
@@ -41,42 +32,6 @@ function MovieListPage(props) {
       setUserLogged(user);
     });
   }, []);
-
-  const watchlist = (user, e) => {
-    if (userLogged != undefined) {
-      e.preventDefault();
-      if (typeof window !== "undefined") {
-        let duplicate = false;
-        let localStorageList =
-          JSON.parse(localStorage.getItem(userLogged?.uid)) || [];
-
-        localStorageList.forEach((item) => {
-          if (item.id === user.id) {
-            duplicate = true;
-          }
-        });
-
-        if (duplicate === false) {
-          localStorageList.push(user);
-          localStorage.setItem(
-            userLogged?.uid,
-            JSON.stringify(localStorageList)
-          );
-          setMessage("Added to Watchlist");
-          setVariant("success");
-          setShow(true);
-        } else {
-          setMessage("Movie Already Exist");
-          setVariant("danger");
-          setShow(true);
-        }
-      } else {
-        console.log("we are running on the server");
-      }
-    } else {
-      router.push("/register");
-    }
-  };
 
   const sortByYear = (e) => {
     const sortDirection = e.target.value;
@@ -109,14 +64,6 @@ function MovieListPage(props) {
         {error == "" ? (
           <div className={styles.MovieListMain}>
             <div className={styles.MovieListPage}>
-              <Alert
-                show={show}
-                variant={variant}
-                onClose={() => setShow(false)}
-                dismissible
-              >
-                <Alert.Heading>{message}</Alert.Heading>
-              </Alert>
               <div className={styles.MovieListHeaderpage}>
                 <div className={styles.MovieListHead}>
                   <h5>IMDb Charts </h5>
@@ -232,19 +179,6 @@ export async function getStaticPaths() {
     fallback: false,
   };
 }
-
-// export async function getStaticProps(context) {
-//   const MovieListPage = context.params.MovieListPage;
-//   const res = await fetch(
-//     `https://imdb-api.com/en/API/${MovieListPage}/k_nrcppo4w`
-//   );
-//   const posts = await res.json();
-//   return {
-//     props: {
-//       posts,
-//     },
-//   };
-// }
 
 export const getStaticProps = wrapper.getStaticProps(
   (store) => async (context) => {

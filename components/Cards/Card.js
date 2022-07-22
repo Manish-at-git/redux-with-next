@@ -19,13 +19,15 @@ import {
 ///FIREBASE
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase/firebase-config";
-import { findIndex } from "lodash";
 
 function Cards(props) {
-  const router = useRouter();
+  let localStorageList;
+  let index;
 
+  const router = useRouter();
   const [userLogged, setUserLogged] = useState({});
   const [icon, setIcon] = useState(false); ///////
+  const [local, setLocal] = useState(localStorageList);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -33,15 +35,9 @@ function Cards(props) {
     });
   }, []);
 
-  let localStorageList;
-
   if (typeof window !== "undefined") {
     localStorageList = JSON.parse(localStorage.getItem(userLogged?.uid)) || [];
   }
-
-  const [local, setLocal] = useState(localStorageList);
-  let icons = false;
-  let index;
 
   if (userLogged != undefined) {
     if (typeof window !== "undefined") {
