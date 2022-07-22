@@ -32,9 +32,13 @@ function Watchlist() {
 
   let localStorageList;
   if (typeof window !== "undefined") {
-    localStorageList =
-      JSON.parse(localStorage.getItem(userLogged?.email)) || [];
+    localStorageList = JSON.parse(localStorage.getItem(userLogged?.uid)) || [];
   }
+
+  const ClearWatchlist = () => {
+    localStorage.removeItem(userLogged?.uid);
+  };
+
   return (
     <div className={styles.MovieList}>
       <Container className={styles.MovieListContainer}>
@@ -96,6 +100,9 @@ function Watchlist() {
                   <Table CategorySort={localStorageList} />
                 </table>
               </div>
+            </div>
+            <div className={styles.ButtonDiv} onClick={ClearWatchlist}>
+              <button className={styles.Button}>Delete All</button>
             </div>
           </div>
           <Categories />

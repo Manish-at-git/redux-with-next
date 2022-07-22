@@ -139,3 +139,19 @@
   display: flex;
   align-items: center;
 }
+
+.ButtonDiv {
+  padding-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.Button {
+  padding: 5px;
+  border: 1px solid #f5c518;
+  background-color: #f5c400;
+  color: black;
+  border-radius: 2px;
+  width: 30%;
+}

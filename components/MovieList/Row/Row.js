@@ -25,8 +25,7 @@ function Roq({ user }) {
   let localStorageList;
 
   if (typeof window !== "undefined") {
-    localStorageList =
-      JSON.parse(localStorage.getItem(userLogged?.email)) || [];
+    localStorageList = JSON.parse(localStorage.getItem(userLogged?.uid)) || [];
   }
 
   const [local, setLocal] = useState(localStorageList);
@@ -50,7 +49,7 @@ function Roq({ user }) {
       if (typeof window !== undefined) {
         let duplicate = false;
         let localStorageList =
-          JSON.parse(localStorage.getItem(userLogged?.email)) || [];
+          JSON.parse(localStorage.getItem(userLogged?.uid)) || [];
 
         localStorageList.forEach((item) => {
           if (item.id === user.id) {
@@ -60,7 +59,7 @@ function Roq({ user }) {
         if (duplicate === false) {
           localStorageList.push(user);
           localStorage.setItem(
-            userLogged?.email,
+            userLogged?.uid,
             JSON.stringify(localStorageList)
           );
           setLocal(localStorageList);
@@ -80,16 +79,13 @@ function Roq({ user }) {
     e.preventDefault();
     if (userLogged != undefined) {
       let localStorageList =
-        JSON.parse(localStorage.getItem(userLogged?.email)) || [];
+        JSON.parse(localStorage.getItem(userLogged?.uid)) || [];
       const index = localStorageList.findIndex((curElem) => {
         return curElem.id === user.id;
       });
       if (index > 0) {
         localStorageList.splice(index, 1);
-        localStorage.setItem(
-          userLogged?.email,
-          JSON.stringify(localStorageList)
-        );
+        localStorage.setItem(userLogged?.uid, JSON.stringify(localStorageList));
         setLocal(localStorageList);
       }
     } else {

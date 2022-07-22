@@ -83,7 +83,7 @@ function SignIn() {
                   className={styles.AuthButton}
                   onClick={() => {
                     login();
-                    dispatch(loadSignIn(userLogged?.email));
+                    dispatch(loadSignIn(userLogged?.uid));
                   }}
                 >
                   {" "}

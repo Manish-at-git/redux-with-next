@@ -57,8 +57,7 @@ function SingleMovie() {
   let localStorageList;
 
   if (typeof window !== "undefined") {
-    localStorageList =
-      JSON.parse(localStorage.getItem(userLogged?.email)) || [];
+    localStorageList = JSON.parse(localStorage.getItem(userLogged?.uid)) || [];
   }
 
   const [local, setLocal] = useState(localStorageList);
@@ -79,7 +78,7 @@ function SingleMovie() {
   const watchlist = (user) => {
     if (userLogged != undefined) {
       let localStorageList =
-        JSON.parse(localStorage.getItem(userLogged?.email)) || [];
+        JSON.parse(localStorage.getItem(userLogged?.uid)) || [];
       let duplicate = false;
       localStorageList.forEach((item) => {
         if (item.id === user.id) {
@@ -88,10 +87,7 @@ function SingleMovie() {
       });
       if (duplicate === false) {
         localStorageList.push(user);
-        localStorage.setItem(
-          userLogged?.email,
-          JSON.stringify(localStorageList)
-        );
+        localStorage.setItem(userLogged?.uid, JSON.stringify(localStorageList));
         setLocal(localStorageList);
         setIcon(false);
       } else {
@@ -105,16 +101,13 @@ function SingleMovie() {
   const removeWatchlist = (user) => {
     if (userLogged != undefined) {
       let localStorageList =
-        JSON.parse(localStorage.getItem(userLogged?.email)) || [];
+        JSON.parse(localStorage.getItem(userLogged?.uid)) || [];
       const index = localStorageList.findIndex((curElem) => {
         return curElem.id === user.id;
       });
       if (index > 0) {
         localStorageList.splice(index, 1);
-        localStorage.setItem(
-          userLogged?.email,
-          JSON.stringify(localStorageList)
-        );
+        localStorage.setItem(userLogged?.uid, JSON.stringify(localStorageList));
         setLocal(localStorageList);
       }
     } else {

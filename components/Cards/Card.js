@@ -19,6 +19,7 @@ import {
 ///FIREBASE
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase/firebase-config";
+import { findIndex } from "lodash";
 
 function Cards(props) {
   const router = useRouter();
@@ -35,8 +36,7 @@ function Cards(props) {
   let localStorageList;
 
   if (typeof window !== "undefined") {
-    localStorageList =
-      JSON.parse(localStorage.getItem(userLogged?.email)) || [];
+    localStorageList = JSON.parse(localStorage.getItem(userLogged?.uid)) || [];
   }
 
   const [local, setLocal] = useState(localStorageList);
@@ -57,15 +57,10 @@ function Cards(props) {
     e.preventDefault();
     if (userLogged != undefined) {
       if (typeof window !== undefined) {
-        let duplicate = false;
         let localStorageList =
-          JSON.parse(localStorage.getItem(userLogged?.email)) || [];
-
+          JSON.parse(localStorage.getItem(userLogged?.uid)) || [];
         localStorageList.push(user);
-        localStorage.setItem(
-          userLogged?.email,
-          JSON.stringify(localStorageList)
-        );
+        localStorage.setItem(userLogged?.uid, JSON.stringify(localStorageList));
         setLocal(localStorageList);
         setIcon(false);
       } else {
@@ -80,17 +75,10 @@ function Cards(props) {
     e.preventDefault();
     if (userLogged != undefined) {
       let localStorageList =
-        JSON.parse(localStorage.getItem(userLogged?.email)) || [];
-
-      if (index > 0) {
-        console.log("hello");
-        localStorageList.splice(index, 1);
-        localStorage.setItem(
-          userLogged?.email,
-          JSON.stringify(localStorageList)
-        );
-        setLocal(localStorageList);
-      }
+        JSON.parse(localStorage.getItem(userLogged?.uid)) || [];
+      localStorageList.splice(index, 1);
+      localStorage.setItem(userLogged?.uid, JSON.stringify(localStorageList));
+      setLocal(localStorageList);
     } else {
       router.push("/register");
     }

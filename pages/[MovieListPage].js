@@ -48,7 +48,7 @@ function MovieListPage(props) {
       if (typeof window !== "undefined") {
         let duplicate = false;
         let localStorageList =
-          JSON.parse(localStorage.getItem(userLogged?.email)) || [];
+          JSON.parse(localStorage.getItem(userLogged?.uid)) || [];
 
         localStorageList.forEach((item) => {
           if (item.id === user.id) {
@@ -59,7 +59,7 @@ function MovieListPage(props) {
         if (duplicate === false) {
           localStorageList.push(user);
           localStorage.setItem(
-            userLogged?.email,
+            userLogged?.uid,
             JSON.stringify(localStorageList)
           );
           setMessage("Added to Watchlist");
