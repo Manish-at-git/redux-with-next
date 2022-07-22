@@ -4,7 +4,6 @@ import styles from "../../../styles/MovieList.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as thinStar } from "@fortawesome/free-regular-svg-icons";
 import {
-  faCheck,
   faStar as solidStar,
   faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
@@ -14,7 +13,6 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../../firebase/firebase-config";
 
 function Roq({ user }) {
-  const [domLoaded, setDomLoaded] = useState(false);
   const [userLogged, setUserLogged] = useState({});
   const [icon, setIcon] = useState(false); ///////
 
@@ -22,9 +20,6 @@ function Roq({ user }) {
     onAuthStateChanged(auth, (user) => {
       setUserLogged(user);
     });
-  }, []);
-  useEffect(() => {
-    setDomLoaded(true);
   }, []);
 
   let localStorageList;

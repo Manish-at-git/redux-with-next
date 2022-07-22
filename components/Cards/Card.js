@@ -61,22 +61,13 @@ function Cards(props) {
         let localStorageList =
           JSON.parse(localStorage.getItem(userLogged?.email)) || [];
 
-        localStorageList.forEach((item) => {
-          if (item.id === user.id) {
-            duplicate = true;
-          }
-        });
-        if (duplicate === false) {
-          localStorageList.push(user);
-          localStorage.setItem(
-            userLogged?.email,
-            JSON.stringify(localStorageList)
-          );
-          setLocal(localStorageList);
-          setIcon(false);
-        } else {
-          setIcon(true);
-        }
+        localStorageList.push(user);
+        localStorage.setItem(
+          userLogged?.email,
+          JSON.stringify(localStorageList)
+        );
+        setLocal(localStorageList);
+        setIcon(false);
       } else {
         console.log("App running on server");
       }
@@ -85,13 +76,14 @@ function Cards(props) {
     }
   };
 
-  const removeWatchlist = (e) => {
+  const removeWatchlist = (user, e) => {
     e.preventDefault();
     if (userLogged != undefined) {
       let localStorageList =
         JSON.parse(localStorage.getItem(userLogged?.email)) || [];
 
       if (index > 0) {
+        console.log("hello");
         localStorageList.splice(index, 1);
         localStorage.setItem(
           userLogged?.email,

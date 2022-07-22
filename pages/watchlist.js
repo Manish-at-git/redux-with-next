@@ -29,6 +29,7 @@ function Watchlist() {
       setUserLogged(user);
     });
   }, []);
+
   let localStorageList;
   if (typeof window !== "undefined") {
     localStorageList =
