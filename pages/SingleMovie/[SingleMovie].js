@@ -458,10 +458,14 @@ function SingleMovie() {
               text=""
               color="black"
             />
-            <div style={{ border: "1px solid red" }}>
+            <div>
               {data.review.slice(0, 5).map((item) => (
                 <div
                   style={{
+                    borderBottom: "2px solid grey",
+
+                    overflow: "hidden",
+                    maxHeight: "205px",
                     color: "white",
                     display: "flex",
                     flexDirection: "column",
@@ -471,16 +475,22 @@ function SingleMovie() {
                 >
                   <div
                     style={{
-                      fontSize: "18px",
-                      fontWeight: "bold",
                       color: "grey",
                     }}
                   >
                     {item.username}
                   </div>
-                  <div style={{ fontSize: "20px" }}>{item.rate}/10</div>
                   <div>
-                    <span>{item.title} </span>
+                    {" "}
+                    <FontAwesomeIcon
+                      icon={solidStar}
+                      size="sm"
+                      style={{ color: "#f5c518" }}
+                    />
+                    {item.rate}/10
+                  </div>
+                  <div>
+                    <span style={{ fontSize: "22px" }}>{item.title} </span>
                     <span>{item.date}</span>
                   </div>
                   <small
@@ -494,6 +504,22 @@ function SingleMovie() {
                   </small>
                 </div>
               ))}
+            </div>
+          </Container>
+          <Container style={{ color: "white" }}>
+            <WhatToWatch
+              heading=""
+              recommend=""
+              title="Box Office"
+              text=""
+              color="black"
+            />
+            <div>
+              {" "}
+              <div> {data.data.boxOffice.budget}</div>
+              <div>{data.data.boxOffice.openingWeekendUSA}</div>
+              <div>{data.data.boxOffice.grossUSA}</div>
+              <div>{data.data.boxOffice.cumulativeWorldwideGross}</div>
             </div>
           </Container>
         </>
